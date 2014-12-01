@@ -7,13 +7,14 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 """"""""""""""""""""""""""""""""""""""Plugins
-"Required Bundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/vundle' "Required Bundle
 
 ""Bundles to install
-
 Plugin 'airblade/vim-gitgutter'
 Plugin 'alfredodeza/pytest.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'austintaylor/vim-indentobject'
 Plugin 'bling/vim-airline'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'davidhalter/jedi-vim'
@@ -23,11 +24,14 @@ Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'garbas/vim-snipmate'
+Plugin 'godlygeek/tabular'
 Plugin 'gregsexton/MatchTag'
 Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jaxbot/github-issues.vim'
 Plugin 'jigish/vim-thrift'
+Plugin 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-user'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'kien/ctrlp.vim'
@@ -37,18 +41,39 @@ Plugin 'Lokaltog/powerline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mileszs/ack.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'nvie/vim-flake8'
+Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'rjohnsondev/vim-compiler-go'
+Plugin 'rodjek/vim-puppet'
 Plugin 'rosstimson/scala-vim-support'
 Plugin 'saghul/vim-colortoggle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/HTML-AutoCloseTag'
+Plugin 'vim-scripts/JSON.vim'
+Plugin 'vim-scripts/YankRing.vim'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
@@ -90,14 +115,13 @@ set mouse=a
 "(runtime == source+relative path to vim installation dir)
 "runtime macros/matchit.vim
 
-"""""""""""""""""""""""""""""""""""""Syntastic
+""""""""""""""""""""""""""""""""""""Syntastic
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_mode_map = { 'mode': 'active',
-                             \ 'active_filetypes': ['ruby', 'php'],
+                             \ 'active_filetypes': [],
                              \ 'passive_filetypes': ['puppet'] }
-"set statusline+=%#warningmsg#
-""set statusline+=%{SyntasticStatuslineFlag()}
+map <F8> :SyntasticCheck<CR>
 
 """"""""""""""""""""""""""""""""""""Youcompleteme
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
@@ -127,119 +151,98 @@ let g:solarized_termcolors=256
 colorscheme molokai
 let g:molokai_original = 1
 ""let g:rehash256 = 1
+colors jellybeans
 
-""""""""""""""""""""""""""""""""""""Colors
-"set listchars=tab:▸\ ,eol:¬ " Use the same symbols as TextMate for tabstops and EOLs
-"set list "display hidden chars (tab and eol)
-"set hidden "allow to navigate unsaved buffers without prompting any error or warning
+""""""""""""""""""""""""""""""""""""NERDTree
+map <F5> :NERDTreeToggle .<CR>
+nnoremap ,n :NERDTreeToggle<CR>
+" Don't ask to remove buffers when renaming or deleting files
+let g:NERDTreeAutoDeleteBuffer = 1
+" Ignore *.o files
+let NERDTreeIgnore = [ '\.o$', '\.meta$' ]
+" Open NERDTree when vim starts
+autocmd vimenter * NERDTree
+""Set nerdtree to be launched on start and cursor set to editing window
+" autocmd VimEnter * wincmd p
 
-"""""""""""""""""""""""""""""""""""""Tabs
-"Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space
-" chars
-set expandtab
-set tabstop=4 "Tab equivalent to n spaces
-set shiftwidth=4
-" set softtabstop=2
-" set autoindent
-set smarttab
-"set hlsearch "enable hlsearch
-set incsearch
-set nowrap "lines wont break screen
+""""""""""""""""""""""""""""""""""""Yankring
+" Where to store yankring history
+let g:yankring_history_dir = '~/.vim'
+" K and Q as previous and next register
+let g:yankring_replace_n_pkey = 'K'
+let g:yankring_replace_n_nkey = 'Q'
 
-" visual autocomplete for command menu
-set wildmenu
 
-" "Export python path for powerline
-" let $PYTHONPATH="/usr/lib/python3.4/site-packages"
-" "always show powerline
-" set laststatus=2
-" """""""""""""""""""""""""""""""""""""Powerline
-" "instant go to normal mode (powerline)
-" if ! has('gui_running')
-"    set ttimeoutlen=10
-"    augroup FastEscape
-"       autocmd!
-"       au InsertEnter * set
-"       timeoutlen=0
-"       au
-"       InsertLeave
-"       * set
-"       timeoutlen=1000
-"    augroup END
-" endif
+"""""""""""""""""""""""""""""""""""""Powerline
+"Export python path for powerline
+let $PYTHONPATH="/usr/lib/python3.4/site-packages"
+"always show powerline
+set laststatus=2
+"instant go to normal mode (powerline)
+if ! has('gui_running')
+        set ttimeoutlen=10
+        augroup FastEscape
+                autocmd!
+                au InsertEnter * set timeoutlen=0
+                au InsertLeave * set timeoutlen=1000
+        augroup END
+endif
 
 """"""""""""""""""""""""""""""""""""Tabularize
 " tabularize by selection in visual mode
-" vmap <leader>t y:Tabularize /<C-R>"/<CR>
-" " tabularize =
-" nmap <leader>t= :Tabularize /^[^=]*\zs=/<CR>
-" nmap <leader>te :Tabularize /^[^=]*\zs=/<CR>
-" " tabularize =>
-" nmap <leader>th :Tabularize /^[^=>]*\zs=>/<CR>
-" " tabularize {
-" nmap <leader>t{ :Tabularize /^[^{]*\zs{/<CR>
-" nmap <leader>tB :Tabularize /^[^{]*\zs{/<CR>
-" " tabularize (
-" nmap <leader>t( :Tabularize /^[^(]*\zs(/<CR>
-" nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
+vmap <leader>t y:Tabularize /<C-R>"/<CR>
+" tabularize =
+nmap <leader>t= :Tabularize /^[^=]*\zs=/<CR>
+nmap <leader>te :Tabularize /^[^=]*\zs=/<CR>
+" tabularize =>
+nmap <leader>th :Tabularize /^[^=>]*\zs=>/<CR>
+" tabularize {
+nmap <leader>t{ :Tabularize /^[^{]*\zs{/<CR>
+nmap <leader>tB :Tabularize /^[^{]*\zs{/<CR>
+" tabularize (
+nmap <leader>t( :Tabularize /^[^(]*\zs(/<CR>
+nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
 
-" """"""""""""""""""""""""""""""""""""Unite
-" "Set ag as default finder
-" let g:unite_source_grep_command = 'ag'
-" let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-" let g:unite_source_grep_recursive_opt = ''
-" "Set unite to open window in bottom right
-" let g:unite_split_rule = "botright"
-" let g:unite_force_overwrite_statusline = 1
-" let g:unite_winheight = 8
-" "Use fuzzy matcher
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" "Set sort method
-" call unite#filters#sorter_default#use(['sorter_rank'])
-" let g:unite_matcher_fuzzy_max_input_length = 60
-" " In window settings
-" autocmd FileType unite call s:unite_settings()
-" function! s:unite_settings()
-"   let b:SuperTabDisabled=1
-"     inoremap <silent><buffer><expr> <C-i> unite#do_action('split')
-"       inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
-"         imap <buffer> <ESC> <Plug>(unite_exit)
-"         endfunction
-"         "maps \e to open unite fuzzy finding
-"         nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize
-"         -start-insert file_rec/async:!<CR>
-"         "maps \ag to open ag content fuzzy finding
-"         nnoremap <Leader>ag :Unite -silent -start-insert grep:.<CR>
-"         "maps \r to open recent buffers open
-"         nnoremap <silent> <Leader>r :Unite -silent -buffer-name=recent
-"         -auto-resize file_mru<cr>
-"         "maps \b to navigate open buffers
-"         nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize
-"         buffer<cr>
+""""""""""""""""""""""""""""""""""""Unite
+"Set ag as default finder
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+let g:unite_source_grep_recursive_opt = ''
+"Set unite to open window in bottom right
+let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 1
+let g:unite_winheight = 8
+"Use fuzzy matcher
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"Set sort method
+call unite#filters#sorter_default#use(['sorter_rank'])
+let g:unite_matcher_fuzzy_max_input_length = 60
+" In window settings
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  let b:SuperTabDisabled=1
+  inoremap <silent><buffer><expr> <C-i> unite#do_action('split')
+  inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
+  imap <buffer> <ESC> <Plug>(unite_exit)
+endfunction
+"maps \e to open unite fuzzy finding
+nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert file_rec/async:!<CR>
+"maps \ag to open ag content fuzzy finding
+nnoremap <Leader>ag :Unite -silent -start-insert grep:.<CR>
+"maps \r to open recent buffers open
+nnoremap <silent> <Leader>r :Unite -silent -buffer-name=recent -auto-resize file_mru<cr>
+"maps \b to navigate open buffers
+nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize buffer<cr>
+"Search in command history without losing history filter
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+""""""""""""""""""""""""""""""""""""SplitJoin
+nmap <Leader>k :SplitjoinJoin<cr>
+nmap <Leader>j :SplitjoinSplit<cr>
 
-"""""""""""""""""""""""""""""""""""""HARDWAY
-"inoremap  <Up>     <NOP>
-"inoremap  <Down>   <NOP>
-"inoremap  <Left>   <NOP>
-"inoremap  <Right>  <NOP>
-"noremap   <Up>     <NOP>
-"noremap   <Down>   <NOP>
-"noremap   <Left>   <NOP>
-"noremap   <Right>  <NOP>
-
-" space open/closes folds
-nnoremap <space> za
-set foldmethod=indent
-set foldlevelstart=10
-
-" allows cursor change in tmux mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+""""""""""""""""""""""""""""""""""""Rails
+"Open Alternate file in vertical split
+nmap <leader>a :AV<CR>
 
 " Write backup files in /tmp folder
 set backup
