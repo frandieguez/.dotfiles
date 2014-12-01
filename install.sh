@@ -60,6 +60,9 @@ function warning_if_exists {
 ln -s $PWD/aliases ~/.aliases &>> /dev/null
 warning_if_exists aliases
 
+ln -s $PWD/bashrc ~/.bashrc &>> /dev/null
+warning_if_exists bashrc
+
 ln -s $PWD/exports ~/.exports &>> /dev/null
 warning_if_exists exports
 
