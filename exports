@@ -19,7 +19,7 @@ if [ -e $HOME/.goenv ]; then
     export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
 fi
 
-if [ -e $HOME/.composer/bin]; then
+if [ -e $HOME/.composer/bin ]; then
     export PATH=$PATH:~/.composer/vendor/bin
 fi
 
