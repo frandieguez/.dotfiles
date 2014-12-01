@@ -4,7 +4,7 @@ filetype off
 
 """""""""""""""""""""""""""""""""""""vundle
 "Vundle installs plugins configured in vimrc with :BundleInstall
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 """"""""""""""""""""""""""""""""""""""Plugins
 "Required Bundle
