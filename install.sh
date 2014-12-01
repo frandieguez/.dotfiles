@@ -52,6 +52,8 @@ function install_if_does_not_exist {
 function warning_if_exists {
     if [ "$?" == 1 ]; then
         warning "$1 configuration already exists, remove it and try again!"
+    else
+        ok "$1 configurations installed"
     fi
 }
 
@@ -65,7 +67,10 @@ ln -s $PWD/functions ~/.functions &>> /dev/null
 warning_if_exists functions
 
 ln -s $PWD/gitconfig ~/.gitconfig &>> /dev/null
-warning_if_exists git
+warning_if_exists gitconfig
+
+ln -s $PWD/gitignore ~/.gitignore &>> /dev/null
+warning_if_exists gitignore
 
 ln -s $PWD/screenrc ~/.screenrc &>> /dev/null
 warning_if_exists screenrc
