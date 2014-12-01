@@ -3,4 +3,4 @@ vim/.netrwhist
 vim/.VimballRecord
 
 vim/bundle/*
-!vim/bundle/Vundle
+!vim/bundle/Vundle.vim
