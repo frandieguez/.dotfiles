@@ -42,9 +42,9 @@ function install_if_does_not_exist {
     fi
 }
 
-install_if_does_not_exist flake8
-install_if_does_not_exist ropevim
-install_if_does_not_exist pyflakes
+# install_if_does_not_exist flake8
+# install_if_does_not_exist ropevim
+# install_if_does_not_exist pyflakes
 
 #
 # Create all the links
