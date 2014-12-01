@@ -81,6 +81,9 @@ warning_if_exists screenrc
 ln -s $PWD/tmux.conf ~/.tmux.conf &>> /dev/null
 warning_if_exists tmux
 
+ln -s $PWD/tmuxinator ~/.tmuxinator &>> /dev/null
+warning_if_exists tmuxinator
+
 ln -s $PWD/vimrc ~/.vimrc &>> /dev/null
 ln -s $PWD/vim ~/.vim &>> /dev/null
 warning_if_exists vim

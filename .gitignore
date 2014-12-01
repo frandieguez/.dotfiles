@@ -4,3 +4,4 @@ vim/.VimballRecord
 
 vim/bundle/*
 !vim/bundle/vundle
+vim/yankring_history_v2.txt
