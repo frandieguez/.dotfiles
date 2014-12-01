@@ -1,3 +1,60 @@
+" avoid side effects
+set nocompatible
+filetype off
+
+"""""""""""""""""""""""""""""""""""""vundle
+"Vundle installs plugins configured in vimrc with :BundleInstall
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+""""""""""""""""""""""""""""""""""""""Plugins
+"Required Bundle
+Plugin 'gmarik/vundle'
+
+""Bundles to install
+
+Plugin 'airblade/vim-gitgutter'
+Plugin 'alfredodeza/pytest.vim'
+Plugin 'bling/vim-airline'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'ervandew/supertab'
+Plugin 'fatih/vim-go'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'garbas/vim-snipmate'
+Plugin 'gregsexton/MatchTag'
+Plugin 'honza/vim-snippets'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'jaxbot/github-issues.vim'
+Plugin 'jigish/vim-thrift'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kevinw/pyflakes-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'klen/python-mode'
+Plugin 'klen/rope-vim'
+Plugin 'Lokaltog/powerline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'mileszs/ack.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'rjohnsondev/vim-compiler-go'
+Plugin 'rosstimson/scala-vim-support'
+Plugin 'saghul/vim-colortoggle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-scripts/HTML-AutoCloseTag'
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'xolox/vim-misc'
+Plugin 'Yggdroot/indentLine'
+
+call vundle#end()
+filetype plugin indent on
+
+
 " Modeline and Notes {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
@@ -22,54 +79,29 @@ set modelines=1
     set nocp
 " }
 
-""Set nerdtree to be launched on start and cursor set to editing window
+"Set nerdtree to be launched on start and cursor set to editing window
 autocmd VimEnter * wincmd p
+
 """"""""""""""""""""""""""""""""""""mouse
 "allows mouse selection to go into visual mode and more
 set mouse=a
-"""""""""""""""""""""""""""""""""""""vundle
-"Vundle installs plugins configured in vimrc with :BundleInstall
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-""""""""""""""""""""""""""""""""""""""Plugins
-"Required Bundle
-Plugin 'gmarik/vundle'
 
-""Bundles to install
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'rodjek/vim-puppet'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'pld-linux/vim-syntax-vcl'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
-
-call vundle#end() 
-filetype plugin indent on
-"filetype plugin indent on
 ""Matchit is included in vimcore since vim 6.0 this activates it:
 "(runtime == source+relative path to vim installation dir)
 "runtime macros/matchit.vim
+
 """""""""""""""""""""""""""""""""""""Syntastic
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_mode_map = { 'mode': 'active',
                              \ 'active_filetypes': ['ruby', 'php'],
                              \ 'passive_filetypes': ['puppet'] }
-"set statusline+=%#warningmsg# 
+"set statusline+=%#warningmsg#
 ""set statusline+=%{SyntasticStatuslineFlag()}
-""""""""""""""""""""""""""""""""""""End syntastic
+
 """"""""""""""""""""""""""""""""""""Youcompleteme
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+
 """"""""""""""""""""""""""""""""""""MAPPINGS
 map <F5> :NERDTreeToggle .<CR>
 map <F8> :SyntasticCheck<CR>
@@ -87,38 +119,36 @@ nnoremap cp "*p
 ""Search in command history without losing history filter
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-""""""""""""""""""""""""""""""""""""END MAPPINGS
+
 """"""""""""""""""""""""""""""""""""Colors
 set t_Co=256
-set background=dark 
+set background=dark
 let g:solarized_termcolors=256
 colorscheme molokai
 let g:molokai_original = 1
 ""let g:rehash256 = 1
+
 """"""""""""""""""""""""""""""""""""Colors
-" Use the same symbols as TextMate for tabstops and EOLs
-" "set listchars=tab:▸\ ,eol:¬
-" "display hidden chars (tab and eol)
-" "set list
-" "allow to navigate unsaved buffers without prompting any error or warning
-" set hidden
-" """"""""""""""""""""""""""""""""""""Tabs
-" "Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space
-" chars 
+"set listchars=tab:▸\ ,eol:¬ " Use the same symbols as TextMate for tabstops and EOLs
+"set list "display hidden chars (tab and eol)
+"set hidden "allow to navigate unsaved buffers without prompting any error or warning
+
+"""""""""""""""""""""""""""""""""""""Tabs
+"Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space
+" chars
 set expandtab
-" "Tab equivalent to n spaces
-set tabstop=4
-" set softtabstop=2
+set tabstop=4 "Tab equivalent to n spaces
 set shiftwidth=4
-" "set autoindent
+" set softtabstop=2
+" set autoindent
 set smarttab
-" "enable hlsearch
-" set hlsearch
+"set hlsearch "enable hlsearch
 set incsearch
-" "lines wont break screen
-set nowrap
+set nowrap "lines wont break screen
+
 " visual autocomplete for command menu
 set wildmenu
+
 " "Export python path for powerline
 " let $PYTHONPATH="/usr/lib/python3.4/site-packages"
 " "always show powerline
@@ -137,7 +167,7 @@ set wildmenu
 "       timeoutlen=1000
 "    augroup END
 " endif
-" """"""""""""""""""""""""""""""""""""Powerline
+
 """"""""""""""""""""""""""""""""""""Tabularize
 " tabularize by selection in visual mode
 " vmap <leader>t y:Tabularize /<C-R>"/<CR>
@@ -152,7 +182,7 @@ set wildmenu
 " " tabularize (
 " nmap <leader>t( :Tabularize /^[^(]*\zs(/<CR>
 " nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
-" """"""""""""""""""""""""""""""""""""Tabularize
+
 " """"""""""""""""""""""""""""""""""""Unite
 " "Set ag as default finder
 " let g:unite_source_grep_command = 'ag'
@@ -175,7 +205,7 @@ set wildmenu
 "       inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
 "         imap <buffer> <ESC> <Plug>(unite_exit)
 "         endfunction
-"         "maps \e to open unite fuzzy finding 
+"         "maps \e to open unite fuzzy finding
 "         nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize
 "         -start-insert file_rec/async:!<CR>
 "         "maps \ag to open ag content fuzzy finding
@@ -186,16 +216,17 @@ set wildmenu
 "         "maps \b to navigate open buffers
 "         nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize
 "         buffer<cr>
-" """"""""""""""""""""""""""""""""""""Unite
+
 """""""""""""""""""""""""""""""""""""HARDWAY
 "inoremap  <Up>     <NOP>
-""inoremap  <Down>   <NOP>
+"inoremap  <Down>   <NOP>
 "inoremap  <Left>   <NOP>
-""inoremap  <Right>  <NOP>
+"inoremap  <Right>  <NOP>
 "noremap   <Up>     <NOP>
-""noremap   <Down>   <NOP>
+"noremap   <Down>   <NOP>
 "noremap   <Left>   <NOP>
-""noremap   <Right>  <NOP>
+"noremap   <Right>  <NOP>
+
 " space open/closes folds
 nnoremap <space> za
 set foldmethod=indent
