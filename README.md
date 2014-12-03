@@ -15,21 +15,29 @@ You can install all the configurations at one time using:
     git clone --recursive https://github.com/frandieguez/.dots.git
     ./install.sh
 
+After the installation you must install the vim plugins by using the vim command line:
+
+    vim -c "PluginInstall"
+
+and your are done
 It's the recommended way if you know what are you doing :)
 
 If you don't want to do this, continue reading...
 
 
-Usage
------
+Installation by components
+--------------------------
 Clone the repo and link the files that you want in your $HOME path.
 
 Example:
 
     cd $HOME;ln -s .dots/vimrc .vimrc
 
-Part configurations
--------------------
+
+
+Specific cases
+--------------
+
 Some files like zsh must be included in the normal .zshrc configuration file. For example:
 
 ### zsh
