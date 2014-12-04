@@ -104,18 +104,19 @@ filetype off
 " }
 
 " NerdTREE {
-    "Set nerdtree to be launched on start and cursor set to editing window
-    autocmd VimEnter * wincmd p
     map <F5> :NERDTreeToggle .<CR>
     nnoremap ,n :NERDTreeToggle<CR>
+    
     " Don't ask to remove buffers when renaming or deleting files
     let g:NERDTreeAutoDeleteBuffer = 1
     " Ignore *.o files
     let NERDTreeIgnore = [ '\.o$', '\.meta$' ]
+    
     " Open NERDTree when vim starts
     autocmd vimenter * NERDTree
-    ""Set nerdtree to be launched on start and cursor set to editing window
-    " autocmd VimEnter * wincmd p
+
+    " Set nerdtree to be launched on start and cursor set to editing window
+    autocmd VimEnter * wincmd p
 " }
 
 " Mouse {
