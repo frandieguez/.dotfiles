@@ -1,3 +1,61 @@
+" This is the personal .vimrc file of Fran Dieguez.
+" While much of it is beneficial for general use, I would
+" recommend picking out the parts you want and understand.
+"
+" You can find me at http://frandieguez.com
+
+" Basics {
+    "Syntax highlight
+    syntax enable
+    """Set line numbering
+    set number
+    "Set line highlight
+    set cursorline
+    ""Setting no vim compat
+    set nocp
+    filetype plugin indent on
+" }
+
+" Modeline and Notes {
+    " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+    set modelines=1
+    " vim:foldmethod=marker:foldlevel=0dd
+" }
+
+" Mouse {
+    "allows mouse selection to go into visual mode and more
+    set mouse=a
+" }
+
+" Moving through windows {
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
+" }
+
+" Splits {
+    "Open splits down and right
+    set splitbelow
+    set splitright
+    " Resizing splits
+    nnoremap <silent> + :vertical resize +5<CR>
+    nnoremap <silent> - :vertical resize -5<CR>
+    nnoremap <silent> <leader>+ :resize +5<CR>
+    nnoremap <silent> <leader>- :resize -5<CR>
+" }
+
+" Tabs {
+    "Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space chars
+    set expandtab
+    "Tab equivalent to n spaces
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set autoindent
+    set smarttab
+" }
+
 " avoid side effects
 set nocompatible
 filetype off
@@ -11,15 +69,9 @@ filetype off
 
     ""Bundles to install
     Plugin 'airblade/vim-gitgutter'
-    Plugin 'alfredodeza/pytest.vim'
     Plugin 'altercation/vim-colors-solarized'
-    Plugin 'AndrewRadev/splitjoin.vim'
-    Plugin 'austintaylor/vim-indentobject'
-    Plugin 'bling/vim-airline'
-    Plugin 'chase/vim-ansible-yaml'
-    Plugin 'davidhalter/jedi-vim'
-    Plugin 'derekwyatt/vim-scala'
     Plugin 'ekalinin/Dockerfile.vim'
+    Plugin 'elzr/vim-json'
     Plugin 'ervandew/supertab'
     Plugin 'fatih/vim-go'
     Plugin 'flazz/vim-colorschemes'
@@ -27,27 +79,18 @@ filetype off
     Plugin 'godlygeek/tabular'
     Plugin 'gregsexton/MatchTag'
     Plugin 'honza/vim-snippets'
-    Plugin 'hynek/vim-python-pep8-indent'
-    Plugin 'jaxbot/github-issues.vim'
-    Plugin 'jigish/vim-thrift'
     Plugin 'kana/vim-textobj-entire'
     Plugin 'kana/vim-textobj-user'
     Plugin 'kchmck/vim-coffee-script'
-    Plugin 'kevinw/pyflakes-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'klen/python-mode'
-    Plugin 'klen/rope-vim'
     Plugin 'Lokaltog/powerline'
-    Plugin 'Lokaltog/vim-easymotion'
     Plugin 'MarcWeber/vim-addon-mw-utils'
     Plugin 'mileszs/ack.vim'
-    Plugin 'nanotech/jellybeans.vim'
     Plugin 'nelstrom/vim-textobj-rubyblock'
-    Plugin 'nvie/vim-flake8'
-    Plugin 'puppetlabs/puppet-syntax-vim'
     Plugin 'rjohnsondev/vim-compiler-go'
+    Plugin 'puppetlabs/puppet-syntax-vim'
     Plugin 'rodjek/vim-puppet'
-    Plugin 'rosstimson/scala-vim-support'
     Plugin 'saghul/vim-colortoggle'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
@@ -55,7 +98,6 @@ filetype off
     Plugin 'Shougo/unite.vim'
     Plugin 'Shougo/vimproc.vim'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'thoughtbot/vim-rspec'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tomtom/tlib_vim'
     Plugin 'tpope/vim-bundler'
@@ -79,49 +121,57 @@ filetype off
     call vundle#end()
 " }
 
-" Basics {
-    "Syntax highlight
-    syntax enable
-    """Set line numbering
-    set number
-    "Set line highlight
-    set cursorline
-    ""Setting no vim compat
-    set nocp
-    filetype plugin indent on
+filetype plugin indent on
+"Matchit is included in vimcore since vim 6.0 this activates it:
+"(runtime == source+relative path to vim installation dir)
+runtime macros/matchit.vim
+
+" Keyboard mappings {
+    map <F8> :SyntasticCheck<CR>
+    ""Open tag under cursor in new tab
+    map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+    "Switch between buffers
+    "nnoremap <silent> [b :bprevious<CR>
+    "nnoremap <silent> ]b :bnext<CR>
+    "nnoremap <silent> [B :bfirst<CR>
+    "nnoremap <silent> ]B :blast<CR>
+    "
+    ""macro for pasting from clipboard (cp = clipboard paste)
+    nnoremap cp "*p
+
+    " hlsearch disable with space
+    "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+    " Search in command history without losing history filter
+    cnoremap <C-p> <Up>
+    cnoremap <C-n> <Down>
+
+    nmap <leader>a :AV<CR> "Open Alternate file in vertical split
 " }
 
-" Modeline and Notes {
-    " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
-    "
-    " This is the personal .vimrc file of Fran Dieguez.
-    " While much of it is beneficial for general use, I would
-    " recommend picking out the parts you want and understand.
-    "
-    " You can find me at http://frandieguez.com
-    set modelines=1
-    " vim:foldmethod=marker:foldlevel=0dd
+" Colors & color scheme {
+    "set t_Co=256
+    let g:molokai_original = 1
+    "let g:rehash256 = 1
+
+    syntax enable
+    set background=dark
+    let g:solarized_termcolors=256
+    colorscheme solarized
 " }
 
 " NerdTREE {
     map <F5> :NERDTreeToggle .<CR>
-    nnoremap ,n :NERDTreeToggle<CR>
-    
+
     " Don't ask to remove buffers when renaming or deleting files
     let g:NERDTreeAutoDeleteBuffer = 1
     " Ignore *.o files
     let NERDTreeIgnore = [ '\.o$', '\.meta$' ]
-    
+
     " Open NERDTree when vim starts
     autocmd vimenter * NERDTree
 
     " Set nerdtree to be launched on start and cursor set to editing window
     autocmd VimEnter * wincmd p
-" }
-
-" Mouse {
-    "allows mouse selection to go into visual mode and more
-    set mouse=a
 " }
 
 " Syntastic {
@@ -138,37 +188,6 @@ filetype off
     let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 "}
 
-" Keyboard mappings {
-    map <F5> :NERDTreeToggle .<CR>
-    map <F8> :SyntasticCheck<CR>
-    ""Open tag under cursor in new tab
-    map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-    "Switch between buffers
-    "nnoremap <silent> [b :bprevious<CR>
-    "nnoremap <silent> ]b :bnext<CR>
-    "nnoremap <silent> [B :bfirst<CR>
-    "nnoremap <silent> ]B :blast<CR>
-    ""macro for pasting from clipboard (cp = clipboard paste)
-    nnoremap cp "*p
-    "hlsearch disable with space
-    "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-    ""Search in command history without losing history filter
-    cnoremap <C-p> <Up>
-    cnoremap <C-n> <Down>
-
-    nmap <leader>a :AV<CR> "Open Alternate file in vertical split
-" }
-
-" Colors & color scheme {
-    set t_Co=256
-    set background=dark
-    let g:solarized_termcolors=256
-    colorscheme molokai
-    let g:molokai_original = 1
-    ""let g:rehash256 = 1
-    colors jellybeans
-" }
-
 " Yankring {
     " Where to store yankring history
     let g:yankring_history_dir = '~/.vim'
@@ -179,17 +198,17 @@ filetype off
 
 " Powerline {
     "Export python path for powerline
-    let $PYTHONPATH="/usr/lib/python3.4/site-packages"
-    "always show powerline
+    let $PYTHONPATH="/usr/lib/python2.7/dist-packages"
+    " always show powerline
     set laststatus=2
-    "instant go to normal mode (powerline)
+    " instant go to normal mode (powerline)
     if ! has('gui_running')
-            set ttimeoutlen=10
-            augroup FastEscape
-                    autocmd!
-                    au InsertEnter * set timeoutlen=0
-                    au InsertLeave * set timeoutlen=1000
-            augroup END
+	set ttimeoutlen=10
+        augroup FastEscape
+            autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+        augroup END
     endif
 " }
 
@@ -226,10 +245,11 @@ filetype off
     " In window settings
     autocmd FileType unite call s:unite_settings()
     function! s:unite_settings()
-      let b:SuperTabDisabled=1
-      inoremap <silent><buffer><expr> <C-i> unite#do_action('split')
-      inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
-      imap <buffer> <ESC> <Plug>(unite_exit)
+        A
+        let b:SuperTabDisabled=1
+        inoremap <silent><buffer><expr> <C-i> unite#do_action('split')
+        inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
+        imap <buffer> <ESC> <Plug>(unite_exit)
     endfunction
     "maps \e to open unite fuzzy finding
     nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert file_rec/async:!<CR>
@@ -244,11 +264,6 @@ filetype off
     cnoremap <C-n> <Down>
 " }
 
-" SplitJoin {
-    nmap <Leader>k :SplitjoinJoin<cr>
-    nmap <Leader>j :SplitjoinSplit<cr>
-" }
-
 " Backup files {
     " Write backup files in /tmp folder
     set backup
@@ -257,7 +272,3 @@ filetype off
     set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
     set writebackup
 " }
-
-""Matchit is included in vimcore since vim 6.0 this activates it:
-"(runtime == source+relative path to vim installation dir)
-"runtime macros/matchit.vim
