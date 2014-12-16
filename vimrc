@@ -149,14 +149,10 @@ runtime macros/matchit.vim
 " }
 
 " Colors & color scheme {
-    "set t_Co=256
-    let g:molokai_original = 1
-    "let g:rehash256 = 1
-
     syntax enable
-    set background=dark
-    let g:solarized_termcolors=256
-    colorscheme solarized
+    "set background=dark
+    "let g:solarized_termcolors=256
+    colorscheme 256-grayvim
 " }
 
 " NerdTREE {
