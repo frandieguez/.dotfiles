@@ -23,6 +23,8 @@ else
     warning "~/.oh-my-zsh already exists, remove it and try again!"
 fi
 
+ln -s $PWD/oh-my-zsh-themes/openhost.zsh-theme ~/.oh-my-zsh/themes/openhost.zsh-theme
+
 #
 # Install vim fonts
 #
