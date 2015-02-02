@@ -150,9 +150,10 @@ runtime macros/matchit.vim
 
 " Colors & color scheme {
     syntax enable
+    set t_Co=16
     "set background=dark
     "let g:solarized_termcolors=256
-    colorscheme 256-grayvim
+    colorscheme solarized
 " }
 
 " NerdTREE {
@@ -164,10 +165,10 @@ runtime macros/matchit.vim
     let NERDTreeIgnore = [ '\.o$', '\.meta$' ]
 
     " Open NERDTree when vim starts
-    autocmd vimenter * NERDTree
+    " autocmd vimenter * NERDTree
 
     " Set nerdtree to be launched on start and cursor set to editing window
-    autocmd VimEnter * wincmd p
+    " autocmd VimEnter * wincmd p
 " }
 
 " Syntastic {
