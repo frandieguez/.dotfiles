@@ -74,6 +74,9 @@ warning_if_exists functions
 ln -s $PWD/gitconfig ~/.gitconfig &>> /dev/null
 warning_if_exists gitconfig
 
+cp $PWD/gitconfig-additional ~/.gitconfig-additional &>> /dev/null
+warning_if_exists gitconfig-additional
+
 ln -s $PWD/gitignore ~/.gitignore &>> /dev/null
 warning_if_exists gitignore
 

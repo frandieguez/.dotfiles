@@ -1,6 +1,5 @@
-[user]
-    name  = Fran Dieguez
-    email = fran.dieguez@mabishu.com
+[include]
+    path        = .gitconfig-additional
 [log]
     decorate = short
 [color]
