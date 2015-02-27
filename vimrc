@@ -70,6 +70,7 @@ filetype off
     ""Bundles to install
     Plugin 'airblade/vim-gitgutter'
     Plugin 'altercation/vim-colors-solarized'
+    Plugin 'bling/vim-airline'
     Plugin 'ekalinin/Dockerfile.vim'
     Plugin 'elzr/vim-json'
     Plugin 'ervandew/supertab'
