@@ -23,8 +23,10 @@ plugins=(
     safe-paste
     sublime
     symfony2
+    systemd
     tmux
     tmuxinator
+    vagrant
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -53,7 +55,7 @@ fi
 #source '/usr/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh'
 
 # Load external configuration files
-for file in ~/.{extra,exports,aliases,functions,profile}; do
+for file in ~/.{aliases,extra,exports,functions,profile}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
