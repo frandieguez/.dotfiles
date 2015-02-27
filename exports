@@ -1,8 +1,3 @@
-export DEBFULLNAME="Fran Dieguez"
-export DEBEMAIL="frandieguez@gnome.org"
-export EDITOR="vim"
-
-
 # Path variables
 if [ -e $HOME/bin ]; then
     export PATH=$PATH:$HOME/bin
