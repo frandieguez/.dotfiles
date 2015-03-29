@@ -1,7 +1,13 @@
 # vim:ft=zsh ts=2 sw=2 sts=2
 # ZSH Theme - Preview: http://
 #
-source '/etc/bash_completion.d/git-prompt'
+if [[ -e /etc/bash_completion.d/git-prompt ]] then
+  source '/etc/bash_completion.d/git-prompt'
+fi
+
+if [[ -e /usr/share/git/git-prompt.sh ]] then
+  source '/usr/share/git/git-prompt.sh'
+fi
 
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
