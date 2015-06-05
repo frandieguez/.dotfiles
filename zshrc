@@ -49,7 +49,7 @@ if [ -e "$CHRUBY_PATH" ]; then
     source $CHRUBY_PATH
 fi
 
-. /etc/zsh_command_not_found
+#. /etc/zsh_command_not_found
 
 # Add powerline support
 #source '/usr/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh'
