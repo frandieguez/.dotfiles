@@ -14,6 +14,7 @@
     ""Setting no vim compat
     set nocp
     filetype plugin indent on
+
 " }
 
 " Modeline and Notes {
@@ -151,10 +152,10 @@ runtime macros/matchit.vim
 
 " Colors & color scheme {
     syntax enable
-    set t_Co=16
+    "set t_Co=16
     "set background=dark
     "let g:solarized_termcolors=256
-    colorscheme solarized
+    " colorscheme solarized
 " }
 
 " NerdTREE {
