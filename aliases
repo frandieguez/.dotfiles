@@ -11,7 +11,6 @@ alias -- -="cd -"
 alias please=sudo
 alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
     colorflag="--color"
@@ -101,9 +100,8 @@ alias ducks="du -cks *|sort -rn | head"
 alias release="git flow release start $(date +%Y%m%d)"
 
 alias home='cd ~ && clear'
-alias onm='cd ~/vagrant/opennemas-vagrant-stack/opennemas'
-alias onmssh='cd ~/vagrant/opennemas-vagrant-stack/ && vagrant ssh'
 alias vup='vagrant up'
+alias vhalt='vagrant halt'
 alias vsus='vagrant suspend'
 alias vssh='vagrant ssh'
 
@@ -120,3 +118,9 @@ alias t='tmux a||tmux new-s'
 
 alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
+
+# Arch aliases
+alias pacleanup='sudo pacman -Rcns $(pacman -Qdtq)' # Cleans automatically installed deps
+alias pacup='yaourt --sucre'
+
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
