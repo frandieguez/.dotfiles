@@ -75,3 +75,6 @@
     default = matching
 [help]
     autocorrect = 1
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
