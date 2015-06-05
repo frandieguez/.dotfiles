@@ -156,6 +156,12 @@ runtime macros/matchit.vim
     "set background=dark
     "let g:solarized_termcolors=256
     " colorscheme solarized
+
+    " Tune powerline
+    let g:airline_theme='powerlineish'
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+    let g:airline_section_z=''
 " }
 
 " NerdTREE {
