@@ -277,3 +277,39 @@ runtime macros/matchit.vim
     set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
     set writebackup
 " }
+
+" Leader tune {
+    " Ideas from
+    " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+
+    " Remap leader
+    let mapleader = "\<Space>"
+
+    " <Space>o to open a new file:
+    nnoremap <Leader>o :CtrlP<CR>
+
+    " Type <Space>w to save file
+    nnoremap <Leader>w :w<CR>
+
+    " Copy & paste to system clipboard with <Space>p and <Space>y
+    vmap <Leader>y "+y
+    vmap <Leader>d "+d
+    nmap <Leader>p "+p
+    nmap <Leader>P "+P
+    vmap <Leader>p "+p
+    vmap <Leader>P "+P
+
+    " Enter visual line mode with <Space><Space>
+    nmap <Leader><Leader> V
+    
+    nmap <Leader>P "+P
+    vmap <Leader>p "+p
+    vmap <Leader>P "+P
+
+    " Enter visual line mode with <Space><Space>
+    nmap <Leader><Leader> V
+    
+    " Use region expanding
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+" }
