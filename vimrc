@@ -208,7 +208,7 @@ runtime macros/matchit.vim
     set laststatus=2
     " instant go to normal mode (powerline)
     if ! has('gui_running')
-	set ttimeoutlen=10
+    	set ttimeoutlen=10
         augroup FastEscape
             autocmd!
         au InsertEnter * set timeoutlen=0
@@ -294,17 +294,8 @@ runtime macros/matchit.vim
     " Copy & paste to system clipboard with <Space>p and <Space>y
     vmap <Leader>y "+y
     vmap <Leader>d "+d
-    nmap <Leader>p "+p
-    nmap <Leader>P "+P
     vmap <Leader>p "+p
-    vmap <Leader>P "+P
-
-    " Enter visual line mode with <Space><Space>
-    nmap <Leader><Leader> V
-    
     nmap <Leader>P "+P
-    vmap <Leader>p "+p
-    vmap <Leader>P "+P
 
     " Enter visual line mode with <Space><Space>
     nmap <Leader><Leader> V
