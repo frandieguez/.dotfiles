@@ -1,7 +1,7 @@
 # ~/.tmuxinator/opennemas.yml
 
-name: opennemas
-root: ~/vagrant/opennemas-vagrant-stack/opennemas
+name: onm
+root: ~/vms/opennemas-vagrant-stack/volumes/opennemas
 
 # Optional tmux socket
 # socket_name: opennemas
@@ -15,14 +15,20 @@ root: ~/vagrant/opennemas-vagrant-stack/opennemas
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
 
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-tmux_command: wemux
-
+pre:
+    - cd ~/vms/opennemas-vagrant-stack/
+    - vagrant up
+    - cd ~/vms/opennemas-vagrant-stack/volumes/opennemas
 windows:
-  - editor:
-      layout: main-vertical
-      panes:
-        - vim
+    - vssh:
+        layout: main-vertical
+        panes:
+            - exec:
+                - cd ~/vms/opennemas-vagrant-stack/
+                - vagrant ssh
+                - cd /home/opennemas/manager
+    - test-runner: 
         - ./bin/test-runner.sh
-  - guard: bundle exec guard
-  - logs: tail -f tmp/logs/dev.log
+    - guard: bundle exec guard
+    - logs: tail -f tmp/logs/dev.log
+

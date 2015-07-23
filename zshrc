@@ -18,7 +18,6 @@ plugins=(
     git-extras
     git-flow
     golang
-    jira
     npm
     safe-paste
     sublime

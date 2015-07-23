@@ -47,6 +47,7 @@ alias undopush="git push -f origin HEAD^:master"
 
 # git root
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
+alias git-things-in-develop="git log develop ^master --no-merges"
 
 # IP addresses
 #alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -121,6 +122,9 @@ alias irssi='TERM=screen-256color irssi'
 
 # Arch aliases
 alias pacleanup='sudo pacman -Rcns $(pacman -Qdtq)' # Cleans automatically installed deps
-alias pacup='yaourt --sucre'
+alias pacup='yaourt -Syyu --noconfirm'
 
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+
+alias gopath='cd $GOPATH'
+

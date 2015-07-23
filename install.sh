@@ -36,6 +36,15 @@ else
     warning "You already have some personal fonts, install the vim fonts manually: https://github.com/Lokaltog/powerline-fonts"
 fi
 
+#
+# Install powerline configuration
+#
+if [ ! -d ~/.config/powerline ]; then
+    ln -s $PWD/powerline ~/.config/powerline
+    ok "Powerline configurations installed"
+else
+    warning "There is a powerline configuration folder already installed"
+fi
 
 
 function install_if_does_not_exist {

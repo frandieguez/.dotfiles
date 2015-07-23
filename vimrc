@@ -290,10 +290,15 @@ runtime macros/matchit.vim
 
     " Type <Space>w to save file
     nnoremap <Leader>w :w<CR>
+    nnoremap <Leader>wq :wq<CR>
+    nnoremap <Leader>q :q<CR>
 
     " Copy & paste to system clipboard with <Space>p and <Space>y
+    " copy
     vmap <Leader>y "+y
+    " cut
     vmap <Leader>d "+d
+    " paste
     vmap <Leader>p "+p
     nmap <Leader>P "+P
 
