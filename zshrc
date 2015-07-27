@@ -51,7 +51,7 @@ fi
 #. /etc/zsh_command_not_found
 
 # Add powerline support
-#source '/usr/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh'
+#source '/usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh'
 
 # Load external configuration files
 for file in ~/.{aliases,extra,exports,functions,profile}; do
