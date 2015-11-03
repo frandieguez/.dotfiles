@@ -123,6 +123,9 @@ alias arch-upgrade='yaourt -Syyua --noconfirm'
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 alias gopath='cd $GOPATH'
+alias dcu='docker-compose up'
+alias dcs='docker-compose stop'
+
 alias vu='vagrant up'
 alias vh='vagrant halt'
 alias vsus='vagrant suspend'
