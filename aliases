@@ -101,10 +101,6 @@ alias ducks="du -cks *|sort -rn | head"
 alias release="git flow release start $(date +%Y%m%d)"
 
 alias home='cd ~ && clear'
-alias vup='vagrant up'
-alias vhalt='vagrant halt'
-alias vsus='vagrant suspend'
-alias vssh='vagrant ssh'
 
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias e="$EDITOR"
@@ -127,4 +123,8 @@ alias pacup='yaourt -Syyu --noconfirm'
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 alias gopath='cd $GOPATH'
+alias vu='vagrant up'
+alias vh='vagrant halt'
+alias vsus='vagrant suspend'
+alias vs='vagrant ssh'
 
