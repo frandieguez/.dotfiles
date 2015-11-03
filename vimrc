@@ -15,6 +15,7 @@
     set nocp
     filetype plugin indent on
 
+    set exrc
 " }
 
 " Modeline and Notes {
@@ -69,7 +70,7 @@ filetype off
     Plugin 'gmarik/vundle' "Required Bundle
 
     ""Bundles to install
-    
+
     "Plugin 'Shougo/vimproc.vim'
     Plugin 'MarcWeber/vim-addon-mw-utils'
     Plugin 'Shougo/neocomplete.vim'
@@ -86,6 +87,7 @@ filetype off
     Plugin 'fatih/vim-go'
     Plugin 'flazz/vim-colorschemes'
     Plugin 'garbas/vim-snipmate'
+    Plugin 'gilgigilgil/anderson.vim'
     Plugin 'godlygeek/tabular'
     Plugin 'gregsexton/MatchTag'
     Plugin 'honza/vim-snippets'
@@ -95,9 +97,7 @@ filetype off
     Plugin 'kana/vim-textobj-user'
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'klen/python-mode'
-    Plugin 'mileszs/ack.vim'
-    Plugin 'nelstrom/vim-textobj-rubyblock'
+    Plugin 'lsdr/monokai'
     Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
     Plugin 'rjohnsondev/vim-compiler-go'
     Plugin 'rodjek/vim-puppet'
@@ -105,7 +105,6 @@ filetype off
     Plugin 'scrooloose/NERDCommenter'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
-    Plugin 'sickill/vim-monokai'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tomtom/tlib_vim'
@@ -159,7 +158,7 @@ runtime macros/matchit.vim
     "set t_Co=16
     "set background=dark
     "let g:solarized_termcolors=256
-    " colorscheme solarized
+    colorscheme molokai
 
     " Tune powerline
     let g:airline_theme='powerlineish'
@@ -201,7 +200,7 @@ runtime macros/matchit.vim
     " Where to store yankring history
     let g:yankring_history_dir = '~/.vim'
     " K and Q as previous and next register
-    let g:yankring_replace_n_pkey = 'K'
+    let g:yankr_replace_n_pkey = 'K'
     let g:yankring_replace_n_nkey = 'Q'
 " }
 
@@ -308,7 +307,7 @@ runtime macros/matchit.vim
 
     " Enter visual line mode with <Space><Space>
     nmap <Leader><Leader> V
-    
+
     " Use region expanding
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
