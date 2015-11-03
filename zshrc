@@ -20,9 +20,9 @@ plugins=(
     golang
     npm
     safe-paste
-    sublime
     symfony2
     systemd
+    systemadmin
     tmux
     tmuxinator
     vagrant
@@ -42,11 +42,6 @@ cd .
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-
-CHRUBY_PATH="/usr/local/share/chruby/chruby.sh"
-if [ -e "$CHRUBY_PATH" ]; then
-    source $CHRUBY_PATH
-fi
 
 #. /etc/zsh_command_not_found
 
