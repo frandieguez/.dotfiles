@@ -117,8 +117,8 @@ alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 
 # Arch aliases
-alias pacleanup='sudo pacman -Rcns $(pacman -Qdtq)' # Cleans automatically installed deps
-alias pacup='yaourt -Syyu --noconfirm'
+alias arch-cleanpackages='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc' # Cleans automatically installed deps
+alias arch-upgrade='yaourt -Syyua --noconfirm'
 
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
