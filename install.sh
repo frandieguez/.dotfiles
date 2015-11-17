@@ -70,42 +70,42 @@ function warning_if_exists {
     fi
 }
 
-ln -s $PWD/aliases ~/.aliases &>> /dev/null
+ln -s $PWD/aliases ~/.aliases &> /dev/null
 warning_if_exists aliases
 
-ln -s $PWD/bashrc ~/.bashrc &>> /dev/null
+ln -s $PWD/bashrc ~/.bashrc &> /dev/null
 warning_if_exists bashrc
 
-ln -s $PWD/exports ~/.exports &>> /dev/null
+ln -s $PWD/exports ~/.exports &> /dev/null
 warning_if_exists exports
 
-ln -s $PWD/functions ~/.functions &>> /dev/null
+ln -s $PWD/functions ~/.functions &> /dev/null
 warning_if_exists functions
 
-ln -s $PWD/gitconfig ~/.gitconfig &>> /dev/null
+ln -s $PWD/gitconfig ~/.gitconfig &> /dev/null
 warning_if_exists gitconfig
 
-cp $PWD/gitconfig-additional ~/.gitconfig-additional &>> /dev/null
+cp $PWD/gitconfig-additional ~/.gitconfig-additional &> /dev/null
 warning_if_exists gitconfig-additional
 
-ln -s $PWD/gitignore ~/.gitignore &>> /dev/null
+ln -s $PWD/gitignore ~/.gitignore &> /dev/null
 warning_if_exists gitignore
 
-ln -s $PWD/screenrc ~/.screenrc &>> /dev/null
+ln -s $PWD/screenrc ~/.screenrc &> /dev/null
 warning_if_exists screenrc
 
-ln -s $PWD/tmux.conf ~/.tmux.conf &>> /dev/null
+ln -s $PWD/tmux.conf ~/.tmux.conf &> /dev/null
 warning_if_exists tmux
 
-ln -s $PWD/tmuxinator ~/.tmuxinator &>> /dev/null
+ln -s $PWD/tmuxinator ~/.tmuxinator &> /dev/null
 warning_if_exists tmuxinator
 
-ln -s $PWD/vimrc ~/.vimrc &>> /dev/null
-ln -s $PWD/vim ~/.vim &>> /dev/null
+ln -s $PWD/vimrc ~/.vimrc &> /dev/null
+ln -s $PWD/vim ~/.vim &> /dev/null
 warning_if_exists vim
 rm $HOME/.vim/vim  # just remove it, don't even bother checking
 
-ln -s $PWD/zshrc ~/.zshrc &>> /dev/null
+ln -s $PWD/zshrc ~/.zshrc &> /dev/null
 warning_if_exists zsh
 
 ok "Configurations linked properly"
