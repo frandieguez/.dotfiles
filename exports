@@ -3,7 +3,7 @@ if [ -e $HOME/bin ]; then
     export PATH=$PATH:$HOME/bin
 fi
 if [ -e $HOME/.android-sdk-linux ]; then
-    export PATH=$PATH:$HOME/.android-sdk-linux/tools:$HOME/.android-sdk-linux/platform-tools
+#    export PATH=$PATH:$HOME/.android-sdk-linux/tools:$HOME/.android-sdk-linux/platform-tools
 
     export ANDROID_HOME=$HOME/.android-sdk-linux
 fi
@@ -20,5 +20,4 @@ fi
 
 export GOPATH="$HOME/Projects/go"
 export PATH=$GOPATH/bin:$PATH
-
 export JAVA_HOME=/usr/lib/jvm/default-runtime

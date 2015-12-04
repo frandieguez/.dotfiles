@@ -45,120 +45,9 @@ Plugin 'dhruvasagar/vim-prosession'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'wesQ3/vim-windowswap'
-
+Plugin 'fatih/vim-go'
 
 filetype plugin indent on
-
-
-"Matchit is included in vimcore since vim 6.0 this activates it:
-"(runtime == source+relative path to vim installation dir)
-runtime macros/matchit.vim
-
-" Keyboard mappings {
-    map <F8> :SyntasticCheck<CR>
-    ""Open tag under cursor in new tab
-    map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-    "Switch between buffers
-    "nnoremap <silent> [b :bprevious<CR>
-    "nnoremap <silent> ]b :bnext<CR>
-    "nnoremap <silent> [B :bfirst<CR>
-    "nnoremap <silent> ]B :blast<CR>
-    "
-    ""macro for pasting from clipboard (cp = clipboard paste)
-    nnoremap cp "*p
-
-    " hlsearch disable with space
-    "nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-    " Search in command history without losing history filter
-    cnoremap <C-p> <Up>
-    cnoremap <C-n> <Down>
-
-    nmap <leader>a :AV<CR> "Open Alternate file in vertical split
-" }
-
-" NerdTREE {
-    map <F5> :NERDTreeToggle .<CR>
-
-    " Don't ask to remove buffers when renaming or deleting files
-    let g:NERDTreeAutoDeleteBuffer = 1
-    " Ignore *.o files
-    let NERDTreeIgnore = [ '\.o$', '\.meta$' ]
-
-    " Open NERDTree when vim starts
-    " autocmd vimenter * NERDTree
-
-    " Set nerdtree to be launched on start and cursor set to editing window
-    " autocmd VimEnter * wincmd p
-" }
-
-" Yankring {
-    " Where to store yankring history
-    let g:yankring_history_dir = '~/.vim'
-    " K and Q as previous and next register
-    let g:yankr_replace_n_pkey = 'K'
-    let g:yankring_replace_n_nkey = 'Q'
-" }
-
-" Backup files {
-    " Write backup files in /tmp folder
-    set backup
-    set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set backupskip=/tmp/*,/private/tmp/*
-    set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set writebackup
-" }
-
-" Leader tune {
-    " Ideas from
-    " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-
-    " Remap leader
-    let mapleader = "\<Space>"
-
-    " <Space>o to open a new file:
-    nnoremap <Leader>o :CtrlP<CR>
-
-    " Type <Space>w to save file
-    nnoremap <Leader>w :w<CR>
-    nnoremap <Leader>wq :wq<CR>
-    nnoremap <Leader>q :q<CR>
-
-    " Copy & paste to system clipboard with <Space>p and <Space>y
-    " copy
-    vmap <Leader>y "+y
-    " cut
-    vmap <Leader>d "+d
-    " paste
-    vmap <Leader>p "+p
-    nmap <Leader>P "+P
-
-    " Enter visual line mode with <Space><Space>
-    nmap <Leader><Leader> V
-
-    " Use region expanding
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-" }
-"
-
-" Golang shortcuts  -----------------------------------------------------------------------
-autocmd FileType go compiler golang
-
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-
-au FileType go nmap <leader>i <Plug>(go-implements)
-au FileType go nmap <leader>r <Plug>(go-run)
-let g:golang_goroot = "/home/fran/Projects/go"
 
 
 " Colors -----------------------------------------------------------------------
@@ -257,9 +146,7 @@ let g:lightline = {
             \ },
             \ 'component_type': {
             \   'syntastic': 'error',
-            \ },
-            \ 'separator': { 'left': '⮀', 'right': '⮂' },
-            \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+            \ }
             \ }
 
 " Neocomplete ------------------------------------------------------------------
@@ -503,3 +390,66 @@ function! s:syntastic()
     SyntasticCheck
     call lightline#update()
 endfunction
+
+" Golang shortcuts  -----------------------------------------------------------------------
+autocmd FileType go compiler golang
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+
+au FileType go nmap <leader>i <Plug>(go-implements)
+au FileType go nmap <leader>r <Plug>(go-run)
+let g:golang_goroot = "/home/fran/Projects/go"
+
+" Backup files {
+    " Write backup files in /tmp folder
+    set backup
+    set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+    set backupskip=/tmp/*,/private/tmp/*
+    set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+    set writebackup
+" }
+
+" Leader tune {
+    " Ideas from
+    " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+
+    " Remap leader
+    let mapleader = "\<Space>"
+
+    " <Space>o to open a new file:
+    nnoremap <Leader>o :CtrlP<CR>
+
+    " Type <Space>w to save file
+    nnoremap <Leader>w :w<CR>
+    nnoremap <Leader>wq :wq<CR>
+    nnoremap <Leader>q :q<CR>
+
+    " Copy & paste to system clipboard with <Space>p and <Space>y
+    " copy
+    vmap <Leader>y "+y
+    " cut
+    vmap <Leader>d "+d
+    " paste
+    vmap <Leader>p "+p
+    nmap <Leader>P "+P
+
+    " Enter visual line mode with <Space><Space>
+    nmap <Leader><Leader> V
+
+    " Use region expanding
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+" }
+"
+
+
