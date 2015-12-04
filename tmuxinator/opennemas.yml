@@ -2,6 +2,8 @@
 
 name: onm
 root: ~/vms/opennemas-vagrant-stack/volumes/opennemas
+tmux_command: byobu
+tmux_options: -f ~/.tmux.conf
 
 # Optional tmux socket
 # socket_name: opennemas
@@ -17,18 +19,27 @@ root: ~/vms/opennemas-vagrant-stack/volumes/opennemas
 
 pre:
     - cd ~/vms/opennemas-vagrant-stack/
-    - vagrant up
-    - cd ~/vms/opennemas-vagrant-stack/volumes/opennemas
+    - vagrant up; vagrant up
 windows:
     - vssh:
-        layout: main-vertical
+        layout: main-horizontal
         panes:
-            - exec:
+            - ssh:
                 - cd ~/vms/opennemas-vagrant-stack/
                 - vagrant ssh
-                - cd /home/opennemas/manager
-    - test-runner: 
-        - ./bin/test-runner.sh
-    - guard: bundle exec guard
-    - logs: tail -f tmp/logs/dev.log
-
+    - task_runner:
+        layout: main-horizontal
+        panes:
+            - test_runner:
+                - ./node_modules/.bin/gulp
+    - logs:
+        layout: main-horizontal
+        panes:
+            - nginx_log:
+                - cd ~/vms/opennemas-vagrant-stack/
+                - vagrant ssh
+                - sudo tailf /var/log/nginx/error.log
+            - app_log:
+                - cd ~/vms/opennemas-vagrant-stack/
+                - vagrant ssh
+                - tail -f tmp/logs/dev.log
