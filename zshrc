@@ -18,6 +18,7 @@ plugins=(
     git-extras
     git-flow
     golang
+    jira
     npm
     safe-paste
     symfony2
@@ -53,3 +54,6 @@ for file in ~/.{aliases,extra,exports,functions,profile}; do
     [ -r "$file" ] && source "$file"
 done
 unset file
+
+JIRA_RAPID_BOARD=true
+export JAVA_HOME=/usr/lib/jvm/default-runtime
