@@ -1,10 +1,16 @@
-# Pl editor
-export EDITOR="vim"
-
 # oh-my-zsh confs
-# This is the project page: https://github.com/robbyrussell/oh-my-zsh/
-ZSH=$HOME/.oh-my-zsh
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
 ZSH_THEME="openhost"
+#ZSH_THEME="frandieguez"
+#ZSH_THEME="robbyrussell"
+
 plugins=(
     bower
     bundler
@@ -12,7 +18,6 @@ plugins=(
     common-aliases
     compleat
     composer
-    debian
     docker
     git
     git-extras
@@ -27,7 +32,11 @@ plugins=(
     tmux
     tmuxinator
     vagrant
+    vi-mode
 )
+
+# User configuration
+
 source $ZSH/oh-my-zsh.sh
 
 setopt nocorrect_all
@@ -57,3 +66,5 @@ unset file
 
 JIRA_RAPID_BOARD=true
 export JAVA_HOME=/usr/lib/jvm/default-runtime
+
+bindkey -v
