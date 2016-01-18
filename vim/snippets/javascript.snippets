@@ -1,0 +1,31 @@
+snippet fstrict "Use strict in javascript"
+	(function () {
+	  'use strict';
+
+	  ${1}
+	})();
+snippet ngdoc "Angular documentation for component"
+	/**
+	 * @ngdoc ${1:type}
+	 * @name  ${2:name}
+	 *
+	 * @requires ${3:require}
+	 *
+	 * @description
+	 *   ${4:description}
+	 */
+snippet ngfunction "Angular documentation for function"
+	/**
+	 * @function ${1:name}
+	 * @memberOf ${2:parent}
+	 *
+	 * @description
+	 *   ${3:description}
+	 *
+	 * @param {${4:type}} ${5:name} ${6:description}
+	 *
+	 * @return {${7:type}} ${8:description}
+	 */
+snippet ngtemplate "HTML code for angular template"
+	<script type="text/ng-template" id="${1:id}">
+	</script>

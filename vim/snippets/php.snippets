@@ -1,0 +1,29 @@
+snippet fdoc "PHP documentation for function"
+	/**
+	 * ${1:description}
+	 *
+	 * @param ${2:type} ${3:variable} ${4:Description}
+	 *
+	 * @return ${5:type} ${6:Description}
+	 */
+snippet license "Openhost license notice"
+	/**
+	 * This file is part of the Onm package.
+	 *
+	 * (c) Openhost, S.L. <onm-devs@openhost.es>
+	 *
+	 * For the full copyright and license information, please view the LICENSE
+	 * file that was distributed with this source code.
+	 */
+snippet svdie "Dump variable and die using Symfony dumper"
+	\Symfony\Component\VarDumper\VarDumper::dump(${1:this});die();
+snippet v "Dump variable"
+	var_dump(${1:variable});
+snippet vdie "Dump variable and die"
+	var_dump(${1:variable});die();
+snippet vdoc "PHP documentation for variable"
+	/**
+	 * ${1:description}
+	 *
+	 * @var ${2:type}
+	 */
