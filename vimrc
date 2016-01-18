@@ -3,60 +3,68 @@
 " recommend picking out the parts you want and understand.
 "
 " You can find me at http://frandieguez.com
-" Vundle
-" ----------------------------------------------------------------------
+
+" Vundle ----------------------------------------------------------------------
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'Yggdroot/indentLine'
+Plugin 'gmarik/vundle'
+
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'algotech/ultisnips-php'
 Plugin 'bkad/CamelCaseMotion'
 Plugin 'davidoc/taskpaper.vim'
 Plugin 'duggiefresh/vim-easydir'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'epmatsw/ag.vim'
 Plugin 'ervandew/supertab'
-Plugin 'gmarik/vundle'
 Plugin 'godlygeek/tabular'
 Plugin 'honza/vim-snippets'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'loremipsum'
 Plugin 'mattn/emmet-vim'
-Plugin 'matze/vim-move'
+Bundle 'matze/vim-move'
 Plugin 'mhinz/vim-startify'
 Plugin 'scrooloose/NERDCommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'sickill/vim-monokai'
+Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-obsession'
 Plugin 'dhruvasagar/vim-prosession'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Yggdroot/indentLine'
+Plugin 'ryanoasis/vim-devicons'
+
 Plugin 'fatih/vim-go'
 
 filetype plugin indent on
 
-
 " Colors -----------------------------------------------------------------------
 set t_Co=256
-colorscheme monokai
+colorscheme seti-monokai
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
 
 " Misc -------------------------------------------------------------------------
+set encoding=utf8
 set nobackup
 set noswapfile
 set mouse=a
@@ -85,6 +93,7 @@ set splitbelow
 set splitright
 set ttyfast
 set wildmenu
+set previewheight=80
 
 " Searching --------------------------------------------------------------------
 set hlsearch
@@ -99,7 +108,9 @@ set foldmethod=indent
 set foldnestmax=10
 
 " CtrlP ------------------------------------------------------------------------
-let g:ctrp_max_depth=20
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_max_depth=20
 let g:ctrlp_max_files=0
 let g:ctrlp_switch_buffer=0
 let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
@@ -109,16 +120,15 @@ let g:ctrlp_status_func = {
             \ 'prog': 'CtrlPStatusFunc_2',
             \ }
 
+let g:ctrlp_funky_syntax_highlight = 1
 
 " Easy-align -------------------------------------------------------------------
 nmap ga <Plug>(EasyAlign)
 vmap <Enter> <Plug>(EasyAlign)
 
-" Easy-motion -------------------------------------------------------------------
-nmap s <Plug>(easymotion-s)
-nmap ss <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t)
-nmap tt <Plug>(easymotion-t2)
+" Easy-motion-------------------------------------------------------------------
+nmap <leader>s <Plug>(easymotion-s)
+nmap <leader>ss <Plug>(easymotion-s2)
 
 " Editorconfig -----------------------------------------------------------------
 let g:EditorConfig_exec_path = '/usr/bin/editorconfig'
@@ -160,6 +170,7 @@ let NERDTreeHighlightCursorline = 1
 set laststatus=2
 
 " Syntastic --------------------------------------------------------------------
+let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
 let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
 let g:syntastic_javascript_checkers = [ 'jshint' ]
 
@@ -169,9 +180,11 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 
+" Vim-move ---------------------------------------------------------------------
+let g:move_map_keys = 0
+
 " Command shortcuts ------------------------------------------------------------
 cmap w!! w !sudo tee > /dev/null %
-cmap reload source ~/.vimrc
 
 " Disable arrow keys -----------------------------------------------------------
 noremap <Up>    <NOP>
@@ -180,15 +193,18 @@ noremap <Left>  <NOP>
 noremap <Right> <NOP>
 
 " Leader shortcuts -------------------------------------------------------------
-nmap <leader>a= :Tabularize /=<CR>
 nmap <leader>= :call Preserve("normal gg=G")<CR>
+nmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a=> :Tabularize /=><CR>
 nmap <leader>a: :Tabularize /:<CR>
 nmap <leader>bb :CtrlPBuffer<CR>
+nmap <leader>r :source $MYVIMRC<CR>
+nmap <leader>e :tabedit $MYVIMRC<CR>
+nmap <leader>w :w!<CR>
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " Line shortcuts ---------------------------------------------------------------
-let g:move_map_keys = 0 "Diable arrow cursors to move
-
 nmap <C-w>- :rightb new<CR>
 nmap <C-w>\| :vnew<CR>
 nmap <C-w>t :tabnew<CR>
@@ -212,8 +228,7 @@ nnoremap <silent> <C-l> :call WinMove('l')<cr>
 
 nnoremap <silent> <C-z> :call ZoomToggle()<CR>
 
-noremap <F12> :NERDTreeToggle<CR>
-noremap <C-F12> :NERDTreeFocus<CR>
+noremap <F12> :NERDTreeTabsToggle<CR>
 
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
@@ -229,8 +244,7 @@ autocmd BufWritePre * :call Preserve("%s/\\s\\+$//e")
 autocmd VimEnter * call StartUp()
 autocmd VimEnter * wincmd p
 autocmd BufRead,BufNewFile *.done,*.todo,*.task set filetype=taskpaper
-autocmd BufRead,BufNewFile *.tpl set filetype=html
-autocmd FocusLost * :wa
+autocmd BufRead,BufNewFile *.tpl,*.twig set filetype=html
 
 " Keep cursor on column when leaving INSERT mode
 let CursorColumnI = 0
@@ -335,11 +349,11 @@ function! LightlineFugitive()
 endfunction
 
 function! LightlineFileformat()
-    return winwidth(0) > 80 ? &fileformat : ''
+    return winwidth(0) > 80 ? &fileformat . ' ' . WebDevIconsGetFileFormatSymbol() : ''
 endfunction
 
 function! LightlineFiletype()
-    return winwidth(0) > 60 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    return winwidth(0) > 60 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol(): 'no ft') : ''
 endfunction
 
 function! LightlineFileencoding()
@@ -410,46 +424,35 @@ au FileType go nmap <leader>i <Plug>(go-implements)
 au FileType go nmap <leader>r <Plug>(go-run)
 let g:golang_goroot = "/home/fran/Projects/go"
 
-" Backup files {
-    " Write backup files in /tmp folder
-    set backup
-    set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set backupskip=/tmp/*,/private/tmp/*
-    set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-    set writebackup
-" }
+" Leader tune --------------------------------------------------------
+" Ideas from
+" http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 
-" Leader tune {
-    " Ideas from
-    " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+" Remap leader
+let mapleader = "\<Space>"
 
-    " Remap leader
-    let mapleader = "\<Space>"
+" <Space>o to open a new file:
+nnoremap <Leader>o :CtrlP<CR>
 
-    " <Space>o to open a new file:
-    nnoremap <Leader>o :CtrlP<CR>
+" Type <Space>w to save file
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>q :q<CR>
 
-    " Type <Space>w to save file
-    nnoremap <Leader>w :w<CR>
-    nnoremap <Leader>wq :wq<CR>
-    nnoremap <Leader>q :q<CR>
+" Copy & paste to system clipboard with <Space>p and <Space>y
+" copy
+vmap <Leader>y "+y
+" cut
+vmap <Leader>d "+d
+" paste
+vmap <Leader>p "+p
+nmap <Leader>P "+P
 
-    " Copy & paste to system clipboard with <Space>p and <Space>y
-    " copy
-    vmap <Leader>y "+y
-    " cut
-    vmap <Leader>d "+d
-    " paste
-    vmap <Leader>p "+p
-    nmap <Leader>P "+P
+" Enter visual line mode with <Space><Space>
+nmap <Leader><Leader> V
 
-    " Enter visual line mode with <Space><Space>
-    nmap <Leader><Leader> V
-
-    " Use region expanding
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-" }
-"
+" Use region expanding
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 
