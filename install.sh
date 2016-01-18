@@ -70,18 +70,24 @@ function warning_if_exists {
     fi
 }
 
-ln -s $PWD/aliases ~/.aliases &> /dev/null
-warning_if_exists aliases
+# Install shell config files
+ln -s $PWD/zshrc ~/.zshrc &> /dev/null
+warning_if_exists zsh
 
 ln -s $PWD/bashrc ~/.bashrc &> /dev/null
 warning_if_exists bashrc
 
-ln -s $PWD/exports ~/.exports &> /dev/null
-warning_if_exists exports
+# Install additional shell config files
+ln -s $PWD/aliases ~/shell-configs/.aliases &> /dev/null
+warning_if_exists aliases
 
-ln -s $PWD/functions ~/.functions &> /dev/null
+ln -s $PWD/shell-configs/functions ~/.functions &> /dev/null
 warning_if_exists functions
 
+ln -s $PWD/shell-configs/exports ~/.exports &> /dev/null
+warning_if_exists exports
+
+# Install git config files
 ln -s $PWD/gitconfig ~/.gitconfig &> /dev/null
 warning_if_exists gitconfig
 
@@ -91,22 +97,19 @@ warning_if_exists gitconfig-additional
 ln -s $PWD/gitignore ~/.gitignore &> /dev/null
 warning_if_exists gitignore
 
+# Install multiplexer-shell config files
 ln -s $PWD/screenrc ~/.screenrc &> /dev/null
 warning_if_exists screenrc
 
 ln -s $PWD/tmux.conf ~/.tmux.conf &> /dev/null
 warning_if_exists tmux
 
-ln -s $PWD/tmuxinator ~/.tmuxinator &> /dev/null
-warning_if_exists tmuxinator
-
+# Install editor config files
 ln -s $PWD/vimrc ~/.vimrc &> /dev/null
+warning_if_exists vimrc
 ln -s $PWD/vim ~/.vim &> /dev/null
 warning_if_exists vim
 rm $HOME/.vim/vim  # just remove it, don't even bother checking
-
-ln -s $PWD/zshrc ~/.zshrc &> /dev/null
-warning_if_exists zsh
 
 ok "Configurations linked properly"
 
