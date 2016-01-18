@@ -1,5 +1,16 @@
 #### Global gitignore file
 
+*~
+*.sublime-*
+*.swp
+
+# Node.js
+node_modules
+bower_components
+
+# Oh-my-zsh jira plugin (https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#jira)
+.jira-url
+
 # Compiled Python files
 *.pyc
 
