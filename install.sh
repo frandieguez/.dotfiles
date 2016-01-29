@@ -78,7 +78,7 @@ ln -s $PWD/bashrc ~/.bashrc &> /dev/null
 warning_if_exists bashrc
 
 # Install additional shell config files
-ln -s $PWD/aliases ~/shell-configs/.aliases &> /dev/null
+ln -s $PWD/shell-configs/aliases ~/.aliases &> /dev/null
 warning_if_exists aliases
 
 ln -s $PWD/shell-configs/functions ~/.functions &> /dev/null
