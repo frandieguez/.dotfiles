@@ -23,9 +23,9 @@ else
     warning "~/.oh-my-zsh already exists, remove it and try again!"
 fi
 
-
-ln -s $PWD/oh-my-zsh-themes/openhost.zsh-theme ~/.oh-my-zsh/themes/openhost.zsh-theme
-ln -s $PWD/oh-my-zsh-themes/frandieguez.zsh-theme ~/.oh-my-zsh/themes/frandieguez.zsh-theme
+ok "Installing oh-my-zsh themes"
+ln -s $PWD/oh-my-zsh-themes/frandieguez-v1.zsh-theme ~/.oh-my-zsh/themes/
+ln -s $PWD/oh-my-zsh-themes/frandieguez-v2.zsh-theme ~/.oh-my-zsh/themes/
 
 #
 # Install vim fonts
