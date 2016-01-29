@@ -96,7 +96,7 @@ alias s="subl"
 alias bye="exit"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     alias open=xdg-open
-fi 
+fi
 alias map="xargs -n1"
 alias public_ip="curl ifconfig.me"
 alias ducks="du -cks *|sort -rn | head"
@@ -133,3 +133,6 @@ alias vh='vagrant halt'
 alias vsus='vagrant suspend'
 alias vs='vagrant ssh'
 
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
