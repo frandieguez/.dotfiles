@@ -1,13 +1,12 @@
 # vim:ft=zsh ts=2 sw=2 sts=2
 # ZSH Theme - Preview: http://
 #
-if [[ -e /etc/bash_completion.d/git-prompt ]] then
-  source '/etc/bash_completion.d/git-prompt'
+if [ ! -f ~/.git-prompt.sh ]; then
+  echo "Downloading git prompt script"
+  curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh;
 fi
 
-if [[ -e /usr/share/git/git-prompt.sh ]] then
-  source '/usr/share/git/git-prompt.sh'
-fi
+source ~/.git-prompt.sh
 
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
