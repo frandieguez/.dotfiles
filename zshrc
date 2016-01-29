@@ -57,7 +57,4 @@ for file in ~/.{aliases,extra,exports,functions,profile}; do
 done
 unset file
 
-JIRA_RAPID_BOARD=true
-export JAVA_HOME=/usr/lib/jvm/default-runtime
-
 #bindkey -v
