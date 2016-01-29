@@ -6,3 +6,4 @@ vim/bundle/*
 !vim/bundle/vundle
 vim/yankring_history_v2.txt
 gitconfig-additional
+vim/session
