@@ -32,7 +32,6 @@ plugins=(
     tmux
     tmuxinator
     vagrant
-    vi-mode
 )
 
 # User configuration
@@ -67,4 +66,4 @@ unset file
 JIRA_RAPID_BOARD=true
 export JAVA_HOME=/usr/lib/jvm/default-runtime
 
-bindkey -v
+#bindkey -v
