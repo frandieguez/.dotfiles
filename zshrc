@@ -51,10 +51,5 @@ setopt NO_CHECK_JOBS
 # Add powerline support
 #source '/usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh'
 
-# Load external configuration files
-for file in ~/.{aliases,extra,exports,functions,profile}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
-
 #bindkey -v
+source ~/.profile

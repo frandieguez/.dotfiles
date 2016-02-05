@@ -112,8 +112,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Load external configuration files
-for file in ~/.{extra,exports,aliases,functions,profile}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
+source ~/.profile

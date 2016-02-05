@@ -81,6 +81,9 @@ warning_if_exists bashrc
 ln -s $PWD/shell-configs/aliases ~/.aliases &> /dev/null
 warning_if_exists aliases
 
+# Install additional shell config files
+ln -s $PWD/shell-configs/profile ~/.profile &> /dev/null
+warning_if_exists profile
 ln -s $PWD/shell-configs/functions ~/.functions &> /dev/null
 warning_if_exists functions
 
