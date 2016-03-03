@@ -30,6 +30,7 @@ plugins=(
   tmux
   tmuxinator
   vagrant
+  wd
 )
 
 # User configuration
