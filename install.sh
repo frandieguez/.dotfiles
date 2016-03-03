@@ -84,6 +84,7 @@ warning_if_exists aliases
 # Install additional shell config files
 ln -s $PWD/shell-configs/profile ~/.profile &> /dev/null
 warning_if_exists profile
+
 ln -s $PWD/shell-configs/functions ~/.functions &> /dev/null
 warning_if_exists functions
 
@@ -114,7 +115,12 @@ ln -s $PWD/vim ~/.vim &> /dev/null
 warning_if_exists vim
 rm $HOME/.vim/vim  # just remove it, don't even bother checking
 
-ok "Configurations linked properly"
+if [ ! -d ~/.config/powerline ]; then
+    git clone https://github.com/gmarik/Vundle.vim.git vim/bundle/vundle
+else
+    cd vim/bundle/vundle;
+    git pull;
+    cd ../../..;
+fi
 
-git submodule update --init --recursive
-ok "Submodules installed & updated"
+ok "Configurations linked properly"
