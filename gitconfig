@@ -1,80 +1,102 @@
-[include]
-    path        = .gitconfig-additional
-[log]
-    decorate = short
-[color]
-    branch      = auto
-    diff        = auto
-    interactive = auto
-    status      = auto
-    ui          = always
-[pager]
-    status = false
-    show-branch = true
 [alias]
-    st = status
-    ci = commit
-    co = checkout
-    br = branch
-    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-    type = cat-file -t
-    dump = cat-file -p
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    c = commit -am
-    up = pull
-    p = push
-    s = status -s
-    df = diff --color --color-words --abbrev
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-    lg1 = log --graph --abbrev-commit --decorate --date=relative \
-      --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    lg2 = log --graph --abbrev-commit --decorate \
-      --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-    lg3 = !"git lg1"
-    mycommits = log --author="fran@openhost.es" --format='"%C(bold green)%h%C(reset) \"%s\" %C(bold blue)at %ai%C(reset)"'
-[merge]
-    tool = meld
-[format]
-    numbered = auto
-[core]
-    filemode = false
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+  a = add
+  authors = !git log --pretty=format:%aN | sort | uniq -c | sort -rnhttps://github.com/dbestevez/dotfiles
+  b = branch -vv
+  br = branch
+  c = commit
+  ca = commit --amend
+  changes = diff --name-status -r
+  cm = commit --message
+  co = checkout
+  cp = cherry-pick
+  d = diff
+  dc = diff --cached
+  df = diff --color --color-words --abbrev
+  dt = difftool
+  dump = cat-file -p
+  filelog = log -u
+  fl = log -u
+  h = help
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  la = !git list-aliases
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg3 = !"git lg1"
+  l = !git log --graph --pretty='tformat:%C(yellow)%h{%C(green)%ar{%C(bold blue)%an{%C(red)%d%C(reset) %s' $* | column -t -s '{' | less -FXRS
+  lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  list-aliases = !git config -l | grep alias | cut -c 7-
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  mycommits = log --author="fran@openhost.es" --format='"%C(bold green)%h%C(reset) \"%s\" %C(bold blue)at %ai%C(reset)"'
+  p = push
+  ra = log --graph --abbrev-commit --date=relative -20 --all --pretty='format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+  rh = reset --hard
+  s = status --short --branch
+  stl = stash list
+  stp = stash pop
+  type = cat-file -t
+  undo = reset --soft HEAD^
+  up = pull
+[branch]
+  autosetupmerge = always
+  autosetuprebase = always
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = always
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[core]
+  filemode = false
+  excludesfile = ~/.gitignore
+  editor = vim
+  whitespace = trailing-space,space-before-tab
+[format]
+  numbered = auto
+[include]
+  path = .gitconfig-additional
+[log]
+  decorate = short
 [merge]
-    log = true
+  tool = meld
+[pager]
+  status = false
+  show-branch = true
+[merge]
+  log = true
 [url "git@github.com:"]
-    insteadOf = "gh:"
-    pushInsteadOf = "github:"
-    pushInsteadOf = "git://github.com/"
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
-    insteadOf = "github:"
+  insteadOf = "github:"
 [url "git@gist.github.com:"]
-    insteadOf = "gst:"
-    pushInsteadOf = "gist:"
-    pushInsteadOf = "git://gist.github.com/"
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
-    insteadOf = "gist:"
-
+  insteadOf = "gist:"
 # Any GitHub repo with my username should be checked out r/w by default
 # http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
 [url "git@github.com:frandieguez/"]
   insteadOf = "git://github.com/frandieguez/"
+[pull]
+    rebase = true
 [push]
-    default = matching
+  default = matching
 [help]
-    autocorrect = 1
-[branch]
-    autosetupmerge = always
-    autosetuprebase = always
+  autocorrect = 1

@@ -1,5 +1,12 @@
 # Load external configuration files
-for file in ~/.{extra,exports,aliases,functions}; do
-  [ -r "$file" ] && source "$file"
+for file in ~/.shell/config/*; do
+    source "$file"
 done
-unset file
+
+for file in ~/.shell/functions/*; do
+    source "$file"
+done
+
+if [ -f /etc/profile.d/vte.sh ]; then
+  . /etc/profile.d/vte.sh
+fi

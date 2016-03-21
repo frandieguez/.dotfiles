@@ -2,8 +2,6 @@
 vim/.netrwhist
 vim/.VimballRecord
 
-vim/bundle/*
-!vim/bundle/vundle
+vim/bundle
 vim/yankring_history_v2.txt
-gitconfig-additional
 vim/session
