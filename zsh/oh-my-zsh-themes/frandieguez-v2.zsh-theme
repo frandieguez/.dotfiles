@@ -48,7 +48,8 @@ CURRENT_BG='NONE'
   # This is defined using a Unicode escape sequence so it is unambiguously readable, regardless of
   # what font the user is viewing this source code in. Do not replace the
   # escape sequence with a single literal character.
-  SEGMENT_SEPARATOR=$'\ue0b0' # 
+  #  SEGMENT_SEPARATOR=$'\ue0b0' # 
+  SEGMENT_SEPARATOR=' '
 }
 
 # Begin a segment
@@ -70,11 +71,11 @@ prompt_segment() {
 # End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}\n$SEGMENT_SEPARATOR"
+    echo -n "%{%k%F{$CURRENT_BG}%}\n"
   else
     echo -n "%{%k%}"
   fi
-  echo -n "$ %{%f%}"
+  echo -n "$%{%f%}"
   CURRENT_BG=''
 }
 
@@ -84,7 +85,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black yellow "%(!.%{%F{yellow}%}.)$USER@%m:"
+    prompt_segment default yellow "$USER@%m:"
   fi
 }
 
@@ -118,9 +119,9 @@ prompt_git() {
     # echo $dirty
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     # if [[ -n $dirty ]]; then
-      # prompt_segment black yellow
+      # p'rompt_segment black yellow
     # else
-      prompt_segment black green
+      prompt_segment default green
     # fi
     # echo -n "$PL_BRANCH_CHAR $(__git_ps1) ${mode}"
     echo -n "$(__git_ps1) ${mode}"
@@ -154,15 +155,15 @@ prompt_hg() {
     if $(hg prompt >/dev/null 2>&1); then
       if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
         # if files are not added
-        prompt_segment red white
+        prompt_segment default red
         st='±'
       elif [[ -n $(hg prompt "{status|modified}") ]]; then
         # if any modification
-        prompt_segment yellow black
+        prompt_segment default yellow
         st='±'
       else
         # if working copy is clean
-        prompt_segment green black
+        prompt_segment default green
       fi
       echo -n $(hg prompt "☿ {rev}@{branch}") $st
     else
@@ -170,13 +171,13 @@ prompt_hg() {
       rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
       branch=$(hg id -b 2>/dev/null)
       if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
+        prompt_segment red default
         st='±'
       elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
+        prompt_segment yellow default
         st='±'
       else
-        prompt_segment green black
+        prompt_segment green default
       fi
       echo -n "☿ $rev@$branch" $st
     fi
@@ -186,14 +187,14 @@ prompt_hg() {
 # Dir: current working directory
 prompt_dir() {
   # prompt_segment black blue '%~'
-  prompt_segment black magenta '%c' # print only the short dir name
+  prompt_segment default magenta '%c' # print only the short dir name
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+    prompt_segment default black "(`basename $virtualenv_path`)"
   fi
 }
 
@@ -208,10 +209,10 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+  [[ -n "$symbols" ]] && echo -n "$symbols "
 }
 promt_current_time() {
-  prompt_segment black blue '%*'
+  prompt_segment default cyan '%*'
 }
 
 prompt_return_code() {
@@ -222,9 +223,9 @@ prompt_return_code() {
 ## Main prompt
 build_prompt() {
   RETVAL=$?
+  prompt_status
   promt_current_time
   echo -n " "
-  prompt_status
   prompt_virtualenv
   prompt_context
   prompt_dir
@@ -233,6 +234,6 @@ build_prompt() {
   prompt_end
 }
 
+RPS1="$(prompt_return_code)"
 PROMPT='%{%f%b%k%}$(build_prompt) '
 
-RPS1="$(prompt_return_code)"
