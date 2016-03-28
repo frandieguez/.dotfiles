@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 
 # Favorites: frandieguez-v1 dst murilasso pmcgee pygmalion robbyrussell tjkirch_mod wezm+
-ZSH_THEME="frandieguez-v1"
+ZSH_THEME="frandieguez-v2"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
