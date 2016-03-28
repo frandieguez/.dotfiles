@@ -54,12 +54,11 @@ filetype plugin indent on
 " Colors
 set t_Co=256
 
-" set background=dark
-" colorscheme solarized
+colorscheme seti-monokai
+set background=dark
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
-
 
 " Misc
 set encoding=utf8
