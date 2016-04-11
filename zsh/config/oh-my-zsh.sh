@@ -62,7 +62,6 @@ plugins=(
   git-extras
   git-flow
   golang
-  jira
   history
   redis-cli
   npm
