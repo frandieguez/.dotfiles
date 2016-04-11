@@ -1,1 +1,1 @@
-export JAVA_HOME=/usr/lib/jvm/default-runtime
+#export JAVA_HOME=/usr/lib/jvm/default-runtime
