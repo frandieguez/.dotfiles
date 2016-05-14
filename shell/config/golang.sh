@@ -4,5 +4,5 @@ if [ -e $HOME/.goenv ]; then
   export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
 fi
 
-export GOPATH="$HOME/Projects/go"
+export GOPATH="$HOME/Code/go"
 export PATH=$GOPATH/bin:$PATH
