@@ -1,6 +1,7 @@
 " Vundle ----------------------------------------------------------------------
 set nocompatible
 filetype off
+set shell=bash
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -41,8 +42,9 @@ Plugin 'tpope/vim-obsession'
 Plugin 'dhruvasagar/vim-prosession'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Yggdroot/indentLine'
 Plugin 'ryanoasis/vim-devicons'
@@ -190,3 +192,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 
 " Vim-move
 let g:move_map_keys = 0
+
+" we also want to get rid of accidental trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
