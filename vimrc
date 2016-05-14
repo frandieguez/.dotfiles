@@ -180,6 +180,7 @@ set laststatus=2
 let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
 let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
 let g:syntastic_javascript_checkers = [ 'jshint' ]
+let g:syntastic_go_checkers = ['golint']
 
 " UltiSnips
 let g:UltiSnipsEditSplit="vertical"

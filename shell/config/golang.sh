@@ -6,4 +6,3 @@ fi
 
 export GOPATH="$HOME/Projects/go"
 export PATH=$GOPATH/bin:$PATH
-export GO15VENDOREXPERIMENT=1
