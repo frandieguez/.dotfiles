@@ -141,21 +141,19 @@ let g:user_emmet_leader_key='<C-w>'
 
 " Lightline
 let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
     \ 'colorscheme': 'solarized_dark',
     \ 'component': {
     \   'readonly': '%{&readonly?"":""}',
     \ },
-    \ 'separator': { 'left': '', 'right': ''  },
-    \ 'subseparator': { 'left': '', 'right': ''  },
     \ 'component_expand': {
     \   'syntastic': 'SyntasticStatuslineFlag',
     \ },
     \ 'component_type': {
     \   'syntastic': 'error',
-    \ },
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component_function': {
     \     'ctrlpmark': 'CtrlPMark',
@@ -165,8 +163,10 @@ let g:lightline = {
     \     'filetype': 'LighlineFiletype',
     \     'fugitive': 'LightlineFugitive',
     \     'mode': 'LightlineMode',
-    \ }
-    \ }
+    \ },
+    \ 'separator': { 'left': '', 'right': ''  },
+    \ 'subseparator': { 'left': '', 'right': ''  }
+\ }
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
