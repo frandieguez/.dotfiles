@@ -50,43 +50,15 @@ vmap <Up> <Plug>MoveBlockUp
 
 " Remap leader
 let mapleader = "\<Space>"
+vmap <Leader>y "+y copy to system clipboar
+vmap <Leader>d "+d cut to system clipboar
+vmap <Leader>p "+p paste from system clipboar
+nmap <Leader>P "+P
 nmap <Leader><Leader> V " Enter visual line mode with <Space><Space>
 nnoremap <Leader>o :CtrlP<CR> " <Space>o to open a new file
 nnoremap <Leader>w :w<CR> " Save file
 nnoremap <Leader>wq :wq<CR> " Save and quit
 nnoremap <Leader>q :q<CR> " Quit
-vmap <Leader>y "+y copy to system clipboar
-vmap <Leader>d "+d cut to system clipboar
-vmap <Leader>p "+p paste from system clipboar
-nmap <Leader>P "+P
-
-" Golang shortcuts
-autocmd FileType go compiler golang
-" turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
-
-" Open go doc in vertical window, horizontal, or tab
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>i <Plug>(go-implements)
-au FileType go nmap <leader>r <Plug>(go-run)
-" let g:golang_goroot = "/home/fran/Projects/go"
 
 " Use region expanding
 " vmap v <Plug>(expand_region_expand)
