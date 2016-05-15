@@ -4,7 +4,7 @@ Files on this repository are the important configurations that I'm using
 all the day and I don't want to lost. Feel free of use them and provide me
 any trick if you think that it could make me life easier.
 
-Among those files you will find an highly opinionated configurations for:
+Among these files you will find highly opinionated configurations for:
   * Bash
   * Git
   * Gitignore
