@@ -50,14 +50,15 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'fatih/vim-go'
+Plugin 'w0ng/vim-hybrid'
 
 filetype plugin indent on
 
 " Colors
 set t_Co=256
 
-colorscheme seti-monokai
 set background=dark
+colorscheme hybrid
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
