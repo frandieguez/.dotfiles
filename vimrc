@@ -51,6 +51,9 @@ Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'fatih/vim-go'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'majutsushi/tagbar'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 filetype plugin indent on
 

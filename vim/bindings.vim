@@ -37,6 +37,7 @@ nmap <leader>bb :CtrlPBuffer<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 noremap <F12> :NERDTreeTabsToggle<CR>
+noremap <F8> :TagbarToggle<CR>
 
 " Movement for neocomplete
 inoremap <expr> <C-j> ("\<C-n>")
