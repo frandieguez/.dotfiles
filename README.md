@@ -1,29 +1,32 @@
 Fran's dot configuration files
 ==============================
-The file on this repository are the important configurations that I'm using
+Files on this repository are the important configurations that I'm using
 all the day and I don't want to lost. Feel free of use them and provide me
 any trick if you think that it could make me life easier.
 
-*If you are going to clone this repo, please, do it with the `--recursive`
-option.*
+Among those files you will find an highly opinionated configurations for:
+  * Bash
+  * Git
+  * Gitignore
+  * Tmux
+  * Vim
+  * Zsh
+  * screen
 
+An experimental support for NVim is included, by symlinking to Vim configs.
 
 Install all
 -----------
-You can install all the configurations at one time using:
+You can install all the configurations at one once using:
 
-    git clone --recursive https://github.com/frandieguez/.dots.git
-    ./install.sh
+  git clone https://github.com/frandieguez/.dots.git ~/.dots
+  cd ~/.dots
+  ./install.sh
 
-After the installation you must install the vim plugins by using the vim command line:
+and your are done.
 
-    vim -c "PluginInstall"
-
-and your are done
-It's the recommended way if you know what are you doing :)
-
+This is the recommended way if you know what are you doing :)
 If you don't want to do this, continue reading...
-
 
 Installation by components
 --------------------------
@@ -45,16 +48,3 @@ Add `. ~/.dots/zsh` at the end of your `~/.zshrc`.
 
 ### hg
 Add `%include ~/.dots/hg` at the end of your `~/.hgrc`.
-
-
-Dependencies
-------------
-Some vim bundles need some pip programs, this is the list:
-
-- flake8
-- pyflakes
-- ropevim
-
-To install them:
-
-    sudo pip install flake8 pyflakes ropevim
