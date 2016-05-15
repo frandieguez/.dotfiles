@@ -29,28 +29,25 @@ let g:user_emmet_leader_key='<C-w>'
 
 " Lightline
 let g:lightline = {
+    \ 'colorscheme': 'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
     \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
-    \ 'colorscheme': 'solarized_dark',
-    \ 'component': {
-    \   'readonly': '%{&readonly?"":""}',
+    \ 'component_function': {
+    \     'ctrlpmark': 'CtrlPMark',
+    \     'fileencoding': 'LightlineFileEncoding',
+    \     'fileformat': 'LightlineFileFormat',
+    \     'filename': 'LightlineFileName',
+    \     'filetype': 'LighlineFileType',
+    \     'fugitive': 'LightlineFugitive',
+    \     'mode': 'LightlineMode',
     \ },
     \ 'component_expand': {
     \   'syntastic': 'SyntasticStatuslineFlag',
     \ },
     \ 'component_type': {
     \   'syntastic': 'error',
-    \ },
-    \ 'component_function': {
-    \     'ctrlpmark': 'CtrlPMark',
-    \     'fileencoding': 'LightlineFileencoding',
-    \     'fileformat': 'LightlineFileformat',
-    \     'filename': 'LightlineFilename',
-    \     'filetype': 'LighlineFiletype',
-    \     'fugitive': 'LightlineFugitive',
-    \     'mode': 'LightlineMode',
     \ },
     \ 'separator': { 'left': '', 'right': ''  },
     \ 'subseparator': { 'left': '', 'right': ''  }
