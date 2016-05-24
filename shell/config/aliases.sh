@@ -40,15 +40,6 @@ fi
 #                              sudo easy_install Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
-# GIT STUFF
-
-# Undo a `git push`
-alias undopush="git push -f origin HEAD^:master"
-
-# git root
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
-alias git-things-in-develop="git log develop ^master --no-merges"
-
 # IP addresses
 #alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
@@ -71,8 +62,6 @@ alias trimcopy="tr -d '\n' | pbcopy"
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Shortcuts
-alias g="git"
-alias v="vim"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -91,7 +80,6 @@ done
 alias fn_FX_keys="echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode"
 alias fn_multimedia_keys="echo 1 | sudo tee /sys/module/hid_apple/parameters/fnmode"
 alias o="xdg-open"
-alias gtr="gtranslator"
 alias s="subl"
 alias bye="exit"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -100,7 +88,6 @@ fi
 alias map="xargs -n1"
 alias public_ip="curl ifconfig.me"
 alias ducks="du -cks *|sort -rn | head"
-alias release="git flow release start $(date +%Y%m%d)"
 
 alias home='cd ~ && clear'
 
@@ -112,26 +99,28 @@ alias doctest='python -m doctest'
 alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"127.0.0.1\", 25), None); asyncore.loop()'"
 alias ff='find . -iname'
 alias debug='cat > /tmp/debug.html&&w3m /tmp/debug.html'
-alias vi='vim'
 alias t='tmux a||tmux new-s'
 
 alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 
-# Arch aliases
-alias arch-cleanpackages='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc' # Cleans automatically installed deps
-alias arch-upgrade='yaourt -Syyua --noconfirm'
+# OS Upgrade aliases
+case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
+  "arch")
+    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc' # Cleans automatically installed deps
+    alias os-upgrade='yaourt -Syyua --noconfirm'
+    ;;
+  "ubuntu")
+    alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
+    alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
+esac
 
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+if [[ `which thefuck` ]]; then
+  alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+fi
 
-alias gopath='cd $GOPATH'
 alias dcu='docker-compose up'
 alias dcs='docker-compose stop'
-
-alias vu='vagrant up'
-alias vh='vagrant halt'
-alias vsus='vagrant suspend'
-alias vs='vagrant ssh'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
