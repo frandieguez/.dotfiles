@@ -107,7 +107,7 @@ alias irssi='TERM=screen-256color irssi'
 # OS Upgrade aliases
 case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
   "arch")
-    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc' # Cleans automatically installed deps
+    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm' # Cleans automatically installed deps
     alias os-upgrade='yaourt -Syyua --noconfirm'
     ;;
   "ubuntu")
@@ -115,7 +115,7 @@ case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
     alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
 esac
 
-if [[ `which thefuck` ]]; then
+if [ -x "$(command -v thefuck)" ]; then
   alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 fi
 
