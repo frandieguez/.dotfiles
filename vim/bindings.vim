@@ -9,6 +9,7 @@ nnoremap ; :
 nmap <leader>r :source $MYVIMRC<CR>
 nmap <leader>e :tabedit $MYVIMRC<CR>
 nmap <leader>w :w!<CR>
+nnoremap <CR> :nohl<CR><CR>
 
 " Split shortcuts
 nmap <C-w>- :rightb new<CR>
@@ -64,4 +65,3 @@ nnoremap <Leader>q :q<CR> " Quit
 " Use region expanding
 " vmap v <Plug>(expand_region_expand)
 " vmap <C-v> <Plug>(expand_region_shrink)
-

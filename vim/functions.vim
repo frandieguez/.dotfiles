@@ -47,7 +47,7 @@ endfunction
 function! LightlineFileName()
     let fname = expand('%:t')
     return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname == '__Tagbar__' ? '' :
         \ fname =~ '__Gundo\' ? '' :
         \ fname =~ 'NERD_tree' ? 'NERDTree' :
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
