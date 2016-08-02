@@ -1,6 +1,12 @@
 #!/bin/bash
 
 # Install oh-my-zsh
+if [ ! -f ~/.git-prompt.sh ]; then
+    wget -O ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > /dev/null
+    echo "git-prompt.sh installed"
+fi
+
+# Install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     echo "oh-my-zsh installed"
@@ -57,3 +63,5 @@ if [ ! -f ~/.gitconfig-additional  ]; then
     echo "    email = " $email >> ~/.gitconfig-additional
   fi
 fi
+
+echo "All DONE"
