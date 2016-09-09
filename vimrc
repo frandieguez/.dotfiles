@@ -1,59 +1,68 @@
-" Vundle
 set nocompatible
 filetype off
-set shell=bash
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/vundle'
+Plug 'altercation/vim-colors-solarized'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'BufOnly.vim'
+Plug 'algotech/ultisnips-php'
+Plug 'bkad/CamelCaseMotion'
+Plug 'davidoc/taskpaper.vim'
+Plug 'duggiefresh/vim-easydir'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'epmatsw/ag.vim'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'flazz/vim-colorschemes'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/lightline.vim'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'loremipsum'
+Plug 'mattn/emmet-vim'
+Plug 'matze/vim-move'
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/NERDCommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'algotech/ultisnips-php'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'davidoc/taskpaper.vim'
-Plugin 'duggiefresh/vim-easydir'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'epmatsw/ag.vim'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'honza/vim-snippets'
-Plugin 'itchyny/lightline.vim'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'loremipsum'
-Plugin 'mattn/emmet-vim'
-Bundle 'matze/vim-move'
-Plugin 'mhinz/vim-startify'
-Plugin 'scrooloose/NERDCommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-obsession'
-Plugin 'dhruvasagar/vim-prosession'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'tpope/vim-repeat'
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'Yggdroot/indentLine'
-Plugin 'ryanoasis/vim-devicons'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+else
+  Plug 'Shougo/neocomplete.vim'
+endif
 
-Plugin 'fatih/vim-go'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'majutsushi/tagbar'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plug 'SirVer/ultisnips'
+Plug 'stanangeloff/php.vim'
+Plug 'ingydotnet/yaml-vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'tpope/vim-repeat'
+Plug 'wesQ3/vim-windowswap'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'fatih/vim-go'
+Plug 'w0ng/vim-hybrid'
+Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
+call plug#end()
 
 filetype plugin indent on
 
@@ -61,7 +70,7 @@ filetype plugin indent on
 set t_Co=256
 
 set background=dark
-colorscheme hybrid
+colorscheme monokai-chris
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
@@ -72,8 +81,9 @@ set nobackup
 set noswapfile
 set mouse=a
 let mapleader="\<Space>"
+set updatetime=250
 
-if has('unnamedplus')
+if has('clipboard')
     set clipboard=unnamed,unnamedplus
 endif
 
@@ -97,6 +107,11 @@ set splitright
 set ttyfast
 set wildmenu
 set previewheight=15
+
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 
 " Searching
 set hlsearch
