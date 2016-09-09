@@ -13,6 +13,14 @@ let g:ctrlp_status_func = {
 
 let g:ctrlp_funky_syntax_highlight = 1
 
+" Deoplete/Neocomplete
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+else
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#max_list = 10
+endif
+
 " Easy-align
 nmap ga <Plug>(EasyAlign)
 vmap <Enter> <Plug>(EasyAlign)
@@ -52,10 +60,6 @@ let g:lightline = {
     \ 'separator': { 'left': '', 'right': ''  },
     \ 'subseparator': { 'left': '', 'right': ''  }
 \ }
-
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#max_list = 10
 
 " NERD Tree
 let NERDTreeHighlightCursorline = 1
@@ -106,3 +110,7 @@ au FileType go nmap <leader>rt <Plug>(go-run-tab)
 au FileType go nmap <Leader>rs <Plug>(go-run-split)
 au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 
+" Simplenote
+if filereadable(expand('~/.simplenoterc'))
+  source ~/.simplenoterc
+endif

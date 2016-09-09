@@ -29,7 +29,6 @@ for file in $files; do
         ln -s $PWD/$file ~/.$file
     fi
 done;
-
 # Install oh-my-zsh themes
 for i in frandieguez-v1 frandieguez-v2; do
   if [ ! -f ~/.oh-my-zsh/themes/$i.zsh-theme  ]; then
@@ -38,13 +37,28 @@ for i in frandieguez-v1 frandieguez-v2; do
   fi
 done
 
-# Install Vundle and vim plugins
-if [ ! -d ~/.vim/bundle/vundle  ]; then
-  echo "Installing Vundle for vim.."
-  git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/vundle
+# Custom links for neovim
+if type nvim > /dev/null; then
+  if [ ! -d ~/.config/nvim  ]; then
+    echo "Symlinking ~/.config/nvim..."
+    ln -s ~/.vim ~/.config/nvim
+  fi
 
-  vim -c BundleInstall -c q
-fi;
+  if [ ! -f ~/.config/nvim/init.vim  ]; then
+    echo "Symlinking ~/.config/nvim/init.vim..."
+    ln -s ~/.vimrc ~/.config/nvim/init.vim
+  fi
+fi
+
+# Install vim plugins
+echo "Installing vim plugins..."
+vim -c PlugInstall -c q -c q
+
+# Install neovim plugins
+if type nvim > /dev/null; then
+  echo "Installing neovim plugins..."
+  nvim -c PlugInstall -c q -c q
+fi
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
