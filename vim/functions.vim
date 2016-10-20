@@ -1,8 +1,3 @@
-function! CheckSyntax()
-    SyntasticCheck
-    call lightline#update()
-endfunction
-
 function! CtrlPStatusMain(focus, byfname, regex, prev, item, next, marked)
     let g:lightline.ctrlp_regex = a:regex
     let g:lightline.ctrlp_prev = a:prev
@@ -97,6 +92,10 @@ endfunction
 
 function! LightlineReadonly()
     return &ft !~? 'help' && &readonly ? '' : ''
+endfunction
+
+function! LightlineNeomake()
+    return neomake#statusline#LoclistStatus()
 endfunction
 
 " Executes a command keeping the cursor position

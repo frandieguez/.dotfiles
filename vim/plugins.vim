@@ -40,7 +40,7 @@ let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo', 'neomake' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component_function': {
     \     'ctrlpmark': 'CtrlPMark',
@@ -52,10 +52,10 @@ let g:lightline = {
     \     'mode': 'LightlineMode',
     \ },
     \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
+    \   'neomake': 'LightlineNeomake',
     \ },
     \ 'component_type': {
-    \   'syntastic': 'error',
+    \   'neomake': 'error',
     \ },
     \ 'separator': { 'left': '', 'right': ''  },
     \ 'subseparator': { 'left': '', 'right': ''  }
@@ -114,3 +114,16 @@ au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 if filereadable(expand('~/.simplenoterc'))
   source ~/.simplenoterc
 endif
+
+" Neomake
+let g:neomake_php_phpmd_maker = {
+    \ 'args': [ '%p', 'text', 'cleancode,codesize,controversial,design,unusedcode'  ],
+    \ 'errorformat': '%E%f:%l%\s%m'
+    \ }
+
+let g:neomake_php_phpcs_maker = {
+    \ 'args': [ '--report=csv', '--standard=PSR2' ],
+    \ 'errorformat':
+        \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity%.%#,'.
+        \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-]\,%*[0-9]%.%#',
+    \ }
