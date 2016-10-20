@@ -107,7 +107,7 @@ alias irssi='TERM=screen-256color irssi'
 # OS Upgrade aliases
 case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
   "arch")
-    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm' # Cleans automatically installed deps
+    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M' # Cleans automatically installed deps
     alias os-upgrade='yaourt -Syyua --noconfirm'
     ;;
   "ubuntu")
@@ -125,3 +125,4 @@ alias dcs='docker-compose stop'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias mux="tmuxinator"
