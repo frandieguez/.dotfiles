@@ -1,3 +1,6 @@
+" Remap leader
+let mapleader = "\<Space>"
+
 " Disable arrow keys
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
@@ -9,6 +12,12 @@ nnoremap ; :
 nmap <leader>r :source $MYVIMRC<CR>
 nmap <leader>e :tabedit $MYVIMRC<CR>
 nmap <leader>w :w!<CR>
+nmap <Leader>w :w<CR> " Save file
+nmap <Leader>wq :wq<CR> " Save and quit
+nmap <Leader>q :q<CR> " Quit
+cmap ww w !sudo tee > /dev/null %
+
+" Clean searches with Enter
 nnoremap <CR> :nohl<CR><CR>
 
 " Split shortcuts
@@ -35,32 +44,38 @@ nmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a=> :Tabularize /=><CR>
 nmap <leader>a: :Tabularize /:<CR>
 nmap <leader>bb :CtrlPBuffer<CR>
+nmap <leader>g :Gstatus<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 noremap <F12> :NERDTreeTabsToggle<CR>
 noremap <F8> :TagbarToggle<CR>
 
+" CamelCaseMotion
+map <silent> ,w <Plug>CamelCaseMotion_w
+map <silent> ,b <Plug>CamelCaseMotion_b
+map <silent> ,e <Plug>CamelCaseMotion_e
+map <silent> ,ge <Plug>CamelCaseMotion_ge
+
 " Movement for neocomplete
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
 
+" Neomake
+nmap <leader>tn :let g:neomake_open_list=1<CR>
+nmap <leader>tN :let g:neomake_open_list=0<CR>
+
 " Vim-move
-map <Down> <Plug>MoveLineDown
+nmap <Down> <Plug>MoveLineDown
 nmap <Up> <Plug>MoveLineUp
 vmap <Down> <Plug>MoveBlockDown
 vmap <Up> <Plug>MoveBlockUp
 
-" Remap leader
-let mapleader = "\<Space>"
-vmap <Leader>y "+y copy to system clipboar
-vmap <Leader>d "+d cut to system clipboar
-vmap <Leader>p "+p paste from system clipboar
+vmap <Leader>y "+y copy to system clipboard
+vmap <Leader>d "+d cut to system clipboard
+vmap <Leader>p "+p paste from system clipboard
 nmap <Leader>P "+P
 nmap <Leader><Leader> V " Enter visual line mode with <Space><Space>
-nnoremap <Leader>o :CtrlP<CR> " <Space>o to open a new file
-nnoremap <Leader>w :w<CR> " Save file
-nnoremap <Leader>wq :wq<CR> " Save and quit
-nnoremap <Leader>q :q<CR> " Quit
+nmap <Leader>o :CtrlP<CR> " <Space>o to open a new file
 
 " Use region expanding
 " vmap v <Plug>(expand_region_expand)

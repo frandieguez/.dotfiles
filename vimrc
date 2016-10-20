@@ -126,6 +126,6 @@ set foldmethod=indent
 set foldnestmax=10
 
 source ~/.vim/functions.vim
-source ~/.vim/bindings.vim
+source ~/.vim/mappings.vim
 source ~/.vim/commands.vim
 source ~/.vim/plugins.vim
