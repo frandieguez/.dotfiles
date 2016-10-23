@@ -24,7 +24,6 @@ alias l="ls -l ${colorflag}"
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"
 
-
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
@@ -53,7 +52,6 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 # Canonical hex dump; some systems have this symlinked
 #type -t hd > /dev/null || alias hd="hexdump -C"
-
 
 # Trim new lines and copy to clipboard
 alias trimcopy="tr -d '\n' | pbcopy"
@@ -105,15 +103,17 @@ alias be="bundle exec"
 alias irssi='TERM=screen-256color irssi'
 
 # OS Upgrade aliases
-case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
-  "arch")
-    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M' # Cleans automatically installed deps
-    alias os-upgrade='yaourt -Syyua --noconfirm'
-    ;;
-  "ubuntu")
-    alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
-    alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
-esac
+if [[ -f /etc/os-release ]]; then
+    case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
+        "arch")
+            alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M' # Cleans automatically installed deps
+            alias os-upgrade='yaourt -Syyua --noconfirm'
+            ;;
+        "ubuntu")
+            alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
+            alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
+    esac
+fi
 
 if [ -x "$(command -v thefuck)" ]; then
   alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
