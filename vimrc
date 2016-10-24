@@ -3,59 +3,65 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'altercation/vim-colors-solarized'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'BufOnly.vim'
+Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
 Plug 'algotech/ultisnips-php'
+Plug 'altercation/vim-colors-solarized'
 Plug 'bkad/CamelCaseMotion'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'davidoc/taskpaper.vim'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'duggiefresh/vim-easydir'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'epmatsw/ag.vim'
 Plug 'ervandew/supertab'
-Plug 'godlygeek/tabular'
 Plug 'flazz/vim-colorschemes'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion'
+Plug 'haya14busa/vim/easyoperator-line'
 Plug 'honza/vim-snippets'
+Plug 'ingydotnet/yaml-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/vim-easy-align'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-line'
+Plug 'kentaro/vim-textobj-function-php'
 Plug 'lifepillar/vim-solarized8'
 Plug 'loremipsum'
 Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
 Plug 'mhinz/vim-startify'
 Plug 'neomake/neomake'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/NERDCommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-else
-  Plug 'Shougo/neocomplete.vim'
-endif
-
-Plug 'SirVer/ultisnips'
 Plug 'stanangeloff/php.vim'
-Plug 'ingydotnet/yaml-vim'
+Plug 'tacahiroy/ctrlp-funky'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'thinca/vim-textobj-function-javascript'
+Plug 'tkhren/vim-fake'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
-Plug 'tacahiroy/ctrlp-funky'
 Plug 'tpope/vim-repeat'
-Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Yggdroot/indentLine'
-Plug 'ryanoasis/vim-devicons'
+Plug 'wesQ3/vim-windowswap'
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+else has('lua')
+    Plug 'Shougo/neocomplete.vim'
+endif
 
 Plug 'fatih/vim-go'
 Plug 'w0ng/vim-hybrid'
@@ -77,12 +83,16 @@ syntax enable
 let &colorcolumn="".join(range(81,121),",")
 
 " Misc
-set encoding=utf8
 set nobackup
 set noswapfile
 set mouse=a
 let mapleader="\<Space>"
 set updatetime=250
+
+if !has('nvim')
+    set encoding=utf8
+    set ttymouse=xterm2
+endif
 
 if has('clipboard')
     set clipboard=unnamed,unnamedplus
@@ -108,11 +118,6 @@ set splitright
 set ttyfast
 set wildmenu
 set previewheight=15
-
-if !has('nvim')
-  set ttymouse=xterm2
-endif
-
 
 " Searching
 set hlsearch

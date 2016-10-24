@@ -40,7 +40,7 @@ let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-    \   'right': [ [ 'lineinfo', 'neomake' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'right': [ [ 'lineinfo' ], [ 'percent', 'debug', 'neomake' ] ]
     \ },
     \ 'component_function': {
     \     'ctrlpmark': 'CtrlPMark',
@@ -53,8 +53,10 @@ let g:lightline = {
     \ },
     \ 'component_expand': {
     \   'neomake': 'LightlineNeomake',
+    \   'debug': 'LightlineDebug'
     \ },
     \ 'component_type': {
+    \   'debug': 'warning',
     \   'neomake': 'error',
     \ },
     \ 'separator': { 'left': '', 'right': ''  },

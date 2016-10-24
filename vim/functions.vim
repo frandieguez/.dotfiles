@@ -31,6 +31,14 @@ function! LightlineCtrlP()
     endif
 endfunction
 
+function! LightlineDebug()
+    if g:debug != 0
+        return 'D:' . substitute(g:debug, "\n", "", "")
+    endif
+
+    return ''
+endfunction
+
 function! LightlineFileEncoding()
     return winwidth(0) > 83 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
@@ -40,7 +48,8 @@ function! LightlineFileFormat()
 endfunction
 
 function! LightlineFileName()
-    let fname = expand('%:t')
+    let sname = expand('%:t')
+    let fname = expand('%:T')
     return fname == 'ControlP' ? g:lightline.ctrlp_item :
         \ fname == '__Tagbar__' ? '' :
         \ fname =~ '__Gundo\' ? '' :
@@ -49,7 +58,7 @@ function! LightlineFileName()
         \ &ft == 'unite' ? unite#get_status_string() :
         \ &ft == 'vimshell' ? vimshell#get_status_string() :
         \ WebDevIconsGetFileTypeSymbol() . ' ' .
-        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != fname ? (winwidth(0) > 100 ? fname : sname) : '[No Name]') .
         \ ('' != LightlineReadonly() ? ' ' . LightlineReadonly() : '') .
         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
 endfunction
