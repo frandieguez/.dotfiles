@@ -87,10 +87,11 @@ syntax enable
 let &colorcolumn="".join(range(81,121),",")
 
 " Misc
+let mapleader="\<Space>"
+set laststatus=2
+set mouse=a
 set nobackup
 set noswapfile
-set mouse=a
-let mapleader="\<Space>"
 set updatetime=250
 
 if !has('nvim')

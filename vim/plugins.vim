@@ -1,6 +1,7 @@
 " CtrlP
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_dont_split = 'nerdtree'
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_max_depth=20
 let g:ctrlp_max_files=0
 let g:ctrlp_switch_buffer=0
