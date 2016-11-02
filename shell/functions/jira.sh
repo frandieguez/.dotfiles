@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function jira-extract() {
-    field=`jira $1 | ag $2 | sed -e "s/$2:\s\+//g"`
+    field=`jira $1 | ag ^$2: | sed -e "s/$2:\s\+//g"`
 
     echo $1: $field
     echo $1: $field | xclip -selection c
