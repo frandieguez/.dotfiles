@@ -129,6 +129,15 @@ function! StartUp()
     end
 endfunction
 
+function! TrimWhiteSpaces()
+    " Ignore vmail buffer list
+    if &filetype == 'vmailMessageList'
+        return
+    endif
+    
+    %s/\s\+$//e
+endfunction
+
 " Create a split if no movement
 function! WinMove(key)
     let t:curwin = winnr()
