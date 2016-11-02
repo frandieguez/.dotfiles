@@ -9,12 +9,6 @@ autocmd BufWritePost *.* Neomake
 
 autocmd User NeomakeFinished call lightline#update()
 
-" Keep cursor on column when leaving INSERT mode
-let CursorColumnI = 0
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
 autocmd BufEnter,BufWritePost *.php let g:debug = system('ag var_dump ' . expand('%:T') . ' | wc -l') | call lightline#update()
 autocmd BufEnter,BufWritePost *.js  let g:debug = system('ag console.log ' . expand('%:T') . ' | wc -l') | call lightline#update()
 autocmd BufLeave *.* let g:debug = '' | call lightline#update()

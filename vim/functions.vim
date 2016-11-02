@@ -77,13 +77,13 @@ function! LightlineFugitive()
     catch
     endtry
 
+
     return ''
 endfunction
 
 function! LightlineMode()
     let fname = expand('%:t')
     let mode  = lightline#mode()
-
     return fname == '__Tagbar__' ? 'Tagbar' :
         \ fname == 'ControlP' ? 'CtrlP' :
         \ fname == '__Gundo__' ? 'Gundo' :
@@ -105,6 +105,16 @@ endfunction
 
 function! LightlineNeomake()
     return neomake#statusline#LoclistStatus()
+endfunction
+
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+    call keepvursor#disable()
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+    call keepcursor#enable()
 endfunction
 
 " Executes a command keeping the cursor position
