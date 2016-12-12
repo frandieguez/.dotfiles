@@ -106,7 +106,7 @@ alias irssi='TERM=screen-256color irssi'
 if [[ -f /etc/os-release ]]; then
     case `cat /etc/os-release|grep ID|cut -f2 -d"="` in
         "arch")
-            alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M' # Cleans automatically installed deps
+            alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*' # Cleans automatically installed deps
             alias os-upgrade='yaourt -Syyua --noconfirm'
             ;;
         "ubuntu")
