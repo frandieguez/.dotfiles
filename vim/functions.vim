@@ -92,7 +92,7 @@ function! LightlineMode()
         \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
-        \ mode[0]
+        \ ''
 endfunction
 
 function! LightlineModified()
@@ -144,7 +144,7 @@ function! TrimWhiteSpaces()
     if &filetype == 'vmailMessageList'
         return
     endif
-    
+
     %s/\s\+$//e
 endfunction
 
