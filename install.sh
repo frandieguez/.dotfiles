@@ -7,9 +7,9 @@ if [ ! -f ~/.git-prompt.sh ]; then
 fi
 
 # Install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
-    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    echo "oh-my-zsh installed"
+if [ ! -d ~/.zgen ]; then
+    echo "Installing zgen..."
+    git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 fi
 
 # Install vim fonts
