@@ -30,7 +30,7 @@ if ! zgen saved; then
 
   zgen load zsh-users/zsh-history-substring-search
 
-  zgen load /home/fran/.zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
+  zgen load ~/.zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
   zgen save
 fi
