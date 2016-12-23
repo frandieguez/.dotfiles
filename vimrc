@@ -83,8 +83,9 @@ filetype plugin indent on
 set t_Co=256
 
 set background=dark
-colorscheme monokai-chris
 
+"colorscheme monokai-chris
+colorscheme solarized8_dark_high
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
 
