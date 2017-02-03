@@ -38,13 +38,13 @@ let g:user_emmet_leader_key='<C-w>'
 
 " Lightline
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
     \   'right': [ [ 'lineinfo' ], [ 'percent', 'debug', 'neomake' ] ]
     \ },
+    \ 'colorscheme': 'solarized',
     \ 'component_function': {
-    \     'ctrlpmark': 'CtrlPMark',
+    \     'ctrlpmark': 'LightlineCtrlP',
     \     'fileencoding': 'LightlineFileEncoding',
     \     'fileformat': 'LightlineFileFormat',
     \     'filename': 'LightlineFileName',
