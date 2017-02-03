@@ -1,9 +1,11 @@
-*.pyc
-vim/.netrwhist
-vim/.VimballRecord
-
+vim/init.vim
 vim/bundle
 vim/plugged
 vim/yankring_history_v2.txt
 vim/session
 tmux/plugins
+
+vim/.netrwhist
+vim/.VimballRecord
+
+*.pyc
