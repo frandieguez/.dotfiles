@@ -27,6 +27,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-journal'
 Plug 'kana/vim-textobj-user'
@@ -83,9 +84,9 @@ filetype plugin indent on
 set t_Co=256
 
 set background=dark
-
 "colorscheme monokai-chris
 colorscheme solarized8_dark_high
+
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
 
