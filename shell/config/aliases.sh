@@ -77,7 +77,7 @@ done
 
 alias fn_FX_keys="echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode"
 alias fn_multimedia_keys="echo 1 | sudo tee /sys/module/hid_apple/parameters/fnmode"
-alias o="xdg-open"
+alias o="gio open"
 alias s="subl"
 alias bye="exit"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
