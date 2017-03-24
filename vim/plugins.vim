@@ -6,7 +6,7 @@ let g:ctrlp_max_depth=20
 let g:ctrlp_max_files=0
 let g:ctrlp_switch_buffer=0
 let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-let g:ctrp_working_path_mode="ra"
+let g:ctrlp_working_path_mode="ra"
 let g:ctrlp_status_func = {
     \ 'main': 'CtrlPStatusMain',
     \ 'prog': 'CtrlPStatusProg',
@@ -42,7 +42,7 @@ let g:lightline = {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
     \   'right': [ [ 'lineinfo' ], [ 'percent', 'debug', 'neomake' ] ]
     \ },
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'solarized_custom',
     \ 'component_function': {
     \     'ctrlpmark': 'LightlineCtrlP',
     \     'fileencoding': 'LightlineFileEncoding',
