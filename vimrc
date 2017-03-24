@@ -87,6 +87,7 @@ set t_Co=256
 set background=dark
 "colorscheme monokai-chris
 colorscheme solarized8_dark_high
+let g:solarized_termcolors = 16
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
