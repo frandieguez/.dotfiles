@@ -70,10 +70,14 @@ Plug 'kana/vim-textobj-line'
 Plug 'kentaro/vim-textobj-function-php'
 Plug 'thinca/vim-textobj-function-javascript'
 
+Plug 'dhruvasagar/vim-table-mode'
 
 Plug 'fatih/vim-go'
 Plug 'w0ng/vim-hybrid'
+Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'w0ng/vim-hybrid'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 
