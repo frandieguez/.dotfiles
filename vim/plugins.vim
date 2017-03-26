@@ -86,9 +86,13 @@ let NERDTreeHighlightCursorline = 1
 set laststatus=2
 
 " Syntastic
-let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
-let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
+let g:syntastic_check_on_open=1
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {"regex": "possibly useless use of a variable in void context"}
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_javascript_checkers = [ 'jshint' ]
+let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
+let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
 
 " UltiSnips
 let g:UltiSnipsEditSplit="vertical"
