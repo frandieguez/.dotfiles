@@ -1,10 +1,14 @@
 [alias]
   a = add
+  aa = add --all
+  ap = add --path
   authors = !git log --pretty=format:%aN | sort | uniq -c | sort -rnhttps://github.com/dbestevez/dotfiles
   b = branch -vv
   br = branch
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   c = commit
   ca = commit --amend
+  ci = commit -v
   changes = diff --name-status -r
   cm = commit --message
   co = checkout
@@ -30,6 +34,7 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   mycommits = log --author="fran@openhost.es" --format='"%C(bold green)%h%C(reset) \"%s\" %C(bold blue)at %ai%C(reset)"'
   p = push
+  pf = push --force-with-lease
   ra = log --graph --abbrev-commit --date=relative -20 --all --pretty='format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
   rh = reset --hard
   s = status --short --branch
@@ -40,6 +45,7 @@
   up = pull
   hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
+  change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
 [branch]
   autosetupmerge = always
   autosetuprebase = always
@@ -74,6 +80,7 @@
 [log]
   decorate = short
 [merge]
+  ff = only
   tool = meld
 [pager]
   status = false
@@ -99,7 +106,7 @@
 [pull]
     rebase = true
 [push]
-  default = matching
+  default = current
 [help]
   autocorrect = 1
 [difftool "sourcetree"]
@@ -108,3 +115,10 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[rebase]
+  autosquash = true
+[commit]
+  tempalte = ~/.gitmessage
+[user]
+	name = Fran Dieguez
+	email = fran.dieguez@mabishu.com
