@@ -19,8 +19,8 @@ Install all
 -----------
 You can install all the configurations at one once using:
 
-  git clone https://github.com/frandieguez/.dots.git ~/.dots
-  cd ~/.dots
+  git clone https://github.com/frandieguez/.dots.git ~/.dots;
+  cd ~/.dots;
   ./install.sh
 
 and your are done.
