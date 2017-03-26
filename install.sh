@@ -29,6 +29,7 @@ for file in $files; do
         ln -s $PWD/$file ~/.$file
     fi
 done;
+
 # Install oh-my-zsh themes
 for i in frandieguez-v1 frandieguez-v2; do
   if [ ! -f ~/.oh-my-zsh/themes/$i.zsh-theme  ]; then
@@ -36,6 +37,14 @@ for i in frandieguez-v1 frandieguez-v2; do
     ln -s ~/.zsh/oh-my-zsh-themes/$i.zsh-theme ~/.oh-my-zsh/themes/
   fi
 done
+
+if [ ! -d ~/.git-hooks ]; then
+  echo "Installing git-hooks..."
+  git clone https://github.com/dhellmann/git-hooks.git "${HOME}/.git-hooks"
+fi
+
+# Set permissions for git_hooks
+chmod -R 755 ~/.git_hooks
 
 # Custom links for neovim
 if type nvim > /dev/null; then

@@ -6,3 +6,7 @@ fi
 if [ -e $HOME/bin ]; then
   export PATH=$PATH:$HOME/bin
 fi
+
+if [ -d $HOME/.git-hooks ]; then
+  export PATH=$HOME/.git-hooks:$PATH
+fi
