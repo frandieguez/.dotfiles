@@ -146,6 +146,13 @@ set foldlevelstart=10
 set foldmethod=indent
 set foldnestmax=10
 
+" Autocomplete
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+set spellfile=$HOME/.vim-spell-en.utf-8.add
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspella
+
 source ~/.vim/functions.vim
 source ~/.vim/mappings.vim
 source ~/.vim/commands.vim
