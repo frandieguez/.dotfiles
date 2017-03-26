@@ -153,6 +153,9 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspella
 
+" Always use vertical diffs
+set diffopt+=vertical
+
 source ~/.vim/functions.vim
 source ~/.vim/mappings.vim
 source ~/.vim/commands.vim
