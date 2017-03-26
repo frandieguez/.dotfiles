@@ -2,10 +2,10 @@
 let mapleader = "\<Space>"
 
 " Disable arrow keys
-noremap <Up>    <NOP>
-noremap <Down>  <NOP>
-noremap <Left>  <NOP>
-noremap <Right> <NOP>
+noremap <Up>    :echoe "Use h"<CR>
+noremap <Down>  :echoe "Use l"<CR>
+noremap <Left>  :echoe "Use k"<CR>
+noremap <Right> :echoe "Use j"<CR>
 
 " Vim shortcuts
 nnoremap ; :
