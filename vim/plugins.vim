@@ -76,6 +76,9 @@ let g:lightline = {
     \ 'subseparator': { 'left': '', 'right': ''  }
 \ }
 
+" Limelight
+" let g:limelight_conceal_ctermfg = 10
+
 " NERD Tree
 let NERDTreeHighlightCursorline = 1
 
