@@ -1,18 +1,30 @@
 " CtrlP
-let g:ctrlp_dont_split = 'nerdtree'
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_max_depth=20
-let g:ctrlp_max_files=0
-let g:ctrlp_switch_buffer=0
-let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-let g:ctrlp_working_path_mode="ra"
-let g:ctrlp_status_func = {
-    \ 'main': 'CtrlPStatusMain',
-    \ 'prog': 'CtrlPStatusProg',
-\ }
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-let g:ctrlp_funky_syntax_highlight = 1
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command='ag -Q -l --nocolor --hidden -g "" %s'
+  " ag is fast enough that CtrlP
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_dont_split = 'nerdtree'
+  let g:ctrlp_extensions = ['funky']
+  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+  let g:ctrlp_max_depth=20
+  let g:ctrlp_max_files=0
+  let g:ctrlp_switch_buffer=0
+  let g:ctrlp_working_path_mode="ra"
+  let g:ctrlp_status_func = {
+        \ 'main': 'CtrlPStatusMain',
+        \ 'prog': 'CtrlPStatusProg',
+        \ }
+  let g:ctrlp_funky_syntax_highlight = 1
+
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
+endif
 
 " Deoplete/Neocomplete
 if has('nvim')
