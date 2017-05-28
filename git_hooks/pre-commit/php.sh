@@ -15,7 +15,7 @@ echo -e -n "\033[1m==> Checking PHP syntax in staged files...\033[0m "
 files=()
 counter=0
 for file in $staged; do
-    if [[ -f $file && ! `php -l $file 2>&1` =~ 'No syntax errors detected.*' ]]; then
+    if [[ -f $file && ! `php -l $file 2>&1` =~ 'No syntax errors detected' ]]; then
         counter=$((counter + 1))
         files+=($file)
     fi
