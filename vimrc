@@ -27,7 +27,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/goyo'
+Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-journal'
@@ -156,7 +156,7 @@ set complete+=kspella
 " Always use vertical diffs
 set diffopt+=vertical
 
+source ~/.vim/plugins.vim
 source ~/.vim/functions.vim
 source ~/.vim/mappings.vim
 source ~/.vim/commands.vim
-source ~/.vim/plugins.vim

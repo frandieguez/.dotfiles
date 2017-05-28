@@ -4,7 +4,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command='ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
   " ag is fast enough that CtrlP
   let g:ctrlp_use_caching = 0
   let g:ctrlp_dont_split = 'nerdtree'
@@ -49,6 +49,7 @@ let g:EditorConfig_exec_path = '/usr/bin/editorconfig'
 let g:user_emmet_leader_key='<C-w>'
 
 " Lightline
+let g:solarized_termcolors = 16
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
@@ -77,22 +78,23 @@ let g:lightline = {
 \ }
 
 " Limelight
-" let g:limelight_conceal_ctermfg = 10
+let g:limelight_conceal_ctermfg = 10
 
 " NERD Tree
 let NERDTreeHighlightCursorline = 1
 
-" Powerline
-set laststatus=2
+" Neomake
+let g:neomake_php_phpmd_maker = {
+    \ 'args': [ '%p', 'text', 'cleancode,codesize,controversial,design,unusedcode' ],
+    \ 'errorformat': '%E%f:%l%\s%m'
+    \ }
 
-" Syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_javascript_checkers = [ 'jshint' ]
-let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
-let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
+let g:neomake_php_phpcs_maker = {
+    \ 'args': [ '--report=csv', '--standard=PSR2'],
+    \ 'errorformat':
+        \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity%.%#,'.
+        \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-]\,%*[0-9]%.%#',
+\ }
 
 " UltiSnips
 let g:UltiSnipsEditSplit="vertical"
@@ -100,8 +102,25 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 
+" Vim-fake
+let g:fake_src_paths = [ '~/.vim/autoload/vim-fake' ]
+
 " Vim-move
 let g:move_map_keys = 0
+
+" Simplenote
+if filereadable(expand('~/.simplenoterc'))
+  source ~/.simplenoterc
+endif
+
+" Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_eruby_ruby_quiet_messages =
+      \ {"regex": "possibly useless use of a variable in void context"}
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_javascript_checkers = [ 'jshint' ]
+let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
+let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
 
 " Golang
 let g:go_highlight_functions = 1
@@ -132,20 +151,3 @@ au FileType go nmap <leader>rt <Plug>(go-run-tab)
 au FileType go nmap <Leader>rs <Plug>(go-run-split)
 au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 
-" Simplenote
-if filereadable(expand('~/.simplenoterc'))
-  source ~/.simplenoterc
-endif
-
-" Neomake
-let g:neomake_php_phpmd_maker = {
-    \ 'args': [ '%p', 'text', 'cleancode,codesize,controversial,design,unusedcode'  ],
-    \ 'errorformat': '%E%f:%l%\s%m'
-    \ }
-
-let g:neomake_php_phpcs_maker = {
-    \ 'args': [ '--report=csv', '--standard=PSR2' ],
-    \ 'errorformat':
-        \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity%.%#,'.
-        \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-]\,%*[0-9]%.%#',
-    \ }
