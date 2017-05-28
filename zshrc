@@ -4,16 +4,22 @@ source ~/.zgen/zgen.zsh
 
 if ! zgen saved; then
   zgen oh-my-zsh
-  zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/archlinux
   zgen oh-my-zsh plugins/bower
+  zgen oh-my-zsh plugins/capistrano
   zgen oh-my-zsh plugins/colored-man-pages
   zgen oh-my-zsh plugins/colorize
   zgen oh-my-zsh plugins/composer
+  zgen oh-my-zsh plugins/docker
+  zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/git-extras
   zgen oh-my-zsh plugins/git-flow
+  zgen oh-my-zsh plugins/golang
   zgen oh-my-zsh plugins/history
+  zgen oh-my-zsh plugins/kubectl
+  zgen oh-my-zsh plugins/lol
+  zgen oh-my-zsh plugins/nomad
   zgen oh-my-zsh plugins/redis-cli
   zgen oh-my-zsh plugins/sublime
   zgen oh-my-zsh plugins/thefuck
@@ -23,12 +29,11 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/wd
   zgen oh-my-zsh plugins/web-search
-  #zgen oh-my-zsh themes/murilasso
+  zgen oh-my-zsh plugins/yarn
 
-  zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-autosuggestions
-
   zgen load zsh-users/zsh-history-substring-search
+  zgen load zsh-users/zsh-syntax-highlighting
 
   zgen load ~/.zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
@@ -40,12 +45,12 @@ if [ -f ~/.aliases ]; then
     source ~/.aliases;
 fi
 
+# Aliases
+if [ -f ~/.profile ]; then
+  source ~/.profile;
+fi
+
 # Load zsh configuration
 for file in ~/.zsh/(config|functions)/*; do
     source "$file"
 done
-
-# Aliases
-if [ -f ~/.profile ]; then
-    source ~/.profile;
-fi
