@@ -123,11 +123,28 @@ let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
 let g:syntastic_php_phpmd_post_args="cleancode,codesize,controversial,design,unusedcode"
 
 " Golang
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+let g:go_auto_type_info = 1
+
+let g:go_addtags_transform = "snakecase"
+
+let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
+
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
 
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
@@ -151,3 +168,22 @@ au FileType go nmap <leader>rt <Plug>(go-run-tab)
 au FileType go nmap <Leader>rs <Plug>(go-run-split)
 au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
 
+au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+au FileType go nmap <F10> :GoTest -short<cr>
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+au FileType go nmap <F12> <Plug>(go-def)
+
+if has('nvim')
+  " Enable deoplete on startup
+  let g:deoplete#enable_at_startup = 1
+endif
+
+" Disable deoplete when in multi cursor mode
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
