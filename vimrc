@@ -91,10 +91,11 @@ filetype plugin indent on
 
 " Colors
 set t_Co=256
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blinkon100,r-cr:hor20-Cursor/lCursor
 
 set background=dark
 "colorscheme monokai-chris
-colorscheme solarized8_dark_high
+colorscheme solarized
 let g:solarized_termcolors = 16
 
 syntax enable
