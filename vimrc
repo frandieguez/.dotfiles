@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vim-scripts/BufOnly.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'algotech/ultisnips-php'
 Plug 'bkad/CamelCaseMotion'
@@ -37,7 +36,6 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'kentaro/vim-textobj-function-php'
 Plug 'lifepillar/vim-solarized8'
-Plug 'vim-scripts/loremipsum'
 Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
 Plug 'mhinz/vim-startify'
@@ -46,6 +44,9 @@ Plug 'neomake/neomake'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/NERDCommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'vim-scripts/loremipsum'
+Plug 'vim-scripts/po.vim--Jelenak'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
