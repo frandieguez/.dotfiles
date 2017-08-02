@@ -1,35 +1,35 @@
 # Get values for the list of keys
 function redis-get() {
-  keys=($(redis-search $1));
+  keys=($(redis-search $1))
   i=1;
 
   for key in $keys; do
-    if [[ $i -gt 1  ]] then;
+    if [[ $i -gt 1  ]] then
       echo "";
     fi
 
     echo $i")" $key
-    redis-cli get $key;
-    i=$(( $i + 1  ));
+    redis-cli get $key
+    i=$(( $i + 1  ))
   done;
 
 }
 
 # List all redis-keys
 function redis-list() {
-  redis-cli keys "*";
+  redis-cli keys "*"
 
 }
 
 # Search keys by pattern
 function redis-search() {
-  redis-list | grep $1;
+  redis-list | grep $1
 
 }
 
 # Delete keys by pattern
 function redis-delete() {
-  redis-search $1 | xargs redis-cli del;
+  redis-search $1 | xargs redis-cli del
 
 }
 
