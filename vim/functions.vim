@@ -190,3 +190,43 @@ function! ZoomToggle()
         let t:zoomed = 1
     endif
 endfunction
+
+function! s:find_jshintrc(dir)
+    let l:found = globpath(a:dir, '.jshintrc')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_jshintrc(l:parent)
+    endif
+
+    return "~/.jshintrc"
+endfunction
+
+function! s:find_phpcs_xml(dir)
+    let l:found = globpath(a:dir, 'phpcs.xml')
+    if filereadable(l:found)
+        return l:found
+    endif
+
+    let l:parent = fnamemodify(a:dir, ':h')
+    if l:parent != a:dir
+        return s:find_phpcs_xml(l:parent)
+    endif
+
+    return "PSR2"
+endfunction
+
+function! UpdateNeomakeJsHint()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_jshintrc(l:dir)
+    call add(g:neomake_javascript_jshint_maker.args, '--config=' . l:jshintrc)
+endfunction
+
+function! UpdateNeomakePHPCS()
+    let l:dir = expand('%:p:h')
+    let l:phpcs_xml = s:find_phpcs_xml(l:dir)
+    call add(g:neomake_php_phpcs_maker.args, '--standard=' . l:phpcs_xml)
+endfunction

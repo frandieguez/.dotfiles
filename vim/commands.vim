@@ -1,6 +1,8 @@
 " Autocommands
 autocmd VimEnter * call StartUp()
 autocmd VimEnter * wincmd p
+autocmd VimEnter * call UpdateNeomakePHPCS()
+autocmd VimEnter * call UpdateNeomakeJsHint()
 
 autocmd BufRead,BufNewFile *.done,*.todo,*.task set filetype=taskpaper
 autocmd BufWritePre * :call Preserve(":call TrimWhiteSpaces()")
