@@ -1,0 +1,50 @@
+snippet dc "Deploy checking"
+	Server: proxy101
+	Status: ${1:PASS/FAIL}
+
+	Server: cloud0
+	Status: $1
+
+	Server: cloud1
+	Status: $1
+
+	Server: cloud2
+	Status: $1
+snippet dcn "Deploy checking with notes"
+	Server: proxy101
+	Status: ${1:PASS/FAIL}
+	Notes:
+	  - ${2:note}
+
+	Server: cloud0
+	Status: $1
+	Notes:
+	  - $2
+
+	Server: cloud1
+	Status: $1
+	Notes:
+	  - $2
+
+	Server: cloud2
+	Status: $1
+	Notes:
+	  - $2
+snippet f "FAIL"
+	FAIL
+snippet p "PASS"
+	PASS
+snippet pr "Pull request template"
+	Id: ${1:id}
+	Description: ${2:description}
+	Preconditions:
+	  1. ${3:condition}
+	Steps:
+	  1. ${4:step1}
+	Test data:
+	  - ${5:data}
+	Expected result: ${6:expected}
+	Actual result: ${7:actual}
+	Status: ${8:PASS/FAIL}
+	Notes: ${9:notes}
+
