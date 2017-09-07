@@ -1,12 +1,6 @@
-vim/autoload/plug.vim
-vim/init.vim
-vim/bundle
-vim/plugged
-vim/yankring_history_v2.txt
-vim/session
+*.log
+nvim/autoload/plug.vim
+nvim/colors
+nvim/plugged
+nvim/session
 tmux/plugins
-
-vim/.netrwhist
-vim/.VimballRecord
-
-*.pyc
