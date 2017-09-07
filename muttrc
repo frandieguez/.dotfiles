@@ -1,0 +1,73 @@
+# Paths ----------------------------------------------
+set folder           = ~/.mail                      # Mailbox location
+set alias_file       = ~/.config/mutt/alias         # Where to store aliases
+set header_cache     = ~/.config/mutt/cache/headers # Where to store headers
+set message_cachedir = ~/.config/mutt/cache/bodies  # Where to store bodies
+set certificate_file = ~/.config/mutt/certificates  # Where to store certs
+set mailcap_path     = ~/.config/mutt/mailcap       # Entries for filetypes
+set tmpdir           = ~/.config/mutt/tmp           # Where to keep temp files
+set signature        = ~/.config/mutt/sig           # My signature file
+
+# Basic Options --------------------------------------
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+set sort = threads
+
+# Sidebar Patch --------------------------------------
+set mail_check_stats
+set sidebar_visible     = yes
+set sidebar_width       = 24
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+set index_format = '%4C %Z %{%Y/%m/%d %H:%M} (%?l?%4l&%4c?) %-20.20L  %s'
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# Account Settings -----------------------------------
+
+# Default inbox.
+set spoolfile = "+<email>/Inbox"
+
+# Mailboxes to show in the sidebar.
+mailboxes +<email>/Inbox \
+          +<email>/Archives \
+          +<email>/Sent \
+          +<email>/Drafts \
+          +<email>/Spam \
+          +<email>/Trash
+
+# Other special folders.
+set mbox      = "+<email>/Archives"
+set postponed = "+<email>/Drafts"
+set record    = "+<email>/Sent"
+
+set from     = "<email>"
+set sendmail = "/usr/bin/msmtp -a <account>"
+set sendmail_wait = 0
+
+# Always start with threads collapsed and with the most recent thread selected
+push <collapse-all><last-entry>
+
+source ~/.config/mutt/mapping
