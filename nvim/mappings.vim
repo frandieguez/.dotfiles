@@ -1,27 +1,22 @@
-" Remap leader
-let mapleader = "\<Space>"
-
 " Disable arrow keys
-noremap <Up>    :echoe "Use h"<CR>
-noremap <Down>  :echoe "Use l"<CR>
-noremap <Left>  :echoe "Use k"<CR>
-noremap <Right> :echoe "Use j"<CR>
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
 
 " Vim shortcuts
 nnoremap ; :
-nnoremap <CR>   :nohl<CR><CR>
+nnoremap <CR> :nohl<CR><CR>
 nmap <leader>php :set filetype=php<CR>
-nmap <leader>r  :source $MYVIMRC<CR>
-nmap <leader>e  :tabedit $MYVIMRC<CR>
-nmap <leader>w  :w!<CR>
-nmap <Leader>wq :wq<CR> " Save and quit
-nmap <Leader>q  :q<CR> " Quit
+nmap <leader>r :source $MYVIMRC<CR>
+nmap <leader>e :tabedit $MYVIMRC<CR>
+nmap <leader>w :w!<CR>
 cmap ww w !sudo tee > /dev/null %
 
 " Split shortcuts
-nmap <C-w>-     :rightb new<CR>
-nmap <C-w>\|    :vnew<CR>
-nmap <C-w>t     :tabnew<CR>
+nmap <C-w>- :rightb new<CR>
+nmap <C-w>\| :vnew<CR>
+nmap <C-w>t :tabnew<CR>
 nmap <C-w><C-h> :tabprevious<CR>
 nmap <C-w><C-l> :tabnext<CR>
 nmap <C-w><S-h> :vertical res -5<CR>
@@ -44,15 +39,29 @@ map <silent> ,e  <Plug>CamelCaseMotion_e
 map <silent> ,ge <Plug>CamelCaseMotion_ge
 
 " CtrlP
-map      <leader>bb :CtrlPBuffer<CR>
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nmap <leader>bb :CtrlPBuffer<CR>
+nnoremap <Leader>fu :CtrlPFunky<CR>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
+
+" Easymotion
+map s  <Plug>(easymotion-s)
+map S <Plug>(easymotion-overwin-f)
+map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-lineforward)
+
+" Incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+map <leader>/ <Plug>(incsearch-easymotion-/)
+map <leader>? <Plug>(incsearch-easymotion-?)
+map <leader>g/ <Plug>(incsearch-easymotion-stay)
 
 " Fugitive
-nmap     <leader>g :Gstatus<CR>
-
-" Tagbar
-noremap  <F8> :TagbarToggle<CR>
+nmap <leader>g :Gstatus<CR>
 
 " Neocomplete
 inoremap <expr> <C-j> ("\<C-n>")
@@ -75,20 +84,19 @@ vmap <Down> <Plug>MoveBlockDown
 vmap <Up>   <Plug>MoveBlockUp
 
 " Vim-go
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-
-au FileType go nmap <leader>rt <Plug>(go-run-tab)
 au FileType go nmap <Leader>rs <Plug>(go-run-split)
 au FileType go nmap <Leader>rv <Plug>(go-run-vertical)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>rt <Plug>(go-run-tab)
+au FileType go nmap <leader>t <Plug>(go-test)
