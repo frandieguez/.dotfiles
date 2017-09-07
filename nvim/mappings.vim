@@ -11,6 +11,8 @@ nmap <leader>php :set filetype=php<CR>
 nmap <leader>r :source $MYVIMRC<CR>
 nmap <leader>e :tabedit $MYVIMRC<CR>
 nmap <leader>w :w!<CR>
+nmap <leader>q :q<CR>
+nmap <leader>wq :wq<CR>
 cmap ww w !sudo tee > /dev/null %
 
 " Split shortcuts
