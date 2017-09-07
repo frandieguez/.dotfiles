@@ -9,7 +9,7 @@ Among these files you will find highly opinionated configurations for:
   * Git
   * Gitignore
   * Tmux
-  * Vim
+  * Vim/Nvim
   * Zsh
   * screen
 
