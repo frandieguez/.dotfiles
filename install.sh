@@ -1,97 +1,285 @@
 #!/bin/bash
 
-# Install oh-my-zsh
-if [ ! -f $HOME/.git-prompt.sh ]; then
-    wget -O $HOME/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > /dev/null
-    echo "git-prompt.sh installed"
-fi
+# ---
+# Installs dotfiles.
+#
+# @param $1 The list of applications to install.
+# @param $2 The list of applications to ignore.
+# ---
+install_dotfiles() {
+    dotfiles=`ls | sed -e "/\(install.sh\|LICENSE\|README.md\)/d"`
 
-# Install oh-my-zsh
-if [ ! -d $HOME/.zgen ]; then
-    echo "Installing zgen..."
-    git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-fi
-
-# Install patched fonts
-if [ ! -d $HOME/.fonts ]; then
-  echo "Installing patched fonts..."
-  git clone https://github.com/Lokaltog/powerline-fonts.git $HOME/.fonts
-  fc-cache -vf
-fi
-
-# Install git-hooks
-if [ ! -d $HOME/.git-hooks ]; then
-  echo "Installing git-hooks..."
-  git clone https://github.com/dhellmann/git-hooks.git $HOME/.git-hooks
-fi
-
-# Create symlinks
-files=`ls | sed -e "/\(install.sh\)/d"`
-for file in $files; do
-    if [ $file != "LICENSE" ] && [ $file != "README.md" ] \
-       && [ ! -f $HOME/.$file ] && [ ! -d $HOME/.$file ]; \
-    then
-        echo "Symlinking $file..."
-        ln -s $PWD/$file $HOME/.$file
+    if [[ "$1" != "" ]]; then
+        dotfiles=$1
     fi
-done;
 
-# Install oh-my-zsh themes
-for i in frandieguez-v1 frandieguez-v2; do
-  if [ ! -f $HOME/.oh-my-zsh/themes/$i.zsh-theme  ]; then
-    echo "Installing oh-my-zsh theme: "$i
-    ln -s $HOME/.zsh/oh-my-zsh-themes/$i.zsh-theme $HOME/.oh-my-zsh/themes/
-  fi
-done
+    if [[ "$2" != "" ]]; then
+        toignore=$(echo $2 | sed -e "s/\s\+/\\\|/g")
+        dotfiles=$(echo $tools | sed -e "s/$toignore//g")
+    fi
 
-# Set permissions for git_hooks
-chmod -R 755 $HOME/.git_hooks
+    for dotfile in $dotfiles; do
+        if [ -f $dotfile ]; then
+            install_local $dotfile false
+        fi
 
-# Custom links for neovim
-if type nvim > /dev/null; then
-  if [ ! -d $HOME/.config/nvim  ]; then
-    echo "Symlinking $HOME/.config/nvim..."
-    ln -s $HOME/.vim $HOME/.config/nvim
-  fi
+        if [ -d $dotfile ]; then
+            install_local $dotfile true
+        fi
+    done;
+}
 
-  if [ ! -f $HOME/.config/nvim/init.vim  ]; then
-    echo "Symlinking $HOME/.config/nvim/init.vim..."
-    ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
-  fi
-fi
+# ---
+# Installs a configuration file or directory in $HOME or $HOME/.config.
+#
+# @param $1 The file or directory to install.
+# @param $2 Whether to install in $HOME (false) or $HOME/.config (true).
+# ---
+install_local() {
+    target="$HOME/.$1"
 
-# Install vim-plug
-if [ ! -f $HOME/.vim/autoload/plug.vim ]; then
-    curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
+    if [ $2 == true ]; then
+        target="$HOME/.config/$1"
+      echo $target
+    fi
 
-# Install vim plugins
-echo "Installing vim plugins..."
-vim -c PlugInstall -c q -c q
+    if [ -f $target ] || [ -d $target ]; then
+        return
+    fi
 
-# Install neovim plugins
-if type nvim > /dev/null; then
-  echo "Installing neovim plugins..."
-  nvim -c PlugInstall -c q -c q
-fi
+    echo -n "Installing $1..."
+    ln -s $PWD/$1 $target > /dev/null 2>&1
 
-if [ ! -d $HOME/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-fi
+    if [ $? -ne 0 ]; then
+        echo -e "\E[31;5mFAIL\033[0m"
+        return
+    fi
 
-# Ask for user and email for gitconfig
-if [ ! -f $HOME/.gitconfig-additional  ]; then
-  read -e -p "Do you want to add your credentials to your .gitconfig? (Y/n) " q
+    echo -e "\E[37;32mDONE\033[0m"
 
-  if [ "$q" == "Y"  ] || [ "$q" == "y"  ] || [ "$q" == ""  ]; then
-    read -e -p "Name: " username
-    read -e -p "Email: " email
+    # Execute post_install function if exists
+    type "post_install_$1" > /dev/null 2>&1 && post_install_$1
+}
 
-    echo "[user]" >> $HOME/.gitconfig-additional
-    echo "    name = " $username >> $HOME/.gitconfig-additional
-    echo "    email = " $email >> $HOME/.gitconfig-additional
-  fi
-fi
+# ---
+# Installs a library from a remote repository in $HOME or $HOME/.config.
+#
+# @param $1 The library to install.
+# @param $2 Whether to install in $HOME (false) or $HOME/.config (true).
+# @param $3 The URL of the remote repository.
+# ---
+install_remote() {
+    target="$HOME/.$1"
 
-echo "All DONE"
+    if [[ $2 == true ]]; then
+        target="$HOME/.config/$1"
+    fi
+
+    if [ -f $target ] || [ -d $target ]; then
+        return
+    fi
+
+    echo -n "Installing $1..."
+    git clone $3 $target > /dev/null 2>&1
+
+    if [ $? -ne 0 ]; then
+        echo -e "\E[31;5mFAIL\033[0m"
+        return
+    fi
+
+    echo -e "\E[37;32mDONE\033[0m"
+}
+
+# ---
+# Installs external applications.
+#
+# @param $1 The list of applications to install.
+# @param $2 The list of applications to ignore.
+# ---
+install_tools() {
+    tools="git-hooks fonts zgen"
+
+    if [[ $1 != "" ]]; then
+        tools=$1
+    fi
+
+    if [[ "$2" != "" ]]; then
+        toignore=$(echo $2 | sed -e "s/\s\+/\\\|/g")
+        tools=$(echo $tools | sed -e "s/$toignore//g")
+    fi
+
+    echo $tools | grep "git-hooks" > /dev/null && \
+        install_remote git-hooks false https://github.com/dhellmann/git-hooks.git
+
+    echo $tools | grep "fonts" > /dev/null && \
+        install_remote fonts false https://github.com/powerline/fonts.git
+
+    echo $tools | grep "zgen" > /dev/null && \
+        install_remote zgen false https://github.com/tarjoilija/zgen.git
+}
+
+# ---
+# Executes post-installation commands after installing fonts.
+# ---
+post_install_fonts() {
+    if [ -d $HOME/.fonts ]; then
+        fc-cache -vf
+    fi
+}
+
+# ---
+# Executes post-installation commands after symlinking gitconfig file.
+# ---
+post_install_gitconfig() {
+    if [ "`grep user $HOME/.gitconfig`" != "" ]; then
+        return
+    fi
+
+    read -e -p "Do you want to add your credentials to your .gitconfig? (Y/n) " q
+
+    if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
+        read -e -p "  Name: " username
+        read -e -p "  Email: " email
+
+        echo "[user]" >> $HOME/.gitconfig
+        echo "    name = " $username >> $HOME/.gitconfig
+        echo "    email = " $email >> $HOME/.gitconfig
+    fi
+}
+
+# ---
+# Sets permissions for git_hooks after symlinking git_hooks folder.
+# ---
+post_install_githooks() {
+    chmod -R 755 $HOME/.config/githooks
+}
+
+# ---
+# Executes post-installation commands after symlinking muttrc file.
+# ---
+post_install_muttrc() {
+    # Ask for user and email for mutt
+    if [ "`grep -e '<email>' $HOME/.muttrc`" == "" ]; then
+        return
+    fi
+
+    read -e -p "Do you want to add your email to your .muttrc? (Y/n) " q
+
+    if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
+        read -e -p "  Account: " account
+        read -e -p "  Email: " email
+
+        sed --follow-symlinks -i -e "s/<account>/$account/g" $HOME/.muttrc
+        sed --follow-symlinks -i -e "s/<email>/$email/g"     $HOME/.muttrc
+    fi
+}
+
+# ---
+# Executes post-installation commands after symlinking basic vim configuration.
+# ---
+post_install_nvim() {
+    # Custom links for vim
+    if [ ! -d $HOME/.vim ]; then
+        echo "  Installing $HOME/.vim..."
+        ln -s $HOME/.config/nvim $HOME/.vim
+    fi
+
+    if [ ! -f $HOME/.vimrc ]; then
+        echo "  Installing $HOME/.config/nvim/init.vim..."
+        ln -s $HOME/.config/nvim/init.vim $HOME/.vimrc
+    fi
+
+    # Install vim-plug
+    if [ ! -f $HOME/.config/nvim/autoload/plug.vim ]; then
+        curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
+
+    # Install neovim plugins
+    if type /usr/bin/nvim > /dev/null 2>&1; then
+        echo "  Installing neovim plugins..."
+        /usr/bin/nvim -c PlugInstall -c q -c q
+    fi
+
+    # Install vim plugins
+    echo "  Installing vim plugins..."
+    if type /usr/bin/vim > /dev/null 2>&1; then
+        /usr/bin/vim -c PlugInstall -c q -c q
+    fi
+}
+
+# ---
+# Executes post-installation commands after symlinking offlineimaprc file.
+# ---
+post_install_offlineimaprc() {
+    if [ "`grep -e '<email>' $HOME/.offlineimaprc`" == "" ]; then
+        return
+    fi
+
+    read -e -p "Do you want to add your email to your .offlineimaprc? (Y/n) " q
+
+    if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
+        read -e -p " Account: " account
+        read -e -p " Email: " email
+        read -s -e -p " Password: " password
+
+        sed --follow-symlinks -i -e "s/<account>/$account/g"   $HOME/.offlineimaprc
+        sed --follow-symlinks -i -e "s/<email>/$email/g"       $HOME/.offlineimaprc
+        sed --follow-symlinks -i -e "s/<password>/$password/g" $HOME/.offlineimaprc
+    fi
+}
+
+main() {
+    dotfiles=true
+    tools=true
+    ignore=false
+    ignoring=false
+    toinstall=""
+    toignore=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -h | --help )        usage ;;
+
+            -d | --no-dotfiles ) ignoring=false; dotfiles=false ;;
+
+            -i | --ignore )      ignoring=true ;;
+            --ignore=*    )      toignore=`echo $1 | sed -e "s/--ignore=//g"` ;;
+
+            -t | --no-tools )    ignoring=false; tools=false ;;
+
+            -*)                  usage "Unknown option '$1'" ;;
+            * )                  [ $ignoring == true ] && \
+                                    toignore="$toignore $1" || \
+                                    toinstall="$toinstall $1" ;;
+        esac
+
+        shift;
+    done
+
+    [ $dotfiles == true ] && install_dotfiles "$toinstall" "$toignore"
+    [ $tools == true ]    && install_tools    "$toinstall" "$toignore"
+}
+
+# ---
+# Displays the command help and an error message if parameter provided.
+#
+# @param $1 The error message.
+# ---
+usage() {
+    if [ "$*" != "" ] ; then
+        echo -e "\E[31;5minstall.sh: $*\033[0m"
+        echo "";
+    fi
+
+    echo "Usage: install.sh [OPTION] [TOOL]"
+    echo "Installs all dotfiles and tools or the list of selected tools"
+    echo ""
+    echo "  -d, --no-dotfiles    The script does not install dotfiles"
+    echo "  -i, --ignore <tool>  The list of tools to ignore"
+    echo "  -t, --no-tools       The script does not install tools"
+
+    exit 0;
+}
+
+main "$@"
