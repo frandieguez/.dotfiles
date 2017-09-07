@@ -8,7 +8,14 @@ case $- in
   *) return;;
 esac
 
-# Aliases
+if [ ! -f ~/.git-prompt.sh ]; then
+  echo "Downloading git prompt script"
+  curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh;
+fi
+
+source ~/.git-prompt.sh
+
+# Profile
 if [ -f ~/.profile ]; then
     source ~/.profile;
 fi
@@ -62,9 +69,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='\[\033[0;34m\]\D{%T}\[\033[00m\] ${debian_chroot:+($debian_chroot)}\e[33m\u@\h\[\033[00m\]:\[\033[0;31m\]\w\[\033[00m\]\[\033[6;32m\]$(__git_ps1 " (%s)")\[\033[00m\]\[\033[01;96m\]\n\$\[\033[00m\] '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='\D{%T} ${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\n\$ '
 fi
 unset color_prompt force_color_prompt
 
