@@ -1,9 +1,9 @@
 # Load external configuration files
-for file in ~/.shell/config/*; do
+for file in ~/.config/shell/config/*; do
     source "$file"
 done
 
-for file in ~/.shell/functions/*; do
+for file in ~/.config/shell/functions/*; do
     source "$file"
 done
 
