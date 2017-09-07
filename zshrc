@@ -1,5 +1,3 @@
-bindkey -v
-
 source ~/.zgen/zgen.zsh
 
 if ! zgen saved; then
@@ -35,22 +33,17 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-syntax-highlighting
 
-  zgen load ~/.zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
+  zgen load ~/.config/zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
   zgen save
 fi
 
-# Aliases
-if [ -f ~/.aliases ]; then
-    source ~/.aliases;
-fi
+# Load zsh configuration
+for file in ~/.config/zsh/(config|functions)/*; do
+    source "$file"
+done
 
-# Aliases
+# Profile
 if [ -f ~/.profile ]; then
   source ~/.profile;
 fi
-
-# Load zsh configuration
-for file in ~/.zsh/(config|functions)/*; do
-    source "$file"
-done

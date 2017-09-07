@@ -51,7 +51,8 @@ function jira_log_day() {
 
     activities=`hamster search '' $1 | \
         sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" | \
-        tail -n +4 | head -n -3 | sed -e "s/\s\+|\s\+/|/g"`;
+        tail -n +4 | head -n -3 | sed -e "s/\s\+|\s\+/|/g" | \
+        grep "[A-Z]\+[0-9]\+"`;
 
     for activity in `echo $activities`; do
         jira_log_activity "$1 $activity"
@@ -66,7 +67,8 @@ function jira_log_from_to() {
 
     activities=`hamster search '' $1 $2 | \
         sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" | \
-        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g"`;
+        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g" | \
+        grep "[A-Z]\+-[0-9]\+"`;
     echo $activities
 
     for activity in `echo $activities`; do
@@ -92,6 +94,7 @@ alias jaww="jira_log_week"
 alias jc="jira create"
 alias jl="jira list"
 alias jlcd="jira_list_and_extract \"project = ONM AND status = 'Waiting for deployment' AND (labels IS EMPTY OR labels != themes) ORDER BY key ASC\""
+alias jlqa="jl -q \"assignee = currentUser() AND status = 'Waiting for QA'\""
 alias jltd="jira_list_and_extract \"project = ONM AND status = 'Waiting for deployment' AND type != Deployment AND labels = themes ORDER BY key ASC\""
 alias js="jira_extract_summary"
 alias jtd="jira trans 'Done' --noedit"
