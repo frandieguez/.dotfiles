@@ -8,8 +8,8 @@
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   c = commit
   ca = commit --amend
-  ci = commit -v
   changes = diff --name-status -r
+  ci = commit -v
   cm = commit --message
   co = checkout
   cp = cherry-pick
@@ -21,18 +21,15 @@
   filelog = log -u
   fl = log -u
   h = help
+  hide = update-index --assume-unchanged
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-  la = !git list-aliases
-  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-  lg3 = !"git lg1"
   l = !git log --graph --pretty='tformat:%C(yellow)%h{%C(green)%ar{%C(bold blue)%an{%C(red)%d%C(reset) %s' $* | column -t -s '{' | less -FXRS
+  la = !git list-aliases
   lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   list-aliases = !git config -l | grep alias | cut -c 7-
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  mycommits = log --author="fran@openhost.es" --format='"%C(bold green)%h%C(reset) \"%s\" %C(bold blue)at %ai%C(reset)"'
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   p = push
   pf = push --force-with-lease
   ra = log --graph --abbrev-commit --date=relative -20 --all --pretty='format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
@@ -42,10 +39,8 @@
   stp = stash pop
   type = cat-file -t
   undo = reset --soft HEAD^
-  up = pull
-  hide = update-index --assume-unchanged
   unhide = update-index --no-assume-unchanged
-  change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
+  up = pull
 [branch]
   autosetupmerge = always
   autosetuprebase = always
@@ -54,7 +49,7 @@
   diff = auto
   interactive = auto
   status = auto
-  ui = always
+  ui = true
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
@@ -62,8 +57,8 @@
   new = green bold
 [color "status"]
   added = yellow
-  changed = green
-  untracked = cyan
+  changed = magenta
+  untracked = green
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -73,20 +68,30 @@
   excludesfile = ~/.gitignore
   editor = vim
   whitespace = trailing-space,space-before-tab
+[diff]
+    mnemonicprefix = true
+    tool = meld
+[difftool]
+    prompt = false
 [format]
   numbered = auto
 [include]
   path = .gitconfig-additional
 [log]
   decorate = short
+[hooks]
+  global = $HOME/.config/githooks
 [merge]
   ff = only
-  tool = meld
-[pager]
-  status = false
-  show-branch = true
-[merge]
   log = true
+  tool = meld
+  #tool = vimdiff
+[mergetool]
+  keepBackup = false
+  prompt = false
+[pager]
+  color = true
+  show-branch = true
 [url "git@github.com:"]
   insteadOf = "gh:"
   pushInsteadOf = "github:"
@@ -104,17 +109,11 @@
 [url "git@github.com:frandieguez/"]
   insteadOf = "git://github.com/frandieguez/"
 [pull]
-    rebase = true
+  rebase = true
 [push]
   default = current
 [help]
   autocorrect = 1
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [rebase]
   autosquash = true
 [commit]
