@@ -40,7 +40,6 @@ install_local() {
 
     if [ $2 == true ]; then
         target="$HOME/.config/$1"
-      echo $target
     fi
 
     if [ -f $target ] || [ -d $target ]; then
@@ -227,6 +226,13 @@ post_install_offlineimaprc() {
         sed --follow-symlinks -i -e "s/<email>/$email/g"       $HOME/.offlineimaprc
         sed --follow-symlinks -i -e "s/<password>/$password/g" $HOME/.offlineimaprc
     fi
+}
+
+# ---
+# Executes post-installation commands after symlinking rofi file.
+# ---
+post_install_rofi() {
+  dconf load / < ~/.config/rofi/gnome-rofi-keybindings
 }
 
 main() {

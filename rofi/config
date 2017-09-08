@@ -1,0 +1,27 @@
+rofi.font:                Knack Nerd Font 20
+rofi.color-enabled:       true
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
+rofi.color-window:        #ee002b37, #ee002b37, #00003642
+rofi.display-run:         
+rofi.display-ssh:         
+rofi.display-window:      
+rofi.bw:                  22
+rofi.padding:             20
+rofi.terminal:            gnome-terminal
+rofi.ssh-command:         {terminal} -e "{ssh-client} {host}"
+rofi.separator-style:     none
+rofi.sidebar-mode:        true
+rofi.line-margin:         10
+rofi.fullscreen:          true
+rofi.fake-transparency:   true
+rofi.kb-remove-char-back: BackSpace
+rofi.kb-remove-to-eol:    Control+BackSpace
+rofi.kb-accept-entry:     Return
+rofi.kb-mode-next:        Shift+Right,Control+l,Control+Tab
+rofi.kb-mode-previous:    Shift+Left,Control+h,Control+Shift+Tab
+rofi.kb-row-up:           Up,Control+k,Shift+Tab
+rofi.kb-row-down:         Down,Control+j,Tab
+
+

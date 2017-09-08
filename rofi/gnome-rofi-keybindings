@@ -1,0 +1,4 @@
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Alt><Super>space'
+command='/usr/local/bin/rofi -show window'
+name='rofi -show window'
