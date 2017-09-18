@@ -7,3 +7,4 @@ bindkey -M vicmd 'L' autosuggest-accept
 # zsh-users/zsh-history-substring-search
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+bindkey -a '^[[3~' delete-char
