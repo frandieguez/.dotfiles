@@ -6,7 +6,7 @@
 # Get name of the project (probably topmost directory name).
 projectname=${PWD##*/}
 
-staged=`git diff --cached --name-only`
+staged=`git diff --cached --name-only | grep "\.php$"`
 
 # Nothing to do
 if [[ $staged = '' ]]; then
