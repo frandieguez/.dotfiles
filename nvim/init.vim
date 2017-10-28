@@ -95,8 +95,8 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blin
 
 set background=dark
 "colorscheme monokai-chris
-colorscheme solarized
-let g:solarized_termcolors = 16
+colorscheme solarized8_dark
+let g:solarized_termcolors = 256
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
