@@ -132,6 +132,7 @@ set lazyredraw
 set noshowmode
 set nowrap
 set number
+set relativenumber
 set showmatch
 set splitbelow
 set splitright
