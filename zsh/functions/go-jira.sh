@@ -16,7 +16,7 @@ function jira_create_deployment()
     fi
 
     if [[ "$core" == "" ]]; then
-        template="$HOME/.jira.d/templates/theme.deployment"
+        template="$HOME/.jira.d/templates/themes.deployment"
     elif [[ "$themes" == "" ]]; then
         template="$HOME/.jira.d/templates/core.deployment"
     fi
