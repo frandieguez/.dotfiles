@@ -40,6 +40,7 @@
   type = cat-file -t
   undo = reset --soft HEAD^
   unhide = update-index --no-assume-unchanged
+  unhideall= !git ls-files -v | grep '^h' | sed -e 's/h //g' | xargs git update-index --no-assume-unchanged
   up = pull
 [branch]
   autosetupmerge = always
@@ -73,6 +74,8 @@
   tool = meld
 [difftool]
   prompt = false
+[icdiff]
+  options = --line-numbers
 [format]
   numbered = auto
 [include]
