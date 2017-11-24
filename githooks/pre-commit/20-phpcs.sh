@@ -6,7 +6,7 @@
 # Get name of the project (probably topmost directory name).
 projectname=${PWD##*/}
 
-staged=`git diff --cached --name-only | grep "\.php$"`
+staged=`git diff --diff-filter=AM --cached --name-only | grep "\.php$"`
 
 # Nothing to do
 if [[ $staged = '' ]]; then
@@ -69,4 +69,5 @@ fi
 
 # Abort the commit.
 echo -e "\033[1m\E[47;41mABORTING COMMIT\033[0m"
+cat $outputlog;
 exit $returnCode
