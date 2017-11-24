@@ -28,7 +28,7 @@ phpcs_args=""
 # Define a location to save the output.
 outputlog="/tmp/phpcs_output_`date +%s`.log"
 
-echo -e -n "\033[1m==> Executing coding style checking...\033[0m "
+echo -e -n "\033[1m==> Executing PHP coding style checking...\033[0m "
 
 # Execute code checking. (Assume that phpcs.xml is in root of project).
 output=`${phpcs} ${phpcs_args} ${staged}`

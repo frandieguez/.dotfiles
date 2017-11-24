@@ -6,8 +6,10 @@
 # Get name of the project (probably topmost directory name).
 projectname=${PWD##*/}
 
+staged=`git diff --diff-filter=AM --cached --name-only | grep "\.php$"`
+
 # Nothing to do
-if [[ ! -f phpunit.xml ]]; then
+if [[ $staged = '' ]] || [[ ! -f phpunit.xml ]]; then
     exit 0
 fi
 
