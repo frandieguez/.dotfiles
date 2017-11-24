@@ -83,6 +83,17 @@ let g:limelight_conceal_ctermfg = 10
 let NERDTreeHighlightCursorline = 1
 
 " Neomake
+let g:neomake_css_csslint_maker = {
+      \ 'args': [ '--format=compact' ],
+      \ 'errorformat':
+      \   '%-G,'.
+      \   '%-G%f: lint free!,'.
+      \   '%f: line %l\, col %c\, %trror - %m,'.
+      \   '%f: line %l\, col %c\, %tarning - %m,'.
+      \   '%f: line %l\, col %c\, %m,'.
+      \   '%f: %tarning - %m'
+      \ }
+
 let g:neomake_php_phpcs_maker = {
     \ 'args': [ '--report=csv' ],
     \ 'errorformat':
