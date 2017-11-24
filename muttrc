@@ -21,7 +21,7 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
-set sort = threads
+set sort = date
 
 # Sidebar Patch --------------------------------------
 set mail_check_stats
@@ -62,6 +62,7 @@ mailboxes +<email>/Inbox \
 set mbox      = "+<email>/Archives"
 set postponed = "+<email>/Drafts"
 set record    = "+<email>/Sent"
+set trash     = "+<email>/Trash"
 
 set from     = "<email>"
 set sendmail = "/usr/bin/msmtp -a <account>"
@@ -70,4 +71,5 @@ set sendmail_wait = 0
 # Always start with threads collapsed and with the most recent thread selected
 push <collapse-all><last-entry>
 
+source ~/.config/mutt/alias
 source ~/.config/mutt/mapping
