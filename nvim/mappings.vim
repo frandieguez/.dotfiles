@@ -7,6 +7,8 @@ noremap <Right> <NOP>
 " Vim shortcuts
 nnoremap ; :
 nnoremap <CR> :nohl<CR><CR>
+nnoremap + <C-a>
+nnoremap - <C-x>
 nmap <leader>php :set filetype=php<CR>
 nmap <leader>r :source $MYVIMRC<CR>
 nmap <leader>e :tabedit $MYVIMRC<CR>
