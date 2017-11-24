@@ -225,6 +225,12 @@ function! UpdateNeomakeJsHint()
     call add(g:neomake_javascript_jshint_maker.args, '--config=' . l:jshintrc)
 endfunction
 
+function! UpdateNeomakeCssLint()
+    let l:dir = expand('%:p:h')
+    let l:jshintrc = s:find_file(l:dir, '.csslintrc', '~/.csslintrc')
+    call add(g:neomake_css_csslint_maker.args, '--config=' . l:jshintrc)
+endfunction
+
 function! UpdateNeomakePHPCS()
     let l:dir = expand('%:p:h')
     let l:phpcs_xml = s:find_phpcs_xml(l:dir)
