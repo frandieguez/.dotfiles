@@ -8,3 +8,6 @@ bindkey -M vicmd 'L' autosuggest-accept
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 bindkey -a '^[[3~' delete-char
+
+bindkey '^ ' snippet-expand
+bindkey '^F' fuck-command-line
