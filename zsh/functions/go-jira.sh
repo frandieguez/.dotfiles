@@ -21,9 +21,9 @@ function jira_create_deployment()
         template="$HOME/.jira.d/templates/core.deployment"
     fi
 
-    core=$(echo $core | sed -e "s/^/    * /g" -e "s/:\s\+/ /g" \
+    core=$(echo $core | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" \
         | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
-    themes=$(echo $themes | sed -e "s/^/    * /g" -e "s/:\s\+/ /g" \
+    themes=$(echo $themes | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" \
         | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
 
     cat "$template" \
