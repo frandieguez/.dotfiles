@@ -42,6 +42,9 @@ map <silent> ,b  <Plug>CamelCaseMotion_b
 map <silent> ,e  <Plug>CamelCaseMotion_e
 map <silent> ,ge <Plug>CamelCaseMotion_ge
 
+" Colorize
+map <Leader>co <Plug>Colorizer
+
 " CtrlP
 nmap <leader>bb :CtrlPBuffer<CR>
 nnoremap <Leader>fu :CtrlPFunky<CR>
