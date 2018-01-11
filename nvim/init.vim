@@ -50,6 +50,18 @@ Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/po.vim--Jelenak'
 
 if has('nvim')
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins'  }
+
+  " (Optional) Multi-entry selection UI.
+  Plug 'junegunn/fzf'
+  " (Optional) Multi-entry selection UI.
+  Plug 'Shougo/denite.nvim'
+
+  " (Optional) Completion integration with nvim-completion-manager.
+  Plug 'roxma/nvim-completion-manager'
+  " (Optional) Showing function signature and inline doc.
+  Plug 'Shougo/echodoc.vim'"
+
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 elseif has('lua')
   Plug 'Shougo/neocomplete.vim'
