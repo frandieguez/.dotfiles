@@ -128,3 +128,20 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias mux="tmuxinator"
 alias pt=papertrail
 alias tailf="tail -f"
+
+alias gcal=gcalcli
+alias gs='gss'
+alias hl='hamster list'
+alias hsa='hamster start'
+alias hso='hamster stop'
+alias ks='tmux kill-session'
+alias music=ncmpcpp
+alias mutt='~/.bin/mail'
+alias mux='tmuxinator'
+alias nf='neofetch --ascii ~/.neofetch --ascii_colors 18 25 39'
+alias odd='rm .development'
+alias ode='touch .development'
+alias zr='source ~/.zshrc'
+
+alias current_date='date +%F\ %R'
+
