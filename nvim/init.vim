@@ -36,7 +36,6 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'kentaro/vim-textobj-function-php'
 Plug 'lifepillar/vim-solarized8'
-Plug 'lilydjwg/colorizer'
 Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
 Plug 'mhinz/vim-startify'
@@ -96,9 +95,8 @@ set t_Co=256
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blinkon100,r-cr:hor20-Cursor/lCursor
 
 set background=dark
-"colorscheme monokai-chris
-colorscheme solarized8_dark
-let g:solarized_termcolors = 256
+colorscheme solarized
+"set g:solarized_termcolors = 256
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
