@@ -71,7 +71,7 @@
   whitespace = trailing-space,space-before-tab
 [diff]
   mnemonicprefix = true
-  tool = meld
+  tool = vimdiff
 [difftool]
   prompt = false
 [icdiff]
@@ -87,8 +87,8 @@
 [merge]
   ff = only
   log = true
-  tool = meld
-  #tool = vimdiff
+  #tool = meld
+  tool = vimdiff
 [mergetool]
   keepBackup = false
   prompt = false

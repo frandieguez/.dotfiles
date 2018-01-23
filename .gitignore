@@ -4,3 +4,5 @@ nvim/colors
 nvim/plugged
 nvim/session
 tmux/plugins
+mutt/cache
+mutt/tmp
