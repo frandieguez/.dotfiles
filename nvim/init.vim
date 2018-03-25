@@ -48,6 +48,7 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/po.vim--Jelenak'
+Plug 'arcticicestudio/nord-vim'
 
 if has('nvim')
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins'  }
@@ -106,8 +107,10 @@ filetype plugin indent on
 set t_Co=256
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blinkon100,r-cr:hor20-Cursor/lCursor
 
-set background=dark
-colorscheme solarized
+"set background=dark
+colorscheme nord
+let g:nord_italic_comments=1
+let g:nord_uniform_diff_background=1
 "set g:solarized_termcolors = 256
 
 syntax enable

@@ -54,7 +54,7 @@ let g:lightline = {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
     \   'right': [ [ 'lineinfo' ], [ 'percent', 'debug', 'neomake' ] ]
     \ },
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'nord',
     \ 'component_function': {
     \     'ctrlpmark': 'LightlineCtrlP',
     \     'fileencoding': 'LightlineFileEncoding',
