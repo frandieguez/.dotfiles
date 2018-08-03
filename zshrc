@@ -33,6 +33,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load bil-elmoussaoui/flatpak-zsh-completion
 
   zgen load ~/.config/zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
