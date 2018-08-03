@@ -28,11 +28,21 @@ endif
 
 " Deoplete/Neocomplete
 if has('nvim')
-    let g:deoplete#enable_at_startup = 1
+  let g:deoplete#num_processes = 1
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#max_list = 10
 else
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#max_list = 10
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#max_list = 10
 endif
+
+" Disable deoplete when in multi cursor mode
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
 
 " Easy-align
 nmap ga <Plug>(EasyAlign)
@@ -188,20 +198,6 @@ au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
 au FileType go nmap <F10> :GoTest -short<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
-
-if has('nvim')
-  " Enable deoplete on startup
-  let g:deoplete#enable_at_startup = 1
-endif
-
-" Disable deoplete when in multi cursor mode
-function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete = 1
-endfunction
-function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete = 0
-endfunction
-
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
@@ -220,6 +216,6 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 let g:vdebug_options = {
   \ 'port' : 9001,
   \ 'path_maps' : {
-  \   'path_in_server' : 'real_path'
+  \   '/home/opennemas/current' : '/home/fran/vms/onm-docker-dev/volumes/onm/'
   \ }
 \ }
