@@ -1,1 +1,0 @@
-alias doco='docker-compose'
