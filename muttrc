@@ -21,7 +21,7 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
-set sort = date
+set sort = threads
 
 # Sidebar Patch --------------------------------------
 set mail_check_stats
@@ -34,7 +34,7 @@ set index_format          = '%4C %Z %{%Y/%m/%d %H:%M} (%?l?%4l&%4c?) %-20.20L  %
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+#set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
 # Pager ----------------------------------------------
 set pager_context     = 5
@@ -78,3 +78,17 @@ push <collapse-all><last-entry>
 source ~/.config/mutt/alias
 source ~/.config/mutt/mapping
 source ~/.config/mutt/theme
+
+# Folder hooks
+folder-hook 'account.com.mabishu.fran.dieguez' 'source ~/.mutt/account.com.mabishu.fran.dieguez'
+folder-hook 'account.es.openhost.fran' 'source ~/.mutt/account.es.openhost.fran'
+
+# Default account
+source ~/.config/mutt/account.com.mabishu.fran.dieguez
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/com.mabishu.fran.dieguez<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/account.es.openhost.fran<enter><change-folder>!<enter>'
+
+# Fetch mail shortcut
+bind index G imap-fetch-mail
