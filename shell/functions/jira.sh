@@ -1,38 +1,5 @@
 #!/bin/sh
-
-# ---
-# Creates a deployment issue with the JIRA issues ready to deploy.
-# ---
-function jira_create_deployment()
-{
-    template="$HOME/.jira.d/templates/deployment"
-    core=$(jira list -q "project = ONM AND status = 'In pre' \
-        AND (labels IS EMPTY OR labels != themes) ORDER BY key ASC")
-    themes=$(jira list -q "project = ONM AND status = 'In pre' \
-        AND type != Deployment AND labels = themes ORDER BY key ASC")
-
-    if [[ "$core" == "" ]] && [[ "$themes" == "" ]]; then
-        return
-    fi
-
-    if [[ "$core" == "" ]]; then
-        template="$HOME/.jira.d/templates/themes.deployment"
-    elif [[ "$themes" == "" ]]; then
-        template="$HOME/.jira.d/templates/core.deployment"
-    fi
-
-    core=$(echo $core | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" \
-        | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
-    themes=$(echo $themes | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" \
-        | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
-
-    cat "$template" \
-        | sed -e "s/    \* \[core-changes\]/$core/g" \
-        | sed -e "s/    \* \[theme-changes\]/$themes/g" \
-            > ~/.jira.d/templates/jira-template.tmp
-
-    jira create -t jira-template.tmp
-}
+eval "$(jira --completion-script-bash)"
 
 # ---
 # Check an issue description and mark all tickets included.
@@ -175,12 +142,6 @@ alias jltd="jira_list_and_extract \"project = ONM AND status = 'In pre' AND type
 alias js="jira_extract_summary"
 alias jtd="jira trans 'Done' --noedit"
 alias jtda="jira_done_all"
-alias jtid="jira trans 'In development' --noedit"
-alias jtit="jira trans 'In testing' --noedit"
-alias jtnf="jira trans 'Won\'t fix' --noedit"
-alias jtipe="jira trans 'In pre' --noedit"
-alias jtipo="jira trans 'In production' --noedit"
-alias jtqa="jira trans 'Waiting for QA' --noedit"
 
 alias jlmine="jira list -q 'resolution = Unresolved AND assignee = frandieguez'"
 alias jowd="jlwd|awk -F \":\" '{ print \"jira -b \" \$1 }'|sh"
