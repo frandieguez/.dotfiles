@@ -98,6 +98,7 @@ Plug 'stephpy/vim-php-cs-fixer'
 Plug 'w0ng/vim-hybrid'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+Plug 'joonty/vdebug'
 
 call plug#end()
 

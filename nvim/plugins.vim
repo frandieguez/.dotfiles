@@ -73,7 +73,7 @@ let g:lightline = {
     \   'neomake': 'error',
     \ },
     \ 'separator': { 'left': '', 'right': ''  },
-    \ 'subseparator': { 'left': '', 'right': ''  }
+    \ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 " Limelight
@@ -216,3 +216,10 @@ let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+let g:vdebug_options = {
+  \ 'port' : 9001,
+  \ 'path_maps' : {
+  \   'path_in_server' : 'real_path'
+  \ }
+\ }
