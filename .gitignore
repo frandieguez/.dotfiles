@@ -6,3 +6,4 @@ nvim/session
 tmux/plugins
 mutt/cache
 mutt/tmp
+mutt/account*
