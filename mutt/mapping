@@ -59,14 +59,3 @@ bind pager l list-reply
 bind pager L list-reply
 
 bind attach <return> view-mailcap
-
-# Macros
-macro index,pager s '<sync-mailbox><shell-escape>~/.bin/mail-sync &<enter>'
-macro index,pager d '<save-message>=frandieguez@openhost.es/Trash<enter>'
-
-macro index I  '<change-folder>=frandieguez@openhost.es/Inbox<enter>'
-macro index T  '<change-folder>=frandieguez@openhost.es/Trash<enter>'
-macro index St '<change-folder>=frandieguez@openhost.es/Sent<enter>'
-macro index Sp '<change-folder>=frandieguez@openhost.es/Spam<enter>'
-macro index a  '<save-message>=frandieguez@openhost.es/Archives.'
-macro index A  '<tag-prefix-cond><save-message>=frandieguez@openhost.es/Archives.'
