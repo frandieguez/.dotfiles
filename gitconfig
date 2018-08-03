@@ -64,6 +64,8 @@
   current = yellow reverse
   local = yellow
   remote = green
+[commit]
+  verbose=true
 [core]
   filemode = false
   excludesfile = ~/.gitignore
@@ -71,24 +73,24 @@
   whitespace = trailing-space,space-before-tab
 [diff]
   mnemonicprefix = true
-  tool = vimdiff
+  tool = meld
 [difftool]
   prompt = false
 [icdiff]
   options = --line-numbers
 [format]
   numbered = auto
+[hooks]
+  global = $HOME/.local/githooks
+	verbose = true
 [include]
   path = .gitconfig-additional
 [log]
   decorate = short
-[hooks]
-  global = $HOME/.config/githooks
 [merge]
-  ff = only
-  log = true
-  #tool = meld
-  tool = vimdiff
+  ;ff = only
+  log = false
+  tool = meld
 [mergetool]
   keepBackup = false
   prompt = false
@@ -104,9 +106,6 @@
   autocorrect = 1
 [rebase]
   autosquash = true
-[commit]
-  template = ~/.gitmessage
-  verbose = true
 [user]
 	name = Fran Dieguez
 	email = fran.dieguez@mabishu.com
