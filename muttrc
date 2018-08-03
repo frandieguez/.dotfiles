@@ -25,16 +25,20 @@ set sort = date
 
 # Sidebar Patch --------------------------------------
 set mail_check_stats
-set sidebar_visible     = yes
-set sidebar_width       = 24
-set sidebar_short_path = yes
+set sidebar_visible       = yes
+set sidebar_width         = 24
+set sidebar_short_path    = yes
 set sidebar_folder_indent = yes
-set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
-set index_format = '%4C %Z %{%Y/%m/%d %H:%M} (%?l?%4l&%4c?) %-20.20L  %s'
+set sidebar_format        = '%B%?F? [%F]?%* %?N?%N/?%S'
+set index_format          = '%4C %Z %{%Y/%m/%d %H:%M} (%?l?%4l&%4c?) %-20.20L  %s %?M?(%M)?'
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Pager ----------------------------------------------
+set pager_context     = 5
+set pager_index_lines = 20
 
 # Header Options -------------------------------------
 ignore *                                # ignore all headers
@@ -73,3 +77,4 @@ push <collapse-all><last-entry>
 
 source ~/.config/mutt/alias
 source ~/.config/mutt/mapping
+source ~/.config/mutt/theme
