@@ -1,0 +1,32 @@
+[general]
+accounts = <account>
+
+[Account <account>]
+localrepository = <account>-local
+remoterepository = <account>-remote
+
+[Repository <account>-local]
+type = Maildir
+localfolders = ~/.mail/<email>
+nametrans = lambda folder: { 'Archives': 'Archives',
+                             'Drafts': '[Gmail]/Drafts',
+                             'Inbox': 'INBOX',
+                             'Sent': '[Gmail]/Sent Mail',
+                             'Spam': '[Gmail]/Spam',
+                             'Trash': '[Gmail]/Trash',
+                           }.get(folder, folder)
+
+[Repository <account>-remote]
+maxconnections = 1
+type = Gmail
+remoteuser = <email>
+remotepass = <password>
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda folder: folder not in ['[Gmail]/All Mail']
+nametrans = lambda folder: { 'Archives': 'Archives',
+                             '[Gmail]/Drafts': 'Drafts',
+                             'INBOX': 'Inbox',
+                             '[Gmail]/Sent Mail': 'Sent',
+                             '[Gmail]/Spam': 'Spam',
+                             '[Gmail]/Trash': 'Trash'
+                        }.get(folder, folder)
