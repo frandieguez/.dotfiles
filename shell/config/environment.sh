@@ -25,8 +25,8 @@ if [ -f /usr/share/nvm/init-nvm.sh ]; then
 fi
 
 # GitHooks -----------------------------------------
-if [ -d /opt/git-hooks/ ]; then
-    export PATH=$PATH:/opt/git-hooks
+if [ -d $HOME/.git-hooks ]; then
+    export PATH=$HOME/.git-hooks/:$PATH
 fi
 
 # Golang ------------------------------------------
@@ -42,7 +42,11 @@ export PATH=$GOPATH/bin:$PATH
 alias gopath='cd $GOPATH'
 
 # Java --------------------------------------------
-#export JAVA_HOME=/usr/lib/jvm/default-runtime
+if [ -d /usr/lib/jvm/default-runtime ]; then
+  export JAVA_HOME=/usr/lib/jvm/default-runtime
+fi
+
+
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
