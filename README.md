@@ -1,19 +1,19 @@
 Fran's dot configuration files
 ==============================
 Files on this repository are the important configurations that I'm using
-all the day and I don't want to lost. Feel free of use them and provide me
+all the day and I don't want to lose. Feel free to use them and provide me
 any trick if you think that it could make me life easier.
 
 Among these files you will find highly opinionated configurations for:
   * Bash
+  * bspwm
   * Git
   * Gitignore
+  * mutt
+  * screen
   * Tmux
   * Vim/Nvim
   * Zsh
-  * screen
-
-An experimental support for NVim is included, by symlinking to Vim configs.
 
 Install all
 -----------
@@ -105,8 +105,8 @@ License
 dotfiles is copyright © 20016-2017 Fran Dieguez. It is free software, and may be
 redistributed under the terms specified in the [`LICENSE`] file.
 
-About Fran Dieguez
-------------------
+About the author
+----------------
 
 ![frandieguez](http://www.mabishu.com/wp-content/uploads/2013/04/gafas.png)
 
