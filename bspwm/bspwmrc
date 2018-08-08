@@ -7,13 +7,6 @@ fi
 # Change cursor to pointer
 xsetroot -cursor_name left_ptr
 
-# bspwm
-export PANEL_FIFO=/tmp/panel-fifo
-export PANEL_HEIGHT=24
-export PANEL_FONT="-*-fixed-medium-*-normal-*-14-*-100-100-*-*-*-*"
-export PANEL_WM_NAME=bspwm_panel
-export PANEL_FIFO PANEL_HEIGHT PANEL_FONT PANEL_WM_NAME
-
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 bspc config merge_overlapping_monitors [ false, true ]
