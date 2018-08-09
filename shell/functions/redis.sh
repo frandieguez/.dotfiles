@@ -4,7 +4,7 @@ function redis-get() {
   i=1;
 
   for key in $keys; do
-    if [[ $i -gt 1  ]] then
+    if [[ $i -gt 1  ]]; then
       echo "";
     fi
 
