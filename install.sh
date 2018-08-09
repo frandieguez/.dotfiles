@@ -154,9 +154,9 @@ post_install_gitconfig() {
         read -e -p "  Name: " username
         read -e -p "  Email: " email
 
-        echo "[user]" >> $HOME/.gitconfig
-        echo "    name = " $username >> $HOME/.gitconfig
-        echo "    email = " $email >> $HOME/.gitconfig
+        echo "[user]" >> $HOME/.gitconfig-additional
+        echo "    name = " $username >> $HOME/.gitconfig-additional
+        echo "    email = " $email >> $HOME/.gitconfig-additional
     fi
 }
 
