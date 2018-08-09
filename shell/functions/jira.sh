@@ -1,4 +1,7 @@
 #!/bin/sh
+
+command -v jira || return
+
 eval "$(jira --completion-script-bash)"
 
 # ---
