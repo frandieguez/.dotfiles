@@ -1,6 +1,20 @@
 #!/bin/bash
 
 # ---
+# Outputs a message in green
+# ---
+echo_success() {
+    echo -e "\033[37;32m" $@ "\033[0m"
+}
+
+# ---
+# Outputs a message in red
+# ---
+echo_fail() {
+    echo -e "\033[1;5m" $@ "\033[0m"
+}
+
+# ---
 # Installs dotfiles.
 #
 # @param $1 The list of applications to install.
@@ -50,11 +64,11 @@ install_local() {
     ln -s $PWD/$1 $target > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
-        echo -e "\E[31;5mFAIL\033[0m"
+        echo_fail "FAIL"
         return
     fi
 
-    echo -e "\E[37;32mDONE\033[0m"
+    echo_success "DONE"
 
     # Execute post_install function if exists
     type "post_install_$1" > /dev/null 2>&1 && post_install_$1
@@ -82,11 +96,11 @@ install_remote() {
     git clone $3 $target > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
-        echo -e "\E[31;5mFAIL\033[0m"
+        echo_fail "FAIL"
         return
     fi
 
-    echo -e "\E[37;32mDONE\033[0m"
+    echo_success "DONE"
 }
 
 # ---
@@ -274,7 +288,7 @@ main() {
 # ---
 usage() {
     if [ "$*" != "" ] ; then
-        echo -e "\E[31;5minstall.sh: $*\033[0m"
+        echo -e "\003[31;5minstall.sh: $*\033[0m"
         echo "";
     fi
 
