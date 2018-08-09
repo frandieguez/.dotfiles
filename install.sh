@@ -84,6 +84,8 @@ install_local() {
 install_remote() {
     target="$HOME/.$1"
 
+    [[ -d $HOME/.config ]] || mkdir $HOME/.config;
+
     if [[ $2 == true ]]; then
         target="$HOME/.config/$1"
     fi
