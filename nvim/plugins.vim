@@ -31,9 +31,6 @@ if has('nvim')
   let g:deoplete#num_processes = 1
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#max_list = 10
-else
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#max_list = 10
 endif
 
 " Disable deoplete when in multi cursor mode
@@ -201,17 +198,17 @@ au FileType go nmap <F12> <Plug>(go-def)
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-  \ 'javascript': ['/opt/javascript-typescript-langserver/lib/language-server-stdio.js'],
-  \ }
+" let g:LanguageClient_serverCommands = {
+"   \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"   \ 'javascript': ['/opt/javascript-typescript-langserver/lib/language-server-stdio.js'],
+"   \ }
 
 " Automatically start language servers.
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_autoStart = 1
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 let g:vdebug_options = {
   \ 'port' : 9001,
