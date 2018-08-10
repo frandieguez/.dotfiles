@@ -68,3 +68,9 @@ fi
 if [ -d $HOME/.gem/ruby/2.4.0/bin ]; then
     export PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
 fi
+
+# Vim ---------------------------------------------
+if [[ -d /usr/share/nvim/runtime/ ]]; then
+  export VIMRUNTIME=/usr/share/nvim/runtime/
+fi
+
