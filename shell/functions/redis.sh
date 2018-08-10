@@ -1,4 +1,7 @@
 # Get values for the list of keys
+
+command -v redis-cli || return;
+
 function redis-get() {
   keys=($(redis-search $1))
   i=1;

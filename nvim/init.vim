@@ -17,6 +17,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'danro/rename.vim'
 Plug 'davidoc/taskpaper.vim'
 Plug 'dbestevez/keepcursor.vim'
+Plug 'dhruvasagar/vim-prosession'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'duggiefresh/vim-easydir'
 Plug 'easymotion/vim-easymotion'
@@ -77,8 +78,6 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
-Plug 'dhruvasagar/vim-prosession'
-
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
   "Plug 'zchee/deoplete-go'
@@ -105,6 +104,10 @@ if has('nvim')
   Plug 'prabirshrestha/async.vim' " Required by ncm2-vim-lsp
   Plug 'prabirshrestha/vim-lsp' " Required by ncm2-vim-lsp
   Plug 'roxma/nvim-yarp'
+endif
+
+if has('python3')
+    Plug 'joonty/vdebug'
 endif
 
 call plug#end()
