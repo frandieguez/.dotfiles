@@ -3,6 +3,8 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-obsession' " Required to be at the top because others depend on it
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'SirVer/ultisnips'
@@ -65,7 +67,6 @@ Plug 'thinca/vim-textobj-function-javascript'
 Plug 'tkhren/vim-fake'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
