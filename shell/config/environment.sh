@@ -74,3 +74,6 @@ if [[ -d /usr/share/nvim/runtime/ ]]; then
   export VIMRUNTIME=/usr/share/nvim/runtime/
 fi
 
+if [[ -d /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/ ]]; then
+  export VIMRUNTIME=/usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/
+fi
