@@ -1,6 +1,6 @@
 #!/bin/sh
 
-command -v jira || return
+command -v jira > /dev/null 2>&1 || return
 
 eval "$(jira --completion-script-bash)"
 
