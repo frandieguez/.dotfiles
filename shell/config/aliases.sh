@@ -33,13 +33,13 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete" # Recursively dele
 alias current_date='date +%F\ %R'
 alias dcs='docker-compose stop'
 alias dcu='docker-compose up'
+alias doco='docker-compose'
 alias debug='cat > /tmp/debug.html&&w3m /tmp/debug.html'
 alias doctest='python -m doctest'
 alias ducks="du -cks *|sort -rn | head"
 alias e="$EDITOR"
+alias fastping='ping -c 100 -s.2'
 alias ff='find . -iname'
-alias fn_FX_keys="echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode"
-alias fn_multimedia_keys="echo 1 | sudo tee /sys/module/hid_apple/parameters/fnmode"
 alias fs="stat -f \"%z bytes\"" # File size
 alias g="git"
 alias gcal=gcalcli
@@ -62,21 +62,25 @@ alias lsd='ls -l | grep "^d"' # List only directories
 alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"127.0.0.1\", 25), None); asyncore.loop()'"
 alias map="xargs -n1"
 alias music=ncmpcpp
-alias mutt='~/.bin/mail'
 alias mux="tmuxinator"
-alias mux='tmuxinator'
 alias nf='neofetch --ascii ~/.neofetch --ascii_colors 18 25 39'
+alias nis="npm install --save"
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
 alias o="gio open"
 alias odd='rm .development'
 alias ode='touch .development'
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+alias path='echo -e ${PATH//:/\\n}'
 alias pcat='pygmentize -O bg=dark'
 alias please=sudo # be nice
 alias plistbuddy="/usr/libexec/PlistBuddy" # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
+alias ports='netstat -tulanp'
 alias pt=papertrail
 alias public_ip="curl ifconfig.me"
 alias rot13='tr a-zA-Z n-za-mN-ZA-M' # ROT13-encode text. Works for decoding, too! ;)
-alias s="subl"
+alias s="subl3"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'" # View HTTP traffic
 alias t='tmux a||tmux new-s'
 alias tailf="tail -f"
@@ -94,6 +98,25 @@ alias ~="cd ~" # `cd` is probably faster to type though
 if [[ "$OSTYPE" == "linux-gnu" ]]; then alias open=xdg-open; fi
 if [ -x "$(command -v thefuck)" ]; then alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'; fi
 
+## pass options to free ##
+alias meminfo='free -m -l -t'
+
+## get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+## get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+
+## older system use /proc/cpuinfo ##
+##alias cpuinfo='less /proc/cpuinfo' ##
+
+## get GPU ram on desktop / laptop##
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # OS Upgrade aliases
 if [[ -e /etc/os-release ]]; then
   case `cat /etc/os-release|grep "ID="|cut -f2 -d"="` in
