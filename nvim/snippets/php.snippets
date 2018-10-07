@@ -1,60 +1,117 @@
+snippet command "Symfony command"
+	<?php
+
+	namespace ${1:namespace}\Command
+
+	use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+	use Symfony\Component\Console\Helper\ProgressBar;
+	use Symfony\Component\Console\Input\InputArgument;
+	use Symfony\Component\Console\Input\InputInterface;
+	use Symfony\Component\Console\Input\InputOption;
+	use Symfony\Component\Console\Output\OutputInterface;
+
+	class ${2:class}Command extends ContainerAwareCommand
+	{
+	    /**
+	     * {@inheritdoc}
+	     */
+	    public function configure()
+	    {
+	        $this
+	            ->setName('${3:command}')
+	            ->setDescription('${4:description}')
+	            ->addArgument(
+	                '${5:argument}',
+	                InputArgument::REQUIRED,
+	                '${6:description}'
+	            )->addOption(
+	                '${7:argument}',
+	                false,
+	                InputOption::VALUE_NONE,
+	                '${8:description}'
+	            );
+	    }
+
+	    /**
+	     * {@inheritdoc}
+	     */
+	    public function execute()
+	    {
+
+	    }
+	}
 snippet @in "Inherit documentation"
 	/**
-	* {@inheritdoc}
-	*/
+	 * {@inheritdoc}
+	 */
 snippet @sec "The Security annotation"
 	@Security("${1:expresion}")
 snippet em "The ORM EntityManager"
 	$em = $this->get('orm.manager');
+snippet ex "Mock expects"
+	$this->${1:mock}->expects($this->${2:times}())->method('${3:method}')
+	    ->with(${4:data})->willReturn(${5:return});
 snippet fdoc "PHP documentation for function"
 	/**
-	* ${1:description}
-	*
-	* @param ${2:type} ${3:variable} ${4:Description}
-	*
-	* @return ${5:type} ${6:Description}
-	*/
+	 * ${1:description}
+	 *
+	 * @param ${2:type} ${3:variable} ${4:Description}
+	 *
+	 * @return ${5:type} ${6:Description}
+	 */
 snippet license "Openhost license notice"
 	/**
-	* This file is part of the Onm package.
-	*
-	* (c) Openhost, S.L. <developers@opennemas.com>
-	*
-	* For the full copyright and license information, please view the LICENSE
-	* file that was distributed with this source code.
-	*/
+	 * This file is part of the Onm package.
+	 *
+	 * (c) Openhost, S.L. <developers@opennemas.com>
+	 *
+	 * For the full copyright and license information, please view the LICENSE
+	 * file that was distributed with this source code.
+	 */
+snippet mb "Create a mock with MockBuilder"
+	$this->${1:name} = $this->getMockBuilder('${2:Class}')
+	    ->setMethods([ '${3:methods}' ])
+	    ->getMock();
 snippet phptest
 	<?php
+	/**
+	 * This file is part of the Onm package.
+	 *
+	 * (c) Openhost, S.L. <developers@opennemas.com>
+	 *
+	 * For the full copyright and license information, please view the LICENSE
+	 * file that was distributed with this source code.
+	 */
+	namespace Tests\\${1:namespace};
 
-	namespace ${1:namespace};
-
-	use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+	use $1\\${2:class};
 
 	/**
-	* Defines test cases for ${2:class} class.
-	*/
-	class $2Test extends KernelTestCase
+	 * Defines test cases for $2 class.
+	 */
+	class $2Test extends \PHPUnit\Framework\TestCase
 	{
-		/**
-		 * Configures the testing environment.
-		 */
-		public function setUp()
-		{
+	    /**
+	     * Configures the testing environment.
+	     */
+	    public function setUp()
+	    {
 
-		}
+	    }
 	}
-
 snippet smtplugin "PHP documentation for smarty plugin"
 	/*
-	* Smarty plugin
-	* -------------------------------------------------------------
-	* File:		 function.${1:function}.php
-	* Type:		 function
-	* Name:		 ${2:name}
-	* Purpose:	${3:description}
-	* -------------------------------------------------------------
-	*/
-snippet svdie "Dump variable and die using Symfony dumper"
+	 * Smarty plugin
+	 * -------------------------------------------------------------
+	 * File:     function.${1:function}.php
+	 * Type:     function
+	 * Name:     ${2:name}
+	 * Purpose:  ${3:description}
+	 * -------------------------------------------------------------
+	 */
+snippet sv "Dump variable and die using Symfony dumper"
+	\Symfony\Component\VarDumper\VarDumper::dump(${1:this});
+snippet svdie "Dump variable and die using Symfony dumper and die"
 	\Symfony\Component\VarDumper\VarDumper::dump(${1:this});die();
 snippet v "Dump variable"
 	var_dump(${1:variable});
@@ -62,7 +119,7 @@ snippet vdie "Dump variable and die"
 	var_dump(${1:variable});die();
 snippet vdoc "PHP documentation for variable"
 	/**
-	* ${1:description}
-	*
-	* @var ${2:type}
-	*/
+	 * ${1:description}
+	 *
+	 * @var ${2:type}
+	 */
