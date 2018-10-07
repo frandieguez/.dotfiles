@@ -157,7 +157,7 @@ endfunction
 
 function! TrimWhiteSpaces()
     " Ignore vmail buffer list
-    if &filetype == 'vmailMessageList'
+    if &filetype == 'vmailMessageList' || &fileType == 'mail'
         return
     endif
 
