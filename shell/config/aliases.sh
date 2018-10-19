@@ -129,7 +129,13 @@ if [[ -e /etc/os-release ]]; then
     "ubuntu")
       alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
       alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
+      ;;
+    *)
+      echo "No os-release compatible"
+    ;;
   esac
+else
+  echo "No os-release"
 fi
 
 # One of @janmoesen’s ProTip™s
