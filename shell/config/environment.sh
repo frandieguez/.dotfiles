@@ -56,18 +56,16 @@ if [ -d /usr/share/bin ]; then
     export PATH=/usr/share/bin:$PATH
 fi
 
-if [ -e $HOME/bin ]; then
-  export PATH=$PATH:$HOME/bin
+if [ -e $HOME/.bin ]; then
+  export PATH=$PATH:$HOME/.bin
 fi
 
 # Ruby --------------------------------------------
-if [ -d $HOME/.gem/ruby/2.3.0/bin ]; then
-    export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
-fi
-
-if [ -d $HOME/.gem/ruby/2.4.0/bin ]; then
-    export PATH=$HOME/.gem/ruby/2.4.0/bin:$PATH
-fi
+for i in $(ls -1 ~/.gem/ruby); do
+    if [[ -d ~/.gem/ruby/$i/bin ]]; then
+        export PATH=$HOME/.gem/ruby/$i/bin:$PATH
+    fi
+done
 
 # Vim ---------------------------------------------
 if [[ -d /usr/share/nvim/runtime/ ]]; then
