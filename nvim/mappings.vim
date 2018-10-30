@@ -88,7 +88,7 @@ map <leader>tn :let g:neomake_open_list=1 \| :Neomake<CR>
 map <leader>tN :let g:neomake_open_list=0 \| :Neomake<CR>
 
 " NERDTree
-noremap <F12> :NERDTreeTabsToggle<CR>
+noremap <F12> :NERDTreeToggle<CR>
 
 " Vim-fake
 imap \foo <C-R>=fake#gen("foobar")<CR>
