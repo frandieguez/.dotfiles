@@ -216,3 +216,7 @@ let g:vdebug_options = {
   \   '/home/opennemas/current' : '/home/fran/vms/onm-docker-dev/volumes/onm/'
   \ }
 \ }
+
+
+" Vim
+let g:indentLine_color_term = 239
