@@ -80,9 +80,6 @@
   options = --line-numbers
 [format]
   numbered = auto
-[hooks]
-  global = $HOME/.local/githooks
-	verbose = true
 [include]
   path = .gitconfig-additional
 [log]
