@@ -100,6 +100,9 @@ if [ -x "$(command -v thefuck)" ]; then alias fuck='eval $(thefuck $(fc -ln -1 |
 
 ## pass options to free ##
 alias meminfo='free -m -l -t'
+function mem_per_proccess() {
+    ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' |cut -d "" -f2 | cut -d "-" -f1
+}
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
