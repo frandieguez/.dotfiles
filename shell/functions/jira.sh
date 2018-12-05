@@ -2,7 +2,7 @@
 
 command -v jira > /dev/null 2>&1 || return
 
-eval "$(jira --completion-script-bash)"
+eval "$(jira --completion-script-`basename $SHELL`)"
 
 # ---
 # Check an issue description and mark all tickets included.
