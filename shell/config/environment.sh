@@ -61,11 +61,13 @@ if [ -e $HOME/.bin ]; then
 fi
 
 # Ruby --------------------------------------------
-for i in $(ls -1 --color=never ~/.gem/ruby); do
-    if [[ -d "$HOME/.gem/ruby/$i/bin" ]]; then
-        export PATH=$HOME/.gem/ruby/$i/bin:$PATH
-    fi
-done
+if [[ -d ~/.gem/ruby ]]; then
+    for i in $(ls -1 --color=never ~/.gem/ruby); do
+        if [[ -d "$HOME/.gem/ruby/$i/bin" ]]; then
+            export PATH=$HOME/.gem/ruby/$i/bin:$PATH
+        fi
+    done;
+fi
 
 # Vim ---------------------------------------------
 if [[ -d /usr/share/nvim/runtime/ ]]; then
