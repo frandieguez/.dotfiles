@@ -46,10 +46,9 @@ if [ -d /usr/lib/jvm/default-runtime ]; then
   export JAVA_HOME=/usr/lib/jvm/default-runtime
 fi
 
-
-
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+if [ -d $HOME/.bin ]; then
+  export PATH=$PATH:$HOME/.bin/
+fi
 
 # Path variables
 if [ -d /usr/share/bin ]; then
