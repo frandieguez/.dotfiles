@@ -1,33 +1,30 @@
-# Vim-like keybindings
-
 # Index
-bind index j next-entry
-bind index k previous-entry
-bind pager J next-entry
-bind pager K previous-entry
-bind index J next-thread
-bind index K previous-thread
-
-bind index / search
-bind index ? search-reverse
-bind index n search-next
-bind index N search-opposite
-
-bind index g noop
-bind index gg first-entry
-bind index G last-entry
-
+bind index j   next-entry
+bind index k   previous-entry
+bind index J   next-thread
+bind index K   previous-thread
+bind index /   search
+bind index ?   search-reverse
+bind index n   search-next
+bind index N   search-opposite
+bind index g   noop
+bind index gg  first-entry
+bind index G   last-entry
 bind index \Cd half-down
 bind index \Cu half-up
+bind index l   collapse-thread
+bind index z   collapse-all
+bind index r   reply
+bind index R   group-reply
+bind index L   list-reply
+bind index h   limit
 
-bind index l collapse-thread
-bind index z collapse-all
-
-bind index r reply
-bind index R group-reply
-bind index L list-reply
-
-bind index h limit
+# Sidebar
+bind  index,pager \CP sidebar-prev
+bind  index,pager \CN sidebar-next
+bind  index,pager \CO sidebar-open
+macro index,pager b   '<enter-command>toggle sidebar_visible<enter>'
+bind  index       B   bounce-message
 
 # '?' is used for search-opposite
 bind index,pager H help
@@ -35,27 +32,35 @@ bind index,pager H help
 # Pager
 bind pager j next-line
 bind pager k previous-line
+bind pager J next-entry
+bind pager K previous-entry
 
 # The mouse wheel seems to send <up><up><up>/<down><down><down> by default with
 # GNOME Terminal. Use it to scroll through messages.
-bind pager <down> next-line
-bind pager <up>   previous-line
-
-bind pager / search
-bind pager ? search-reverse
-bind pager n search-next
-bind pager N search-opposite
-
-bind pager g noop
-bind pager gg top
-bind pager G bottom
-
-bind pager \Cd half-down
-bind pager \Cu half-up
-
-bind pager r reply
-bind pager R group-reply
-bind pager l list-reply
-bind pager L list-reply
-
+bind pager  <down>   next-line
+bind pager  <up>     previous-line
+bind pager  /        search
+bind pager  ?        search-reverse
+bind pager  n        search-next
+bind pager  N        search-opposite
+bind pager  g        noop
+bind pager  gg       top
+bind pager  G        bottom
+bind pager  \Cd      half-down
+bind pager  \Cu      half-up
+bind pager  r        reply
+bind pager  R        group-reply
+bind pager  l        list-reply
+bind pager  L        list-reply
 bind attach <return> view-mailcap
+
+# Macros
+macro index,pager s  '<sync-mailbox><shell-escape>~/.bin/mail-sync &<enter>'
+macro index,pager d  '<save-message>=<email>/Trash<enter>'
+macro index       gi '<change-folder>=<email>/Inbox<enter>'
+macro index       gt '<change-folder>=<email>/Trash<enter>'
+macro index       gs '<change-folder>=<email>/Sent<enter>'
+macro index       gp '<change-folder>=<email>/Spam<enter>'
+macro index       a  '<save-message>=<email>/Archives.'
+macro index       A  '<tag-prefix-cond><save-message>=<email>/Archives.'
+macro attach      W  '<save-entry><kill-line>~/Downloads'
