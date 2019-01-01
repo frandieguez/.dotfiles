@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/fran/Code/OpenHost/onm/onm-docker-dev/dockerfiles/onm-worker'
+let g:netrw_dirhist_2='/home/fran/.local/dots'
+let g:netrw_dirhist_3='/home/fran/.local/dots/shell'
+let g:netrw_dirhist_4='/home/fran/.local/dots/shell/functions'
+let g:netrw_dirhist_5='/home/fran/.local/dots'
+let g:netrw_dirhist_6='/home/fran/.local/dots/shell'
+let g:netrw_dirhist_7='/home/fran/.local/dots/shell/config'

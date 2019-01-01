@@ -1,0 +1,17 @@
+clear lock
+clear control
+
+!hjkl to arrow keys
+keysym h = h H Left NoSymbol NoSymbol NoSymbol
+keysym j = j J Down NoSymbol NoSymbol NoSymbol
+keysym k = k K Up NoSymbol NoSymbol NoSymbol
+keysym l = l L Right NoSymbol lstroke Lstroke
+
+!CapsLock to Control_L
+keycode 66 = Control_L
+
+!Tab to Mode_switch
+keycode 23 = Mode_switch ISO_Left_Tab Tab ISO_Left_Tab Tab ISO_Left_Tab
+keycode any = Tab
+
+add control = Control_L Control_R

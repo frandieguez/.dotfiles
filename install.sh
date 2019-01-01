@@ -1,27 +1,13 @@
 #!/bin/bash
 
 # ---
-# Outputs a message in green
-# ---
-echo_success() {
-    echo -e "\033[37;32m" $@ "\033[0m"
-}
-
-# ---
-# Outputs a message in red
-# ---
-echo_fail() {
-    echo -e "\033[1;5m" $@ "\033[0m"
-}
-
-# ---
-# Installs dotfiles.
+# Installs configurations.
 #
 # @param $1 The list of applications to install.
 # @param $2 The list of applications to ignore.
 # ---
-install_dotfiles() {
-    dotfiles=`ls | sed -e "/\(install.sh\|LICENSE\|README.md\)/d"`
+install_configs() {
+    dotfiles=`ls src/config`
 
     if [[ "$1" != "" ]]; then
         dotfiles=$1
@@ -33,11 +19,40 @@ install_dotfiles() {
     fi
 
     for dotfile in $dotfiles; do
-        if [ -f $dotfile ]; then
+        if [ -f src/config/$dotfile ]; then
             install_local $dotfile false
         fi
 
-        if [ -d $dotfile ]; then
+        if [ -d src/config/$dotfile ]; then
+            install_local config/$dotfile true
+        fi
+    done;
+}
+
+# ---
+# Installs dotfiles.
+#
+# @param $1 The list of applications to install.
+# @param $2 The list of applications to ignore.
+# ---
+install_dotfiles() {
+    dotfiles=`ls src --hide config`
+
+    if [[ "$1" != "" ]]; then
+        dotfiles=$1
+    fi
+
+    if [[ "$2" != "" ]]; then
+        toignore=$(echo $2 | sed -e "s/\s\+/\\\|/g")
+        dotfiles=$(echo $tools | sed -e "s/$toignore//g")
+    fi
+
+    for dotfile in $dotfiles; do
+        if [ -f src/$dotfile ]; then
+            install_local $dotfile false
+        fi
+
+        if [ -d src/$dotfile ]; then
             install_local $dotfile true
         fi
     done;
@@ -52,26 +67,23 @@ install_dotfiles() {
 install_local() {
     target="$HOME/.$1"
 
-    if [ $2 == true ]; then
-        target="$HOME/.config/$1"
-    fi
-
     if [ -f $target ] || [ -d $target ]; then
         return
     fi
 
     echo -n "Installing $1..."
-    ln -s $PWD/$1 $target > /dev/null 2>&1
+    ln -s $PWD/src/$1 $target > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
-        echo_fail "FAIL"
+        echo -e "\E[31;5mFAIL\033[0m"
         return
     fi
 
-    echo_success "DONE"
+    echo -e "\E[37;32mDONE\033[0m"
 
     # Execute post_install function if exists
-    type "post_install_$1" > /dev/null 2>&1 && post_install_$1
+    name=$(echo $1 | sed -e "s/config\///g")
+    type "post_install_$name" > /dev/null 2>&1 && post_install_$name
 }
 
 # ---
@@ -83,8 +95,6 @@ install_local() {
 # ---
 install_remote() {
     target="$HOME/.$1"
-
-    [[ -d $HOME/.config ]] || mkdir $HOME/.config;
 
     if [[ $2 == true ]]; then
         target="$HOME/.config/$1"
@@ -98,11 +108,11 @@ install_remote() {
     git clone $3 $target > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
-        echo_fail "FAIL"
+        echo -e "\E[31;5mFAIL\033[0m"
         return
     fi
 
-    echo_success "DONE"
+    echo -e "\E[37;32mDONE\033[0m"
 }
 
 # ---
@@ -156,9 +166,9 @@ post_install_gitconfig() {
         read -e -p "  Name: " username
         read -e -p "  Email: " email
 
-        echo "[user]" >> $HOME/.gitconfig-additional
-        echo "    name = " $username >> $HOME/.gitconfig-additional
-        echo "    email = " $email >> $HOME/.gitconfig-additional
+        echo "[user]" >> $HOME/.gitconfig
+        echo "    name = " $username >> $HOME/.gitconfig
+        echo "    email = " $email >> $HOME/.gitconfig
     fi
 }
 
@@ -174,7 +184,8 @@ post_install_githooks() {
 # ---
 post_install_muttrc() {
     # Ask for user and email for mutt
-    if [ "`grep -e '<email>' $HOME/.muttrc`" == "" ]; then
+    if [ "`grep -e '<email>' $HOME/.muttrc`" == "" ] \
+            && [ "`grep -e '<email>' $HOME/.config/mutt/mapping`" == "" ]; then
         return
     fi
 
@@ -186,6 +197,7 @@ post_install_muttrc() {
 
         sed --follow-symlinks -i -e "s/<account>/$account/g" $HOME/.muttrc
         sed --follow-symlinks -i -e "s/<email>/$email/g"     $HOME/.muttrc
+        sed --follow-symlinks -i -e "s/<email>/$email/g"     $HOME/.config/mutt/mapping
     fi
 }
 
@@ -244,14 +256,8 @@ post_install_offlineimaprc() {
     fi
 }
 
-# ---
-# Executes post-installation commands after symlinking rofi file.
-# ---
-post_install_rofi() {
-  dconf load / < ~/.config/rofi/gnome-rofi-keybindings
-}
-
 main() {
+    configs=true
     dotfiles=true
     tools=true
     ignore=false
@@ -280,6 +286,7 @@ main() {
     done
 
     [ $dotfiles == true ] && install_dotfiles "$toinstall" "$toignore"
+    [ $configs == true ]  && install_configs  "$toinstall" "$toignore"
     [ $tools == true ]    && install_tools    "$toinstall" "$toignore"
 }
 
@@ -290,13 +297,14 @@ main() {
 # ---
 usage() {
     if [ "$*" != "" ] ; then
-        echo -e "\003[31;5minstall.sh: $*\033[0m"
+        echo -e "\E[31;5minstall.sh: $*\033[0m"
         echo "";
     fi
 
     echo "Usage: install.sh [OPTION] [TOOL]"
     echo "Installs all dotfiles and tools or the list of selected tools"
     echo ""
+    echo "  -c, --no-configs     The script does not install configurations"
     echo "  -d, --no-dotfiles    The script does not install dotfiles"
     echo "  -i, --ignore <tool>  The list of tools to ignore"
     echo "  -t, --no-tools       The script does not install tools"
