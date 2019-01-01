@@ -78,17 +78,3 @@ push <collapse-all><last-entry>
 source ~/.config/mutt/alias
 source ~/.config/mutt/mapping
 source ~/.config/mutt/theme
-
-# Folder hooks
-folder-hook 'account.com.mabishu.fran.dieguez' 'source ~/.mutt/account.com.mabishu.fran.dieguez'
-folder-hook 'account.es.openhost.fran' 'source ~/.mutt/account.es.openhost.fran'
-
-# Default account
-source ~/.config/mutt/account.com.mabishu.fran.dieguez
-
-# Macros for switching accounts
-macro index <f2> '<sync-mailbox><enter-command>source ~/.config/mutt/com.mabishu.fran.dieguez<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.config/mutt/account.es.openhost.fran<enter><change-folder>!<enter>'
-
-# Fetch mail shortcut
-bind index G imap-fetch-mail
