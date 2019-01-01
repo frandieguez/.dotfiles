@@ -1,78 +1,20 @@
 # Editor  ------------------------------------------
 export EDITOR=vim
+export VISUAL=vim
 
-# Android ------------------------------------------
-if [ -e $HOME/.android-sdk-linux ]; then
-  export ANDROID_HOME=$HOME/.android-sdk-linux
-  export PATH=$PATH:$ANDROID_HOME/tools
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
+# Use neovim if available
+if type nvim > /dev/null; then
+    export EDITOR=nvim
+    alias vim=nvim
 fi
 
-# Composer -----------------------------------------
-if [ -e $HOME/.composer/bin ]; then
-  export PATH=$PATH:~/.composer/vendor/bin
-fi
-if [ -d $HOME/.devtools/vendor/bin ]; then
-    export PATH=$HOME/.devtools/vendor/bin:$PATH
-fi
-
-# Node.js ------------------------------------------
-if [ -d $HOME/.devtools/node_modules/.bin ]; then
-    export PATH=$HOME/.devtools/node_modules/.bin:$PATH
-fi
-if [ -f /usr/share/nvm/init-nvm.sh ]; then
-    source /usr/share/nvm/init-nvm.sh
-fi
-
-# GitHooks -----------------------------------------
-if [ -d $HOME/.git-hooks ]; then
-    export PATH=$HOME/.git-hooks/:$PATH
-fi
-
-# Golang ------------------------------------------
-if [ -e $HOME/.goenv ]; then
-  export PATH="$HOME/.goenv/bin:$PATH"
-  eval "$(goenv init -)"
-  export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
-fi
-
-export GOPATH="$HOME/Code/go"
-export PATH=$GOPATH/bin:$PATH
-
-alias gopath='cd $GOPATH'
-
-# Java --------------------------------------------
-if [ -d /usr/lib/jvm/default-runtime ]; then
-  export JAVA_HOME=/usr/lib/jvm/default-runtime
-fi
-
-if [ -d $HOME/.bin ]; then
-  export PATH=$PATH:$HOME/.bin/
-fi
-
-# Path variables
-if [ -d /usr/share/bin ]; then
-    export PATH=/usr/share/bin:$PATH
-fi
-
-if [ -e $HOME/.bin ]; then
-  export PATH=$PATH:$HOME/.bin
-fi
-
-# Ruby --------------------------------------------
-if [[ -d ~/.gem/ruby ]]; then
-    for i in $(ls -1 --color=never ~/.gem/ruby); do
-        if [[ -d "$HOME/.gem/ruby/$i/bin" ]]; then
-            export PATH=$HOME/.gem/ruby/$i/bin:$PATH
-        fi
-    done;
-fi
-
-# Vim ---------------------------------------------
-if [[ -d /usr/share/nvim/runtime/ ]]; then
-  export VIMRUNTIME=/usr/share/nvim/runtime/
-fi
-
-if [[ -d /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/ ]]; then
-  export VIMRUNTIME=/usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/
-fi
+# Language
+export LC_ALL=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
