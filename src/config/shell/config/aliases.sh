@@ -120,16 +120,22 @@ alias cpuinfo='lscpu'
 
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
 # OS Upgrade aliases
-if [[ -e /etc/os-release ]]; then
-  case `cat /etc/os-release|grep "ID="|cut -f2 -d"="` in
-    "arch")
+if [[ ! -e "/etc/os-release" ]];
+then
+    echo "No os-release"
+else
+  distribution=`cat /etc/os-release|grep "ID="|cut -f2 -d"="`
+
+  case "$distribution" in
+    arch* )
       alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*' # Cleans automatically installed deps
       alias os-upgrade='sudo pacman -Syuu; yay -Syyua --noconfirm'
       alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u ) <(pacman -Qlq | sort -u)" # Show dirs that don't belong to any package
       alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u ) <(pacman -Qlq | sort -u)" # Show files that don't belong to any package:
       ;;
-    "ubuntu")
+    ubuntu )
       alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
       alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
       ;;
@@ -137,8 +143,6 @@ if [[ -e /etc/os-release ]]; then
       echo "No os-release compatible"
     ;;
   esac
-else
-  echo "No os-release"
 fi
 
 # One of @janmoesen’s ProTip™s
