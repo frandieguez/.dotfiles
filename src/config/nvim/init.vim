@@ -76,7 +76,6 @@ Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/po.vim--Jelenak'
 Plug 'w0ng/vim-hybrid'
 Plug 'wesQ3/vim-windowswap'
-Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
 if has('nvim')
