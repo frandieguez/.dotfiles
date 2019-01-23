@@ -130,7 +130,7 @@ else
 
   case "$distribution" in
     arch* )
-      alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*' # Cleans automatically installed deps
+      alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo yay -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*' # Cleans automatically installed deps
       alias os-upgrade='sudo pacman -Syuu; yay -Syyua --noconfirm'
       alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u ) <(pacman -Qlq | sort -u)" # Show dirs that don't belong to any package
       alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u ) <(pacman -Qlq | sort -u)" # Show files that don't belong to any package:
