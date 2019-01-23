@@ -1,6 +1,7 @@
 # Android ------------------------------------------
-if [ -e $HOME/.android-sdk-linux ]; then
-  export ANDROID_HOME=$HOME/.android-sdk-linux
+if [ -e $HOME/Code/Android ]; then
+  export ANDROID_HOME=$HOME/Code/Android
+  export ANDROID_SDK_ROOT=$HOME/Code/Android
   export PATH=$PATH:$ANDROID_HOME/tools
   export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
