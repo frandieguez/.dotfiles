@@ -47,7 +47,6 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'kentaro/vim-textobj-function-php'
-Plug 'leafgarland/typescript-vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
@@ -85,7 +84,6 @@ if has('nvim')
   Plug 'Shougo/echodoc.vim' " (Optional) Showing function signature and inline doc.
   Plug 'autozimu/LanguageClient-neovim', { 'branch' : 'next', 'do': 'bash install.sh'  }
   Plug 'junegunn/fzf' " (Optional) Multi-entry selection UI.
-  Plug 'mhartington/ncm2-typescript'
   Plug 'ncm2/ncm2'
   Plug 'ncm2/ncm2-bufword'
   Plug 'ncm2/ncm2-cssomni'
