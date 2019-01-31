@@ -1,41 +1,39 @@
+# Array that will contain the list of paths --------
+PATH_ARRAY=()
+
 # Android ------------------------------------------
 if [ -e $HOME/Code/Android ]; then
   export ANDROID_HOME=$HOME/Code/Android
   export ANDROID_SDK_ROOT=$HOME/Code/Android
-  export PATH=$PATH:$ANDROID_HOME/tools
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
+  PATH_ARRAY+=$ANDROID_HOME/tools
+  PATH_ARRAY+=$ANDROID_HOME/platform-tools
 fi
 
 # Composer -----------------------------------------
-if [ -e $HOME/.composer/bin ]; then
-  export PATH=$PATH:~/.composer/vendor/bin
-fi
-if [ -d $HOME/.devtools/vendor/bin ]; then
-    export PATH=$HOME/.devtools/vendor/bin:$PATH
-fi
+PATH_ARRAY+=$HOME/.composer/vendor/bin
 
 # Node.js ------------------------------------------
-if [ -d $HOME/.devtools/node_modules/.bin ]; then
-    export PATH=$HOME/.devtools/node_modules/.bin:$PATH
-fi
+PATH_ARRAY+=$HOME/.devtools/node_modules/.bin
+PATH_ARRAY+=$HOME/.config/yarn/global/node_modules/.bin/
+
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
 
+
 # GitHooks -----------------------------------------
-if [ -d $HOME/.git-hooks ]; then
-    export PATH=$HOME/.git-hooks/:$PATH
-fi
+PATH_ARRAY+=$HOME/.git-hooks/
 
 # Golang ------------------------------------------
+PATH_ARRAY+=$HOME/.goenv/bin
+
+export GOPATH="$HOME/Code/go"
+PATH_ARRAY+=$GOPATH/bin
+
 if [ -e $HOME/.goenv ]; then
-  export PATH="$HOME/.goenv/bin:$PATH"
   eval "$(goenv init -)"
   export GOROOT="`echo $HOME`/.goenv/versions/$(goenv version)/"
 fi
-
-export GOPATH="$HOME/Code/go"
-export PATH=$GOPATH/bin:$PATH
 
 alias gopath='cd $GOPATH'
 
@@ -44,33 +42,23 @@ if [ -d /usr/lib/jvm/default-runtime ]; then
   export JAVA_HOME=/usr/lib/jvm/default-runtime
 fi
 
-if [ -d $HOME/.bin ]; then
-  export PATH=$PATH:$HOME/.bin/
-fi
+# Local .bin folder -------------------------------
+PATH_ARRAY+=$HOME/.bin
 
-# Path variables
-if [ -d /usr/share/bin ]; then
-    export PATH=/usr/share/bin:$PATH
-fi
-
-if [ -e $HOME/.bin ]; then
-  export PATH=$PATH:$HOME/.bin
-fi
+# Path variable -----------------------------------
+PATH_ARRAY+=/usr/share/bin
 
 # Ruby --------------------------------------------
 if [[ -d ~/.gem/ruby ]]; then
     for i in $(ls -1 --color=never ~/.gem/ruby); do
         if [[ -d "$HOME/.gem/ruby/$i/bin" ]]; then
-            export PATH=$HOME/.gem/ruby/$i/bin:$PATH
+            PATH_ARRAY+=$HOME/.gem/ruby/$i/bin
         fi
     done;
 fi
 
-# Vim ---------------------------------------------
-if [[ -d /usr/share/nvim/runtime/ ]]; then
-  export VIMRUNTIME=/usr/share/nvim/runtime/
-fi
-
-if [[ -d /usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/ ]]; then
-  export VIMRUNTIME=/usr/local/Cellar/neovim/0.3.1/share/nvim/runtime/
-fi
+# Add the list of paths into $PATH
+for i in "${PATH_ARRAY[@]}"
+do
+    export PATH=$PATH:$i
+done
