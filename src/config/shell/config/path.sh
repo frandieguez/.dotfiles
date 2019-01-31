@@ -13,7 +13,6 @@ fi
 PATH_ARRAY+=$HOME/.composer/vendor/bin
 
 # Node.js ------------------------------------------
-PATH_ARRAY+=$HOME/.devtools/node_modules/.bin
 PATH_ARRAY+=$HOME/.config/yarn/global/node_modules/.bin/
 
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
