@@ -3,8 +3,8 @@ PATH_ARRAY=()
 
 # Android ------------------------------------------
 if [ -e $HOME/Code/Android ]; then
-  export ANDROID_HOME=$HOME/Code/Android
-  export ANDROID_SDK_ROOT=$HOME/Code/Android
+  export ANDROID_HOME=$HOME/Code/Android/Sdk
+  export ANDROID_SDK_ROOT=$HOME/Code/Android/Sdk
   PATH_ARRAY+=$ANDROID_HOME/tools
   PATH_ARRAY+=$ANDROID_HOME/platform-tools
 fi
