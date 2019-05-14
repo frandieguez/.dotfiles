@@ -28,14 +28,14 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/tmux
   zgen oh-my-zsh plugins/tmuxinator
   zgen oh-my-zsh plugins/yarn
-  zgen oh-my-zsh themes/murilasso
 
   zgen load willghatch/zsh-snippets
   zgen load zsh-users/zsh-autosuggestions
   zgen load zsh-users/zsh-history-substring-search
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load denysdovhan/spaceship-prompt spaceship
 
-  zgen load ~/.config/zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
+  # zgen load ~/.config/zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
   zgen save
 fi
