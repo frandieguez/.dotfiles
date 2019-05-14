@@ -20,7 +20,7 @@ if has("nvim")
     command! W w !sudo -n tee % > /dev/null || echo "Press <leader>w to authenticate and try again"
     map <leader>w :new<cr>:term sudo true<cr>
 else
-    command! w w !sudo tee % > /dev/null
+    command! W w !sudo tee % > /dev/null
 endif
 
 " Split shortcuts
