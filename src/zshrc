@@ -39,6 +39,12 @@ if ! zgen saved; then
 
   zgen save
 fi
+SPACESHIP_HOST_SHOW=false
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_GIT_SYMBOL=""
+SPACESHIP_GIT_BRANCH_COLOR="green"
+SPACESHIP_GIT_STATUS_PREFIX="("
+SPACESHIP_GIT_STATUS_SUFFIX=")"
 
 # Load zsh configuration
 for file in ~/.config/zsh/(config|functions)/*; do
