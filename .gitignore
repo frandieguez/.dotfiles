@@ -17,6 +17,7 @@ src/config/nvim/autoload/theme.vim
 src/config/nvim/colors
 src/config/nvim/plugged
 src/config/nvim/session
+src/config/nvim/.netrwhist
 
 # ranger
 src/config/ranger/__pycache__
