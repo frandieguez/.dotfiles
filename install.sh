@@ -153,7 +153,7 @@ install_tools() {
 # @param $2 The list of applications to ignore.
 # ---
 install_systools() {
-    tools="autojump catimg tig jq otf-fira-code chromium-widevine visual-studio-code-bin"
+    tools="autojump catimg tig jq thefuck tmux otf-fira-code chromium-vaapi-bin chromium-widevine visual-studio-code-bin"
 
     for tool in $tools; do
         pacman -Q $tool > /dev/null || yay -S --noconfirm $tool
@@ -305,10 +305,10 @@ main() {
         shift;
     done
 
-    [ $systools == true ] && install_systools "$toinstall" "$toignore"
-    [ $dotfiles == true ] && install_dotfiles "$toinstall" "$toignore"
-    [ $configs == true ]  && install_configs  "$toinstall" "$toignore"
-    [ $tools == true ]    && install_tools    "$toinstall" "$toignore"
+    [ $tools ]    && install_tools    "$toinstall" "$toignore"
+    [ $dotfiles ] && install_dotfiles "$toinstall" "$toignore"
+    [ $configs ]  && install_configs  "$toinstall" "$toignore"
+    [ $systools ] && install_systools "$toinstall" "$toignore"
 }
 
 # ---
