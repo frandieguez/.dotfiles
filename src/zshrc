@@ -17,6 +17,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/wd
   zgen oh-my-zsh plugins/web-search
+  zgen oh-my-zsh plugins/autojump
 
   # System
   zgen oh-my-zsh plugins/archlinux
