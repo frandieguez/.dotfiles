@@ -122,7 +122,7 @@ install_remote() {
 # @param $2 The list of applications to ignore.
 # ---
 install_tools() {
-    tools="git-hooks fonts zgen"
+    tools="git-hooks fonts zgen asdf"
 
     if [[ $1 != "" ]]; then
         tools=$1
@@ -141,6 +141,10 @@ install_tools() {
 
     echo $tools | grep "zgen" > /dev/null && \
         install_remote zgen false https://github.com/tarjoilija/zgen.git
+
+    echo $tools | grep "asdf" > /dev/null && \
+        install_remote asdf false https://github.com/asdf-vm/asdf.git
+}
 
 # ---
 # Installs external applications.
