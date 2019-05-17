@@ -15,6 +15,7 @@ if ! zgen saved; then
   # Dev
   zgen oh-my-zsh plugins/bower
   zgen oh-my-zsh plugins/capistrano
+  zgen oh-my-zsh plugins/asdf
   zgen oh-my-zsh plugins/colorize
   zgen oh-my-zsh plugins/composer
   zgen oh-my-zsh plugins/docker
