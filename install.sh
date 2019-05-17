@@ -141,6 +141,19 @@ install_tools() {
 
     echo $tools | grep "zgen" > /dev/null && \
         install_remote zgen false https://github.com/tarjoilija/zgen.git
+
+# ---
+# Installs external applications.
+#
+# @param $1 The list of applications to install.
+# @param $2 The list of applications to ignore.
+# ---
+install_systools() {
+    tools="autojump catimg tig jq otf-fira-code chromium-widevine visual-studio-code-bin"
+
+    for tool in $tools; do
+        pacman -Q $tool > /dev/null || yay -S --noconfirm $tool
+    done
 }
 
 # ---
@@ -260,6 +273,7 @@ main() {
     configs=true
     dotfiles=true
     tools=true
+    systools=true
     ignore=false
     ignoring=false
     toinstall=""
@@ -276,6 +290,8 @@ main() {
 
             -t | --no-tools )    ignoring=false; tools=false ;;
 
+            -s | --no-systools ) ignoring=false; systools=false ;;
+
             -*)                  usage "Unknown option '$1'" ;;
             * )                  [ $ignoring == true ] && \
                                     toignore="$toignore $1" || \
@@ -285,6 +301,7 @@ main() {
         shift;
     done
 
+    [ $systools == true ] && install_systools "$toinstall" "$toignore"
     [ $dotfiles == true ] && install_dotfiles "$toinstall" "$toignore"
     [ $configs == true ]  && install_configs  "$toinstall" "$toignore"
     [ $tools == true ]    && install_tools    "$toinstall" "$toignore"
