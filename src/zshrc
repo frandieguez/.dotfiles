@@ -5,6 +5,7 @@ if ! zgen saved; then
 
   # Base
   zgen oh-my-zsh plugins/colored-man-pages
+  zgen oh-my-zsh plugins/extract
   zgen oh-my-zsh plugins/history
   zgen oh-my-zsh plugins/lol
   zgen oh-my-zsh plugins/vi-mode
