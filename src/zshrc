@@ -25,9 +25,8 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/tmuxinator
 
   # Dev
-  zgen oh-my-zsh plugins/bower
-  zgen oh-my-zsh plugins/capistrano
   zgen oh-my-zsh plugins/asdf
+  zgen oh-my-zsh plugins/blundler
   zgen oh-my-zsh plugins/composer
   zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/git
@@ -35,8 +34,11 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/git-flow
   zgen oh-my-zsh plugins/golang
   zgen oh-my-zsh plugins/kubectl
+  zgen oh-my-zsh plugins/node
+  zgen oh-my-zsh plugins/npm
   zgen oh-my-zsh plugins/redis-cli
-  zgen oh-my-zsh plugins/sublime
+  zgen oh-my-zsh plugins/tig
+  zgen oh-my-zsh plugins/vscode
   zgen oh-my-zsh plugins/yarn
 
   zgen load denysdovhan/spaceship-prompt spaceship
