@@ -4,13 +4,18 @@ if ! zgen saved; then
   zgen oh-my-zsh
 
   # Base
-  zgen oh-my-zsh plugins/archlinux
   zgen oh-my-zsh plugins/colored-man-pages
   zgen oh-my-zsh plugins/history
   zgen oh-my-zsh plugins/lol
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/wd
   zgen oh-my-zsh plugins/web-search
+  
+  # System
+  zgen oh-my-zsh plugins/archlinux
+  zgen oh-my-zsh plugins/systemd
+  zgen oh-my-zsh plugins/tmux
+  zgen oh-my-zsh plugins/tmuxinator
 
   # Dev
   zgen oh-my-zsh plugins/bower
@@ -26,8 +31,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/kubectl
   zgen oh-my-zsh plugins/redis-cli
   zgen oh-my-zsh plugins/sublime
-  zgen oh-my-zsh plugins/tmux
-  zgen oh-my-zsh plugins/tmuxinator
   zgen oh-my-zsh plugins/yarn
 
   zgen load willghatch/zsh-snippets
