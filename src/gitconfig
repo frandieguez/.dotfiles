@@ -104,3 +104,5 @@ remote = green
     autosquash = true
 [status]
     showUntrackedFiles = all
+[credential]
+	helper = cache --timeout=36000
