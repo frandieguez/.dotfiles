@@ -41,8 +41,8 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/vscode
   zgen oh-my-zsh plugins/yarn
 
+  # Theme
   zgen load denysdovhan/spaceship-prompt spaceship
-
   # zgen load ~/.config/zsh/oh-my-zsh-themes/frandieguez-v1.zsh-theme
 
   zgen save
