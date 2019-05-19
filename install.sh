@@ -116,13 +116,41 @@ install_remote() {
 }
 
 # ---
+# Installs fonts.
+#
+# ---
+install_fonts() {
+    fonts=" \
+        noto-fonts-emoji \
+        ttf-emojione \
+        ttf-emojione-color \
+        ttf-bitstream-vera ttf-dejavu \
+        nerd-fonts-fira-code \
+        nerd-fonts-hack \
+        nerd-fonts-source-code-pro \
+        nerd-fonts-inconsolata \
+        nerd-fonts-terminus \
+        nerd-fonts-fira-mono \
+        nerd-fonts-droid-sans-mono \
+    "
+
+    for font in $fonts; do
+        pacman -Q $font > /dev/null || yay -S --noconfirm $tool
+    done
+
+    #echo $tools | grep "fonts" > /dev/null && \
+        #install_remote fonts false https://github.com/powerline/fonts.git
+}
+
+
+# ---
 # Installs external applications.
 #
 # @param $1 The list of applications to install.
 # @param $2 The list of applications to ignore.
 # ---
 install_tools() {
-    tools="git-hooks fonts zgen asdf"
+    tools="git-hooks zgen asdf"
 
     if [[ $1 != "" ]]; then
         tools=$1
@@ -135,9 +163,6 @@ install_tools() {
 
     echo $tools | grep "git-hooks" > /dev/null && \
         install_remote git-hooks false https://github.com/dhellmann/git-hooks.git
-
-    echo $tools | grep "fonts" > /dev/null && \
-        install_remote fonts false https://github.com/powerline/fonts.git
 
     echo $tools | grep "zgen" > /dev/null && \
         install_remote zgen false https://github.com/tarjoilija/zgen.git
@@ -153,7 +178,17 @@ install_tools() {
 # @param $2 The list of applications to ignore.
 # ---
 install_systools() {
-    tools="autojump catimg tig jq thefuck tmux otf-fira-code chromium-vaapi-bin chromium-widevine visual-studio-code-bin"
+    tools=" \
+        autojump \
+        catimg \
+        tig \
+        jq \
+        thefuck \
+        tmux \
+        chromium-vaapi-bin \
+        chromium-widevine \
+        visual-studio-code-bin \
+    "
 
     for tool in $tools; do
         pacman -Q $tool > /dev/null || yay -S --noconfirm $tool
@@ -276,6 +311,7 @@ post_install_offlineimaprc() {
 main() {
     configs=true
     dotfiles=true
+    fonts=true
     tools=true
     systools=true
     ignore=false
@@ -288,6 +324,8 @@ main() {
             -h | --help )        usage ;;
 
             -d | --no-dotfiles ) ignoring=false; dotfiles=false ;;
+
+            -f | --no-fonts ) ignoring=false; fonts=false ;;
 
             -i | --ignore )      ignoring=true ;;
             --ignore=*    )      toignore=`echo $1 | sed -e "s/--ignore=//g"` ;;
@@ -305,6 +343,7 @@ main() {
         shift;
     done
 
+    [ $fonts ]    && install_fonts    "$toinstall" "$toignore"
     [ $tools ]    && install_tools    "$toinstall" "$toignore"
     [ $dotfiles ] && install_dotfiles "$toinstall" "$toignore"
     [ $configs ]  && install_configs  "$toinstall" "$toignore"
@@ -329,6 +368,8 @@ usage() {
     echo "  -d, --no-dotfiles    The script does not install dotfiles"
     echo "  -i, --ignore <tool>  The list of tools to ignore"
     echo "  -t, --no-tools       The script does not install tools"
+    echo "  -s, --no-systools    The script does not install system tools"
+    echo "  -t, --no-fonts       The script does not install fonts"
 
     exit 0;
 }
