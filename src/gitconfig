@@ -69,7 +69,7 @@ remote = green
 [core]
     filemode = false
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = nvim
     whitespace = trailing-space,space-before-tab
 [diff]
     mnemonicprefix = true
