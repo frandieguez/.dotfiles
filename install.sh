@@ -169,6 +169,11 @@ install_tools() {
 
     echo $tools | grep "asdf" > /dev/null && \
         install_remote asdf false https://github.com/asdf-vm/asdf.git
+
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+
+    curl https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/nord --output ~/.Xresources
+
 }
 
 # ---
