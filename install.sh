@@ -172,8 +172,9 @@ install_tools() {
 
     git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
-    curl https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/nord --output ~/.Xresources
+    curl -q https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/nord --output ~/.Xresources
 
+    curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml
 }
 
 # ---
