@@ -28,3 +28,4 @@ src/config/ranger/plugins
 
 # tmux
 src/config/tmux/theme.conf
+src/config/tmux/plugins/tpm/
