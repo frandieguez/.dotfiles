@@ -122,6 +122,7 @@ install_remote() {
 install_fonts() {
     fonts=" \
         noto-fonts-emoji \
+        ttf-cascadia-code \
         ttf-emojione \
         ttf-emojione-color \
         ttf-bitstream-vera ttf-dejavu \
