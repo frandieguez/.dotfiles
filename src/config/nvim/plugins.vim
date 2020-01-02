@@ -213,10 +213,19 @@ set hidden
 let g:vdebug_options = {
   \ 'port' : 9001,
   \ 'path_maps' : {
-  \   '/home/opennemas/current' : '/home/fran/vms/onm-docker-dev/volumes/onm/'
+  \   'path/in/container' : 'path/in/computer'
   \ }
 \ }
 
 
 " Vim
 let g:indentLine_color_term = 239
+
+let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-pairs',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-json',
+    \ 'coc-prettier'
+    \ ]

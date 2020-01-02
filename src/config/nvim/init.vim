@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-obsession' " Required to be at the top because others depend on it
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Xuyuanp/nerdtree-git-plugin'
