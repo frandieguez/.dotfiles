@@ -61,6 +61,7 @@ alias la="ls -la ${colorflag}" # List all files colorized in long format, includ
 alias lsd='ls -l | grep "^d"' # List only directories
 alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"127.0.0.1\", 25), None); asyncore.loop()'"
 alias map="xargs -n1"
+alias mirror-update="sudo reflector --latest 200 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 alias music=ncmpcpp
 alias mux="tmuxinator"
 alias nf='neofetch --ascii ~/.neofetch --ascii_colors 18 25 39'

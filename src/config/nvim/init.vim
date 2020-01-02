@@ -53,7 +53,7 @@ Plug 'mrtazz/simplenote.vim'
 Plug 'neomake/neomake'
 Plug 'plasticboy/vim-markdown'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/NERDCommenter'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'stanangeloff/php.vim'
 Plug 'stephpy/vim-php-cs-fixer'
