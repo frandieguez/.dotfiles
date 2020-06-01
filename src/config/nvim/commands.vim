@@ -9,7 +9,6 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.done,*.todo,*.task set filetype=taskpaper
 autocmd BufWritePre * :call Preserve(":call TrimWhiteSpaces()")
 autocmd BufRead,BufNewFile *.tpl,*.twig set filetype=html
-autocmd BufWritePost *.* Neomake
 autocmd BufWritePost *.less :silent !find public/themes public/assets -name main.less | xargs touch
 
 autocmd User NeomakeFinished call lightline#update()

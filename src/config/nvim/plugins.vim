@@ -72,11 +72,15 @@ let g:lightline = {
     \     'mode': 'LightlineMode',
     \ },
     \ 'component_expand': {
-    \   'neomake': 'LightlineNeomake',
-    \   'debug': 'LightlineDebug'
+    \     'debug':    'LightlineDebug',
+    \     'errors':   'LightlineNeomakeErrors',
+    \     'neomake':  'LightlineNeomake',
+    \     'warnings': 'LightlineNeomakeWarnings',
     \ },
     \ 'component_type': {
-    \   'debug': 'warning',
+    \   'warnings': 'warning',
+    \   'errors':  'error',
+    \   'debug':   'info',
     \   'neomake': 'error',
     \ },
     \ 'separator': { 'left': '', 'right': ''  },

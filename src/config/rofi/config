@@ -17,11 +17,11 @@ rofi.line-margin:         10
 rofi.fullscreen:          true
 rofi.fake-transparency:   true
 rofi.kb-remove-char-back: BackSpace
-rofi.kb-remove-to-eol:    Control+BackSpace
+#rofi.kb-remove-to-eol:    Control+BackSpace
 rofi.kb-accept-entry:     Return
-rofi.kb-mode-next:        Shift+Right,Control+l,Control+Tab
-rofi.kb-mode-previous:    Shift+Left,Control+h,Control+Shift+Tab
-rofi.kb-row-up:           Up,Control+k,Shift+Tab
-rofi.kb-row-down:         Down,Control+j,Tab
+rofi.kb-mode-next:        Shift+Right,Control+l
+rofi.kb-mode-previous:    Shift+Left,Control+h
+rofi.kb-row-up:           Up
+rofi.kb-row-down:         Down,Control+j
 
 

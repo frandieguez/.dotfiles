@@ -1,8 +1,8 @@
 function! CtrlPStatusMain(focus, byfname, regex, prev, item, next, marked)
     let g:lightline.ctrlp_regex = a:regex
-    let g:lightline.ctrlp_prev = a:prev
-    let g:lightline.ctrlp_item = a:item
-    let g:lightline.ctrlp_next = a:next
+    let g:lightline.ctrlp_prev  = a:prev
+    let g:lightline.ctrlp_item  = a:item
+    let g:lightline.ctrlp_next  = a:next
     return lightline#statusline(0)
 endfunction
 
@@ -10,6 +10,7 @@ function! CtrlPStatusProg(str)
     return lightline#statusline(0)
 endfunction
 
+" Goyo
 function! GoyoEnter()
   set noshowmode
   set noshowcmd
@@ -37,11 +38,12 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
 endfunction
 
+" Lightline
 function! LightlineCtrlP()
     if expand('%:t') =~ 'ControlP'
         call lightline#link('iR'[g:lightline.ctrlp_regex])
-        return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-                    \ , g:lightline.ctrlp_next], 0)
+        return lightline#concatenate([ g:lightline.ctrlp_prev,
+                    \g:lightline.ctrlp_item, g:lightline.ctrlp_next], 0)
     else
         return ''
     endif
@@ -121,6 +123,24 @@ endfunction
 
 function! LightlineNeomake()
     return neomake#statusline#LoclistStatus()
+endfunction
+
+function! LightlineNeomakeErrors()
+    return substitute(
+        \ substitute(neomake#statusline#LoclistStatus(), 'W:.*', '', ''),
+        \ 'E:\([0-9]\+\).*',
+        \ ' \1',
+        \ ''
+    \ )
+endfunction
+
+function! LightlineNeomakeWarnings()
+    return substitute(
+        \ substitute(neomake#statusline#LoclistStatus(), 'E:\([0-9]\+\)', '', ''),
+        \ '.*W:\([0-9]\+\)',
+        \ ' \1',
+        \ ''
+    \ )
 endfunction
 
 " Called once right before you start selecting multiple cursors
