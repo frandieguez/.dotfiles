@@ -45,6 +45,7 @@ alias g="git"
 alias gcal=gcalcli
 alias git-things-in-develop="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master..develop --no-merges"
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`' # git root
+alias gpnv='git push --no-verify'
 alias gs='gss'
 alias hl='hamster list'
 alias home='cd ~ && clear'
@@ -153,3 +154,4 @@ done
 
 
 alias restartshell="exec $SHELL -l"
+alias pullandmerge="git checkout $1; git pull --rebase; git merge --no-ff $2"
