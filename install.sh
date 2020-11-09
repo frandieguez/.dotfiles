@@ -120,25 +120,7 @@ install_remote() {
 #
 # ---
 install_fonts() {
-    fonts=" \
-        noto-fonts-emoji \
-        ttf-cascadia-code \
-        ttf-emojione \
-        ttf-emojione-color \
-        ttf-bitstream-vera ttf-dejavu \
-        nerd-fonts-fira-code \
-        nerd-fonts-hack \
-        nerd-fonts-source-code-pro \
-        nerd-fonts-inconsolata \
-        nerd-fonts-terminus \
-        nerd-fonts-fira-mono \
-        nerd-fonts-droid-sans-mono \
-    "
-
-    for font in $fonts; do
-        pacman -Q $font > /dev/null || yay -S --noconfirm $tool
-    done
-
+    return;
     #echo $tools | grep "fonts" > /dev/null && \
         #install_remote fonts false https://github.com/powerline/fonts.git
 }
@@ -171,7 +153,9 @@ install_tools() {
     echo $tools | grep "asdf" > /dev/null && \
         install_remote asdf false https://github.com/asdf-vm/asdf.git
 
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    if [ -d $HOME/.config/tmux/.plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    fi
 
     curl -q https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/nord --output ~/.Xresources
 
@@ -185,21 +169,7 @@ install_tools() {
 # @param $2 The list of applications to ignore.
 # ---
 install_systools() {
-    tools=" \
-        autojump \
-        catimg \
-        tig \
-        jq \
-        thefuck \
-        tmux \
-        chromium-vaapi-bin \
-        chromium-widevine \
-        visual-studio-code-bin \
-    "
-
-    for tool in $tools; do
-        pacman -Q $tool > /dev/null || yay -S --noconfirm $tool
-    done
+    grep -v '#' ./src/packages/archlinux | yay -S --noconfirm $tool
 }
 
 # ---
