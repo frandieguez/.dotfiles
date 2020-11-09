@@ -1,3 +1,4 @@
+# Base packages from Manjaro
 acpilight
 adwaita-qt
 alacarte
@@ -66,13 +67,6 @@ mhwd
 mousetweaks
 nautilus-admin
 ncdu
-nerd-fonts-droid-sans-mono
-nerd-fonts-fira-code
-nerd-fonts-fira-mono
-nerd-fonts-hack
-nerd-fonts-inconsolata
-nerd-fonts-source-code-pro
-nerd-fonts-terminus
 networkmanager-openconnect
 networkmanager-openvpn
 networkmanager-pptp
@@ -122,3 +116,14 @@ zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
+
+# My packages
+autojump
+catimg
+tig
+jq
+thefuck
+tmux
+chromium-vaapi-bin
+chromium-widevine
+visual-studio-code-bin
