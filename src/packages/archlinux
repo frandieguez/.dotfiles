@@ -5,6 +5,7 @@ alacarte
 alsa-card-profiles
 apparmor
 atool
+bluez-utils
 caffeine-ng
 chrome-gnome-shell
 cpupower
@@ -33,7 +34,12 @@ gnome-shell-extension-gsconnect
 gnome-shell-extension-unite
 gnome-system-log
 gssproxy
+gst-libav
+gst-plugins-bad
+gst-plugins-base
+gst-plugins-good
 gst-python
+gstreamer
 gthumb
 gtk-engine-murrine
 gtk-engines
@@ -82,6 +88,7 @@ openconnect
 openresolv
 openvpn
 pkcs11-helper
+pipewire
 polkit-gnome
 polkit-qt5
 pulseaudio-ctl
@@ -116,6 +123,7 @@ zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
+android-udev
 
 # My packages
 autojump
@@ -126,4 +134,7 @@ thefuck
 tmux
 chromium-vaapi-bin
 chromium-widevine
-visual-studio-code-bin
+silver-searcher-git
+solaar
+asdf
+

@@ -169,7 +169,7 @@ install_tools() {
 # @param $2 The list of applications to ignore.
 # ---
 install_systools() {
-    grep -v '#' ./src/packages/archlinux | yay -S --noconfirm $tool
+    grep -v '#' ./src/packages/archlinux| strings | yay -S --noconfirm
 }
 
 # ---
