@@ -34,6 +34,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/node
   zgen oh-my-zsh plugins/npm
   zgen oh-my-zsh plugins/tig
+  zgen oh-my-zsh plugins/timer
   zgen oh-my-zsh plugins/vscode
   zgen oh-my-zsh plugins/yarn
 
