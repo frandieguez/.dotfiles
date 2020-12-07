@@ -15,7 +15,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/history
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/wd
-  #zgen oh-my-zsh plugins/web-search
   zgen oh-my-zsh plugins/autojump
 
   # System
@@ -26,17 +25,14 @@ if ! zgen saved; then
 
   # Dev
   zgen oh-my-zsh plugins/asdf
-  zgen oh-my-zsh plugins/bundler
-  zgen oh-my-zsh plugins/composer
-  zgen oh-my-zsh plugins/docker
+  # zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/git-extras
   zgen oh-my-zsh plugins/git-flow
-  zgen oh-my-zsh plugins/golang
+  #zgen oh-my-zsh plugins/golang
   zgen oh-my-zsh plugins/kubectl
   zgen oh-my-zsh plugins/node
   zgen oh-my-zsh plugins/npm
-  zgen oh-my-zsh plugins/redis-cli
   zgen oh-my-zsh plugins/tig
   zgen oh-my-zsh plugins/vscode
   zgen oh-my-zsh plugins/yarn
