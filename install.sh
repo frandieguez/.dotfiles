@@ -125,7 +125,6 @@ install_fonts() {
         #install_remote fonts false https://github.com/powerline/fonts.git
 }
 
-
 # ---
 # Installs external applications.
 #

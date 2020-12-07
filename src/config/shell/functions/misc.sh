@@ -5,23 +5,21 @@ function md() {
 	mkdir -p "$@" && cd "$@"
 }
 
-
 # find shorthand
 function f() {
-    find . -name "$1"
+	find . -name "$1"
 }
 
 # cd into whatever is the forefront Finder window.
-cdf() {  # short for cdfinder
-  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+cdf() { # short for cdfinder
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 }
-
 
 # lets toss an image onto my server and pbcopy that bitch.
 function scpp() {
-    scp "$1" aurgasm@aurgasm.us:~/paulirish.com/i;
-    echo "http://paulirish.com/i/$1" | pbcopy;
-    echo "Copied to clipboard: http://paulirish.com/i/$1"
+	scp "$1" aurgasm@aurgasm.us:~/paulirish.com/i
+	echo "http://paulirish.com/i/$1" | pbcopy
+	echo "Copied to clipboard: http://paulirish.com/i/$1"
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
@@ -46,12 +44,10 @@ function server() {
 #  )" | less -F
 #}
 
-
 # Copy w/ progress
-cp_p () {
-  rsync -WavP --human-readable --progress $1 $2
+cp_p() {
+	rsync -WavP --human-readable --progress $1 $2
 }
-
 
 # Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
 # Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
@@ -66,18 +62,15 @@ function json() {
 		python -mjson.tool | pygmentize -l javascript
 	else
 		# e.g. `json '{"foo":42}'`
-		python -mjson.tool <<< "$*" | pygmentize -l javascript
+		python -mjson.tool <<<"$*" | pygmentize -l javascript
 	fi
 }
 
-
 # take this repo and copy it to somewhere else minus the .git stuff.
-function gitexport(){
+function gitexport() {
 	mkdir -p "$1"
 	git archive master | tar -x -C "$1"
 }
-
-
 
 # get gzipped size
 function gz() {
@@ -104,26 +97,30 @@ function unidecode() {
 	echo # newline
 }
 
-
 # animated gifs from any video
 # from alex sexton   gist.github.com/SlexAxton/4989674
 gifify() {
-  if [[ -n "$1" ]]; then
-    if [[ $2 == '--good' ]]; then
-      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
-      time convert -verbose +dither -layers Optimize -resize 600x600\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
-      rm out-static*.png
-    else
-      ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
-    fi
-  else
-    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
-  fi
+	if [[ -n "$1" ]]; then
+		if [[ $2 == '--good' ]]; then
+			ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
+			time convert -verbose +dither -layers Optimize -resize 600x600\> out-static*.png GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - >$1.gif
+			rm out-static*.png
+		else
+			ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 >$1.gif
+		fi
+	else
+		echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+	fi
 }
 
-if [[ "$OSTYPE" == "linux-gnu"  ]]; then
-    alias pbcopy='xsel --clipboard --input'
-    alias pbpaste='xsel --clipboard --output'
-    #alias pbcopy='xclip -selection clipboard'
-    #alias pbpaste='xclip -selection clipboard -o'
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	alias pbcopy='xsel --clipboard --input'
+	alias pbpaste='xsel --clipboard --output'
+	#alias pbcopy='xclip -selection clipboard'
+	#alias pbpaste='xclip -selection clipboard -o'
 fi
+
+# Kills the program that matches the name provided as first argument
+function killthis() {
+	ps auxx | grep $1 | tr -s " " | cut -f 2 -d" " | head -1 | xargs kill -9
+}

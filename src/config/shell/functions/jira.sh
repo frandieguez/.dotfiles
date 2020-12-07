@@ -1,8 +1,8 @@
 #!/bin/sh
 
-command -v jira > /dev/null 2>&1 || return
+command -v jira >/dev/null 2>&1 || return
 
-eval "$(jira --completion-script-`basename $SHELL`)"
+eval "$(jira --completion-script-$(basename $SHELL))"
 
 # ---
 # Check an issue description and mark all tickets included.
@@ -10,10 +10,10 @@ eval "$(jira --completion-script-`basename $SHELL`)"
 # @param $1 The issue key.
 # ---
 function jira_done_all() {
-    tickets=`jira $1 | sed -e "/.*\(\(ONM\|OT\)-[0-9]\+\).*/!d" \
-        -e "s/.*\(\(ONM\|OT\)-[0-9]\+\).*/\1/g" | sort | uniq`
+    tickets=$(jira $1 | sed -e "/.*\(\(ONM\|OT\)-[0-9]\+\).*/!d" \
+        -e "s/.*\(\(ONM\|OT\)-[0-9]\+\).*/\1/g" | sort | uniq)
 
-    for i in `echo "$tickets"`; do
+    for i in $(echo "$tickets"); do
         jira trans 'Done' --noedit $i
     done
 }
@@ -25,7 +25,7 @@ function jira_done_all() {
 # @param $2 The field to extract.
 # ---
 function jira_extract() {
-    field=`jira $1 | ag ^$2: | sed -e "s/$2:\s\+//g"`
+    field=$(jira $1 | ag ^$2: | sed -e "s/$2:\s\+//g")
 
     echo $1 $field
     echo $1 $field | xclip -selection c
@@ -46,7 +46,7 @@ function jira_extract_summary() {
 # @param $1 The criteria to search by.
 # ---
 function jira_list_and_extract() {
-    tickets=`jira list -q "$1" | sed -e "s/:\s\+/ /g"`
+    tickets=$(jira list -q "$1" | sed -e "s/:\s\+/ /g")
 
     echo $tickets
     echo $tickets | xclip -selection c
@@ -59,20 +59,20 @@ function jira_list_and_extract() {
 # ---
 function jira_log_activity() {
     echo "activity: $1"
-    id=`echo $1 | cut -d'|' -f4`
-    comment=`echo $1 | cut -d'|' -f6`
+    id=$(echo $1 | cut -d'|' -f4)
+    comment=$(echo $1 | cut -d'|' -f6)
 
-    date=`echo $1 | cut -d'|' -f1`
-    date=`date -d "$date+0100" +"%Y-%m-%dT%H:%M:%S.%3N%z"`;
+    date=$(echo $1 | cut -d'|' -f1)
+    date=$(date -d "$date+0100" +"%Y-%m-%dT%H:%M:%S.%3N%z")
 
-    duration=`echo $1 | cut -d'|' -f3 | sed -e "s/min/m/g"`
+    duration=$(echo $1 | cut -d'|' -f3 | sed -e "s/min/m/g")
 
     echo "$id - $date - $duration - $comment"
 
-    echo "comment: |~" > ~/.jira.d/templates/jira-template.tmp;
-    echo "    $comment" >> ~/.jira.d/templates/jira-template.tmp;
-    echo "timeSpent: $duration" >> ~/.jira.d/templates/jira-template.tmp;
-    echo "started: $date" >> ~/.jira.d/templates/jira-template.tmp;
+    echo "comment: |~" >~/.jira.d/templates/jira-template.tmp
+    echo "    $comment" >>~/.jira.d/templates/jira-template.tmp
+    echo "timeSpent: $duration" >>~/.jira.d/templates/jira-template.tmp
+    echo "started: $date" >>~/.jira.d/templates/jira-template.tmp
 
     jira worklog add $id -t jira-template.tmp --noedit
 }
@@ -83,15 +83,15 @@ function jira_log_activity() {
 # @param $1 The date to log.
 # ---
 function jira_log_day() {
-    SAVEIFS=$IFS;
-    IFS=$(echo -en "\n\b");
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
 
-    activities=`hamster search '' $1 | \
-        sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" | \
-        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g" | \
-        grep "[A-Z]\+-[0-9]\+"`;
+    activities=$(hamster search '' $1 |
+        sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" |
+        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g" |
+        grep "[A-Z]\+-[0-9]\+")
 
-    for activity in `echo $activities`; do
+    for activity in $(echo $activities); do
         jira_log_activity $activity
     done
 
@@ -105,16 +105,16 @@ function jira_log_day() {
 # @param $1 The end date.
 # ---
 function jira_log_from_to() {
-    SAVEIFS=$IFS;
-    IFS=$(echo -en "\n\b");
+    SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b")
 
-    activities=`hamster search '' $1 $2 | \
-        sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" | \
-        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g" | \
-        grep "[A-Z]\+-[0-9]\+"`;
+    activities=$(hamster search '' $1 $2 |
+        sed -e ':a' -e 'N' -e '$!ba' -e "s/\n\s\+/|/g" |
+        tail -n +4 | head -n -3 | sed -e "s/\s*|\s*/|/g" |
+        grep "[A-Z]\+-[0-9]\+")
     echo $activities
 
-    for activity in `echo $activities`; do
+    for activity in $(echo $activities); do
         jira_log_activity $activity
     done
 
@@ -125,17 +125,50 @@ function jira_log_from_to() {
 # Logs all work done in the current week.
 # ---
 function jira_log_week() {
-    start=`date -d "- $(date +%u) days + 1 day" +%Y-%m-%d`;
-    end=`date -d "+ 7 days - $(date +%u) days" +%Y-%m-%d`;
+    start=$(date -d "- $(date +%u) days + 1 day" +%Y-%m-%d)
+    end=$(date -d "+ 7 days - $(date +%u) days" +%Y-%m-%d)
 
     jira_log_from_to $start $end
+}
+
+# ---
+# Creates a deployment issue with the JIRA issues ready to deploy.
+# ---
+function jira_create_deployment() {
+    template="$HOME/.jira.d/templates/deployment"
+    core=$(jira list -q "project = ONM AND status = 'Waiting for deployment' \
+        AND (labels IS EMPTY OR labels != themes) ORDER BY key ASC")
+    themes=$(jira list -q "project = ONM AND status = 'Waiting for deployment' \
+        AND type != Deployment AND labels = themes ORDER BY key ASC")
+
+    if [[ "$core" == "" ]] && [[ "$themes" == "" ]]; then
+        return
+    fi
+
+    if [[ "$core" == "" ]]; then
+        template="$HOME/.jira.d/templates/themes.deployment"
+    elif [[ "$themes" == "" ]]; then
+        template="$HOME/.jira.d/templates/core.deployment"
+    fi
+
+    core=$(echo $core | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" |
+        sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
+    themes=$(echo $themes | sed -e "s/^/    * /g" -e "s/\//\\\\\//g" -e "s/:\s\+/ /g" |
+        sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/\$/\\$/g')
+
+    cat "$template" |
+        sed -e "s/    \* \[core-changes\]/$core/g" |
+        sed -e "s/    \* \[theme-changes\]/$themes/g" \
+            >~/.jira.d/templates/jira-template.tmp
+
+    jira create -t jira-template.tmp
 }
 
 alias ja="jira assign"
 alias jaw="jira add worklog"
 alias jawd="jira_log_day"
 alias jawft="jira_log_from_to"
-alias jawt="jira_log_day $(date +%Y-%m-%d)";
+alias jawt="jira_log_day $(date +%Y-%m-%d)"
 alias jaww="jira_log_week"
 alias jc="jira create"
 alias jl="jira list"
