@@ -57,3 +57,21 @@ done
 if [ -f ~/.profile ]; then
   source ~/.profile;
 fi
+
+#zprof
+#
+_reverse_search() {
+  local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
+  LBUFFER=$selected_command
+}
+
+zle -N _reverse_search
+bindkey '^r' _reverse_search
+
+_connect_k9s() {
+  local selected_namespace=$(cat ~/.kube/config|grep namespace| cut -d":" -f2|fzf)
+  LBUFFER="k9s --namespace $selected_namespace"
+}
+
+zle -N _connect_k9s
+bindkey '^h' _connect_k9s
