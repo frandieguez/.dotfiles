@@ -31,9 +31,6 @@ alias c='pygmentize -O style=monokai -f console256 -g' # `cat` with beautiful co
 alias cd..="cd .."
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete" # Recursively delete `.DS_Store` files
 alias current_date='date +%F\ %R'
-alias dcs='docker-compose stop'
-alias dcu='docker-compose up'
-alias doco='docker-compose'
 alias debug='cat > /tmp/debug.html&&w3m /tmp/debug.html'
 alias doctest='python -m doctest'
 alias ducks="du -cks *|sort -rn | head"
