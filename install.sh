@@ -57,10 +57,11 @@ install_dotfiles() {
         fi
     done;
 
-    if [ -f ~/.zim/zimfw.sh ]; then
+    zim_installer=~/.zim/zimfw.sh
+    if [ ! -f $zim_installer ]; then
         mkdir -p ~/.zim
-        curl -fsSL -o .zim/zimfw.zsh https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-        zsh ~/.zim/zimfw.sh install -q
+        curl -fsSL -o $zim_installer https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+        zsh $zim_installer install -q
     fi
 }
 
