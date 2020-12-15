@@ -33,11 +33,19 @@ alias fastping='ping -c 100 -s.2'
 alias ff='find . -iname'
 alias fs="stat -f \"%z bytes\"" # File size
 alias g="git"
+alias gaa="git add -A"
+alias gb="git branch"
+alias gca="git add --all && git commit --amend --no-edit"
 alias gcal=gcalcli
+alias gco="git checkout"
+alias gf="git fetch --all -p"
 alias git-things-in-develop="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master..develop --no-merges"
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`' # git root
+alias gpl="git pull --rebase --autostash"
 alias gpnv='git push --no-verify'
-alias gs='gss'
+alias gp="git push"
+alias gpsf="git push --force"
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`' # git root
+alias gs='git status -sb'
 alias hl='hamster list'
 alias home='cd ~ && clear'
 alias hosts='sudo $EDITOR /etc/hosts' # yes I occasionally 127.0.0.1 twitter.com ;)
@@ -141,3 +149,10 @@ done
 
 alias restartshell="exec $SHELL -l"
 alias pullandmerge="git checkout $1; git pull --rebase; git merge --no-ff $2"
+
+# Utils
+alias k='kill -9'
+alias i.='(idea $PWD &>/dev/null &)'
+alias c.='(code $PWD &>/dev/null &)'
+alias o.='open .'
+alias up='dot package update_all'
