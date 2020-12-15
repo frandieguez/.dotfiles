@@ -112,7 +112,7 @@ filetype plugin indent on
 set t_Co=256
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blinkon100,r-cr:hor20-Cursor/lCursor
 
-"set background=dark
+set background=dark
 colorscheme nord
 let g:nord_italic_comments=1
 let g:nord_uniform_diff_background=1
@@ -130,12 +130,12 @@ set noswapfile
 set updatetime=250
 
 if !has('nvim')
-    set encoding=utf8
-    set ttymouse=xterm2
+  set encoding=utf8
+  set ttymouse=xterm2
 endif
 
 if has('clipboard')
-    set clipboard=unnamed,unnamedplus
+  set clipboard=unnamed,unnamedplus
 endif
 
 " Spaces & Tabs
