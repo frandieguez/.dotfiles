@@ -1,76 +1,36 @@
-source ~/.zgen/zgen.zsh
 
-if ! zgen saved; then
-  zgen oh-my-zsh
+# Uncomment for debuf with `zprof`
+# zmodload zsh/zprof
 
-  # Base
-  zgen load willghatch/zsh-snippets
-  zgen load zsh-users/zsh-autosuggestions
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen oh-my-zsh plugins/autojump
-  zgen oh-my-zsh plugins/battery
-  zgen oh-my-zsh plugins/colored-man-pages
-  zgen oh-my-zsh plugins/colorize
-  zgen oh-my-zsh plugins/command-not-found
-  zgen oh-my-zsh plugins/common-aliases
-  zgen oh-my-zsh plugins/extract
-  zgen oh-my-zsh plugins/history
-  zgen oh-my-zsh plugins/thefuck
-  zgen oh-my-zsh plugins/vi-mode
-  zgen oh-my-zsh plugins/fzf
-  zgen oh-my-zsh plugins/zsh-interactive-cd
-  zgen oh-my-zsh plugins/zsh_reload
+# ZSH opts
+WORDCHARS=${WORDCHARS//[\/]}
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+setopt interactivecomments
+setopt AUTO_MENU
+setopt AUTO_CD
+setopt AUTO_NAME_DIRS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt share_history
+setopt appendhistory     #Append history to the history file (no overwriting)
+setopt sharehistory      #Share history across terminals
+setopt incappendhistory  #Immediately append to the history file, not just when a term is killed
 
-  # System
-  zgen oh-my-zsh plugins/archlinux
-  zgen oh-my-zsh plugins/systemd
-  zgen oh-my-zsh plugins/tmux
-  zgen oh-my-zsh plugins/tmuxinator
-
-  # Dev
-  zgen oh-my-zsh plugins/asdf
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/git-extras
-  zgen oh-my-zsh plugins/git-flow
-  zgen oh-my-zsh plugins/kubectl
-  zgen oh-my-zsh plugins/node
-  zgen oh-my-zsh plugins/npm
-  zgen oh-my-zsh plugins/tig
-  zgen oh-my-zsh plugins/timer
-  zgen oh-my-zsh plugins/vscode
-  zgen oh-my-zsh plugins/yarn
-
-  # Theme
-  zgen load denysdovhan/spaceship-prompt spaceship
-
-  zgen save
+if [[ ${ZIM_HOME}/init.zsh -ot ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  # Update static initialization script if it's outdated, before sourcing it
+  source ${ZIM_HOME}/zimfw.zsh init -q
 fi
-
-# Load zsh configuration
-for file in ~/.config/zsh/(config|functions)/*; do
-    source "$file"
-done
+source ${ZIM_HOME}/init.zsh
 
 # Profile
 if [ -f ~/.profile ]; then
   source ~/.profile;
 fi
 
-#zprof
-#
-_reverse_search() {
-  local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
-  LBUFFER=$selected_command
-}
+source ~/.config/zsh/autojump.zsh;
+source ~/.config/zsh/bindings.zsh;
+source ~/.config/zsh/vi-mode.zsh;
+source ~/.config/zsh/history.zsh;
+source ~/.config/zsh/fzf.zsh; 
 
-zle -N _reverse_search
-bindkey '^r' _reverse_search
-
-_connect_k9s() {
-  local selected_namespace=$(cat ~/.kube/config|grep namespace| cut -d":" -f2|fzf)
-  LBUFFER="k9s --namespace $selected_namespace"
-}
-
-zle -N _connect_k9s
-bindkey '^h' _connect_k9s
+# zprof

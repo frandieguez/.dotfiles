@@ -1,4 +1,5 @@
-# zsh-users/zsh-autosuggestions
+# # zsh-users/zsh-autosuggestions
+bindkey -e
 bindkey -M vicmd ' ' autosuggest-accept
 bindkey -M vicmd 'L' autosuggest-accept
 
