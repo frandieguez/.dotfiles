@@ -56,6 +56,12 @@ install_dotfiles() {
             install_local $dotfile true
         fi
     done;
+
+    if [ -f ~/.zim/zimfw.sh ]; then
+        mkdir -p ~/.zim
+        curl -fsSL -o .zim/zimfw.zsh https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+        zsh ~/.zim/zimfw.sh install -q
+    fi
 }
 
 # ---
@@ -145,9 +151,6 @@ install_tools() {
 
     echo $tools | grep "git-hooks" > /dev/null && \
         install_remote git-hooks false https://github.com/dhellmann/git-hooks.git
-
-    echo $tools | grep "zgen" > /dev/null && \
-        install_remote zgen false https://github.com/tarjoilija/zgen.git
 
     echo $tools | grep "asdf" > /dev/null && \
         install_remote asdf false https://github.com/asdf-vm/asdf.git
