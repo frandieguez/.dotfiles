@@ -11,6 +11,7 @@ setopt AUTO_CD
 setopt AUTO_NAME_DIRS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_GLOB
 setopt share_history
 setopt appendhistory     #Append history to the history file (no overwriting)
 setopt sharehistory      #Share history across terminals
@@ -30,11 +31,6 @@ if [ -f ~/.profile ]; then
   source ~/.profile;
 fi
 
-source ~/.config/zsh/autojump.zsh;
-source ~/.config/zsh/bindings.zsh;
-source ~/.config/zsh/vi-mode.zsh;
-source ~/.config/zsh/history.zsh;
-source ~/.config/zsh/fzf.zsh;
-source ~/.config/zsh/asdf.zsh;
+source ~/.config/zsh/init.zsh
 
 # zprof

@@ -48,12 +48,6 @@ PATH_ARRAY+=$HOME/.bin
 PATH_ARRAY+=/usr/share/bin
 
 # Ruby --------------------------------------------
-if [[ -d ~/.asdf ]]; then
-  . $HOME/.asdf/asdf.sh
-  . $HOME/.asdf/completions/asdf.bash
-fi
-
-# Ruby --------------------------------------------
 if [[ -d ~/.gem/ruby ]]; then
     for i in $(ls -1 --color=never ~/.gem/ruby); do
         if [[ -d "$HOME/.gem/ruby/$i/bin" ]]; then
