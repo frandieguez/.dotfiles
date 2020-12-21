@@ -19,10 +19,11 @@ _w "  └───────────────────────�
 _w
 _q "Where do you want to install the dotfiles" INSTALL_PATH
 
-# git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
-# cd $INSTALL_PATH
-# git submodule update --init --recursive
-# # DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
+cd $INSTALL_PATH
+git submodule update --init --recursive
+DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
 # Install vim-plug
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
