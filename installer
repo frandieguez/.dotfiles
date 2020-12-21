@@ -1,8 +1,23 @@
 #!/bin/bash
+red='\033[0;31m'
+green='\033[0;32m'
+purple='\033[0;35m'
+normal='\033[0m'
 
-# read -p "Where do you want to install the dotfiles: " INSTALL_PATH
+_w() {
+  local -r text="${1:-}"
+  echo -e "$text"
+}
+_a() { _w " > $1"; }
+_e() { _a "${red}$1${normal}"; }
+_s() { _a "${green}$1${normal}"; }
+_q() { read -rp "🤔 $1: " "$2"; }
 
-# echo "$INSTALL_PATH"
+_w "  ┌──────────────────────────────────────────┐"
+_w "~ │ 🚀 Welcome to the ${green}frandieguez${normal} installer! │ ~"
+_w "  └──────────────────────────────────────────┘"
+_w
+_q "Where do you want to install the dotfiles" INSTALL_PATH
 
 # git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 # cd $INSTALL_PATH
@@ -15,14 +30,33 @@ curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 
 # Install neovim plugins
 if type /usr/bin/nvim >/dev/null 2>&1; then
-    echo "  Installing neovim plugins..."
+    _a "Installing neovim plugins..."
     /usr/bin/nvim -c PlugInstall -c q -c q
 fi
 
 # Install vim plugins
-echo "  Installing vim plugins..."
 if type /usr/bin/vim >/dev/null 2>&1; then
+    _a "  Installing vim plugins..."
     /usr/bin/vim -c PlugInstall -c q -c q
 fi
 
-curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml
+if [ "`grep user $HOME/.gitconfig`" != "" ]; then
+    echo "Git already configured"
+else
+    _q "Do you want to add your credentials to your .gitconfig? (Y/n) " q
+
+    if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
+        _q "Name" username
+        _q "Email" email
+
+        echo "[user]" >> $HOME/.gitconfig-additional
+        echo "    name = " $username >> $HOME/.gitconfig-additional
+        echo "    email = " $email >> $HOME/.gitconfig-additional
+    fi
+fi
+    curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml
+
+    grep -v '#' ./os/linux/archlinux-packages | strings | yay -S --noconfirm
+
+_a "🎉 dotfiles installed correctly! 🎉"
+_a "Please, restart your terminal to see the changes"
