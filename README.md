@@ -1,3 +1,18 @@
+<h1 align="center">
+  .dotfiles created using <a href="https://github.com/CodelyTV/dotly">🌚 dotly</a>
+</h1>
+
+## Restore your Dotfiles
+
+* Install git
+* Clone your dotfiles repository `git clone [your repository of dotfiles] $HOME/.dotfiles`
+* Go to your dotfiles folder `cd $HOME/.dotfiles`
+* Install git submodules `git submodule update --init --recursive`
+* Install your dotfiles `DOTFILES_PATH="$HOME/.dotfiles" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install`
+* Restart your terminal
+* Import your packages `dot package import`
+
+
 🚀 Fran Dieguez dot configuration files
 ==============================
 Repository containing all the automations required to setup my development machine in just a few seconds after a fresh install.
@@ -136,5 +151,3 @@ dotfiles is copyright © 2016-2019 Fran Dieguez. It is free software, and may be
 ![frandieguez](http://www.mabishu.com/wp-content/uploads/2013/04/gafas.png)
 
 dotfiles is maintained by Fran Dieguez.
-
-

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# read -p "Where do you want to install the dotfiles: " INSTALL_PATH
+
+# echo "$INSTALL_PATH"
+
+# git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
+# cd $INSTALL_PATH
+# git submodule update --init --recursive
+# # DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+
+# Install vim-plug
+curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install neovim plugins
+if type /usr/bin/nvim >/dev/null 2>&1; then
+    echo "  Installing neovim plugins..."
+    /usr/bin/nvim -c PlugInstall -c q -c q
+fi
+
+# Install vim plugins
+echo "  Installing vim plugins..."
+if type /usr/bin/vim >/dev/null 2>&1; then
+    /usr/bin/vim -c PlugInstall -c q -c q
+fi
+
+curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml

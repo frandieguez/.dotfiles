@@ -1,0 +1,10 @@
+[submodule "modules/dotly"]
+	path = modules/dotly
+	url = https://github.com/CodelyTV/dotly.git
+	branch = master
+[submodule "modules/git-hooks"]
+	path = modules/git-hooks
+	url = https://github.com/dhellmann/git-hooks.git
+[submodule "modules/tmux-tpm"]
+	path = modules/tmux-tpm
+	url = https://github.com/tmux-plugins/tpm

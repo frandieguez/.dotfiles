@@ -1,0 +1,33 @@
+- clean: ["~"]
+
+- defaults:
+    link:
+      create: true
+      force: true
+
+- create:
+      - ~/.z
+
+- link:
+    ~/.bash_profile: shell/bash/.bash_profile
+    ~/.bashrc: shell/bash/.bashrc
+    ~/.profile: shell/bash/.profile
+    ~/.zimrc: shell/zsh/.zimrc
+    ~/.zlogin: shell/zsh/.zlogin
+    ~/.zshenv: shell/zsh/.zshenv
+    ~/.zshrc: shell/zsh/.zshrc
+    ~/.gemrc: langs/ruby/gemrc
+    ~/.composer/composer.json: langs/php/composer.json
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitignore_global: git/.gitignore_global
+    ~/.gitattributes: git/.gitattributes
+    ~/.git-hooks: modules/git-hooks
+    ~/.config/tmux/plugins/tpm: modules/tmux-tpm
+    ~/.config/Code/User/snippets: editors/code/snippets
+    ~/.config/Code/User/keybindings.json: editors/code/keybindings.json
+    ~/.config/Code/User/settings.json: editors/code/settings.json
+    "~/.config/Code - Insiders/User/snippets": editors/code/snippets
+    "~/.config/Code - Insiders/User/keybindings.json": editors/code/keybindings.json
+    "~/.config/Code - Insiders/User/settings.json": editors/code/settings.json
+    ~/.vimrc: editors/vim/init.vim
+    ~/.config/nvim: editors/vim
