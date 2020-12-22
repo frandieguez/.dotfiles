@@ -7,12 +7,12 @@
 
 - link:
     ~/.dotly: os/linux/.dotly
-    ~/.agignore: os/linux/agignore
-    ~/.autostart: os/linux/autostart
-    ~/.ctags: os/linux/ctags
-    ~/.dircolors: os/linux/dircolors
-    ~/.muttrc: os/linux/tmux/tmux.conf
-    ~/.offlineimaprc: os/linux/offlineimaprc
+    ~/.agignore: os/linux/.agignore
+    ~/.autostart: os/linux/.autostart
+    ~/.ctags: os/linux/.ctags
+    ~/.dircolors: os/linux/.dircolors
+    ~/.muttrc: os/linux/tmux/.tmux.conf
+    ~/.offlineimaprc: os/linux/.offlineimaprc
     ~/.terminator: os/linux/terminator
     ~/.tmux.conf: os/linux/tmux/tmux.conf
     ~/.screenrc: os/linux/.screenrc
