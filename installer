@@ -14,36 +14,40 @@ _s() { _a "${green}$1${normal}"; }
 _q() { read -rp "🤔 $1: " "$2"; }
 
 _w "  ┌──────────────────────────────────────────┐"
-_w "~ │ 🚀 Welcome to the ${green}frandieguez${normal} installer! │ ~"
+_w "~ │ 🚀 Welcome to the ${green}dotfiles${normal} installer! │ ~"
 _w "  └──────────────────────────────────────────┘"
 _w
-_q "Where do you want to install the dotfiles" INSTALL_PATH
-
-git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
+_q "Where do you want to install the dotfiles (default ~/.dotfiles)" INSTALL_PATH
+INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
+[ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
 git submodule update --init --recursive
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
+_a "Installing archlinux packages..."
+grep -v '#' ./os/linux/archlinux-packages | strings | yay -S --noconfirm
+
 # Install vim-plug
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
 # Install neovim plugins
 if type /usr/bin/nvim >/dev/null 2>&1; then
     _a "Installing neovim plugins..."
-    /usr/bin/nvim -c PlugInstall -c q -c q
+    /usr/bin/nvim +'PlugInstall --sync' +qall &> /dev/null
 fi
 
 # Install vim plugins
 if type /usr/bin/vim >/dev/null 2>&1; then
-    _a "  Installing vim plugins..."
-    /usr/bin/vim -c PlugInstall -c q -c q
+    _a "Installing vim plugins..."
+    /usr/bin/vim +'PlugInstall --sync' +qall &> /dev/null
 fi
 
-if [ "`grep user $HOME/.gitconfig`" != "" ]; then
-    echo "Git already configured"
-else
+_a "Installing k9s skin..."
+curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
+
+if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     _q "Do you want to add your credentials to your .gitconfig? (Y/n) " q
 
     if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
@@ -55,9 +59,6 @@ else
         echo "    email = " $email >> $HOME/.gitconfig-additional
     fi
 fi
-    curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml
 
-    grep -v '#' ./os/linux/archlinux-packages | strings | yay -S --noconfirm
-
-_a "🎉 dotfiles installed correctly! 🎉"
-_a "Please, restart your terminal to see the changes"
+_w "🎉 dotfiles installed correctly! 🎉"
+_w "Please, restart your terminal to see the changes"
