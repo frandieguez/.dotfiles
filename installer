@@ -44,6 +44,9 @@ if type /usr/bin/vim >/dev/null 2>&1; then
     /usr/bin/vim +'PlugInstall --sync' +qall &> /dev/null
 fi
 
+_a "Installing packages..."
+DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" package import
+
 _a "Installing k9s skin..."
 curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
 
