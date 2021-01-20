@@ -17,7 +17,7 @@ _w "  ┌───────────────────────�
 _w "~ │ 🚀 Welcome to the ${green}dotfiles${normal} installer! │ ~"
 _w "  └──────────────────────────────────────────┘"
 _w
-_q "Where do you want to install the dotfiles (default ~/.dotfiles)" INSTALL_PATH
+_q "Confirm to install dotfiles (default ~/.dotfiles)" INSTALL_PATH
 INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
