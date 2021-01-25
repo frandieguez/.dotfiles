@@ -19,7 +19,6 @@
   },
   "editor.fontLigatures": true,
   "workbench.startupEditor": "newUntitledFile",
-  "window.zoomLevel": 1,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderWhitespace": "boundary",
@@ -157,5 +156,6 @@
   "jupyter.insidersChannel": "off",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "python.showStartPage": false
 }
