@@ -22,7 +22,9 @@
     ~/.gitignore_global: git/.gitignore_global
     ~/.gitattributes: git/.gitattributes
     ~/.git-hooks: modules/git-hooks
+    ~/.tmux.conf: os/linux/tmux/tmux.conf
     ~/.config/tmux/plugins/tpm: modules/tmux-tpm
+    ~/.config/tmux: os/linux/tmux/config/
     ~/.config/Code/User/snippets: editors/code/snippets
     ~/.config/Code/User/keybindings.json: editors/code/keybindings.json
     ~/.config/Code/User/settings.json: editors/code/settings.json
