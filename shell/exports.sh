@@ -64,3 +64,10 @@ if [[ -n "${NVIM_LISTEN_ADDRESS}" ]]; then
   # TODO update the path each time Vim has a major upgrade
   export VIMRUNTIME=/usr/share/vim/vim81
 fi
+
+asdf_dir="${asdf_dir:-$HOME/.asdf}"
+
+if [[ -d $asdf_dir ]]; then
+  source $asdf_dir/asdf.sh
+  source $asdf_dir/completions/asdf.bash
+fi
