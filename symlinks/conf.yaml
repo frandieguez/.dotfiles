@@ -6,7 +6,7 @@
       force: true
 
 - create:
-      - ~/.z
+    - ~/.z
 
 - link:
     ~/.bash_profile: shell/bash/.bash_profile
@@ -21,7 +21,7 @@
     ~/.gitconfig: git/.gitconfig
     ~/.gitignore_global: git/.gitignore_global
     ~/.gitattributes: git/.gitattributes
-    ~/.git-hooks: modules/git-hooks
+    # ~/.git-hooks: modules/git-hooks
     ~/.tmux.conf: os/linux/tmux/tmux.conf
     ~/.config/tmux/plugins/tpm: modules/tmux-tpm
     ~/.config/tmux: os/linux/tmux/config/
@@ -33,3 +33,4 @@
     "~/.config/Code - Insiders/User/settings.json": editors/code/settings.json
     ~/.vimrc: editors/vim/init.vim
     ~/.config/nvim: editors/vim
+    ~/.vim: editors/vim
