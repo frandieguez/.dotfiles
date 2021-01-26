@@ -21,8 +21,14 @@ _q "Confirm to install dotfiles (default ~/.dotfiles)" INSTALL_PATH
 INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
+
+
+_a "Initializing submodules"
 git submodule update --init --recursive
-DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+
+_a "Initializing dotly"
+DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+_a "Initializing zim"
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
 _a "Installing archlinux packages..."
@@ -35,13 +41,13 @@ curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 # Install neovim plugins
 if type /usr/bin/nvim >/dev/null 2>&1; then
     _a "Installing neovim plugins..."
-    /usr/bin/nvim +'PlugInstall --sync' +qall &> /dev/null
+    /usr/bin/nvim +'PlugInstall --sync' +qall
 fi
 
 # Install vim plugins
 if type /usr/bin/vim >/dev/null 2>&1; then
     _a "Installing vim plugins..."
-    /usr/bin/vim +'PlugInstall --sync' +qall &> /dev/null
+    /usr/bin/vim +'PlugInstall --sync' +qall
 fi
 
 _a "Installing packages..."
