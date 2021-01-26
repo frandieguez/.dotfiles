@@ -132,20 +132,14 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "python.insidersChannel": "off",
-  "atlascode.bitbucket.explorer.relatedJiraIssues.enabled": false,
-  "atlascode.jira.enabled": false,
-  "atlascode.jira.statusbar.enabled": false,
-  "atlascode.bitbucket.statusbar.enabled": false,
-  "liveshare.showInStatusBar": "whileCollaborating",
+
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.userWords": ["apikey"],
-  "cSpell.enabled": false,
+
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "liveServer.settings.donotShowInfoMsg": true,
   "editor.formatOnSave": true,
   "workbench.editorAssociations": [
     {
