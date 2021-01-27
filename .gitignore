@@ -1,31 +1,33 @@
 *.log
 
 # bspwm
-src/config/bspwm/theme
+os/linux/bspwm/theme
 
 # mutt
-src/config/mutt/alias
-src/config/mutt/cache
-src/config/mutt/sig
-src/config/mutt/theme
-src/config/mutt/tmp
+os/linux/mutt/alias
+os/linux/mutt/cache
+os/linux/mutt/sig
+os/linux/mutt/theme
+os/linux/mutt/tmp
 
 # nvim
-src/config/nvim/autoload/lightline/colorscheme
-src/config/nvim/autoload/plug.vim
-src/config/nvim/autoload/theme.vim
-src/config/nvim/colors
-src/config/nvim/plugged
-src/config/nvim/session
-src/config/nvim/.netrwhist
+editors/vim/autoload/lightline/colorscheme
+editors/vim/autoload/plug.vim
+editors/vim/autoload/theme.vim
+editors/vim/colors
+editors/vim/plugged
+editors/vim/session
+editors/vim/.netrwhist
 
 # ranger
-src/config/ranger/__pycache__
-src/config/ranger/devicons.py
-src/config/ranger/bookmarks
-src/config/ranger/history
-src/config/ranger/plugins
+os/linux/ranger/__pycache__
+os/linux/ranger/devicons.py
+os/linux/ranger/bookmarks
+os/linux/ranger/history
+os/linux/ranger/plugins
 
 # tmux
-src/config/tmux/theme.conf
-src/config/tmux/plugins/tpm/
+os/linux/tmux/theme.conf
+os/linux/tmux/config/plugins/tpm/
+
+editors/vim/plugged/

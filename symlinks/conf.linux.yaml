@@ -1,0 +1,29 @@
+- clean: ["~"]
+
+- defaults:
+    link:
+      create: true
+      force: true
+
+- link:
+    ~/.dotly: os/linux/.dotly
+    ~/.agignore: os/linux/.agignore
+    ~/.autostart: os/linux/.autostart
+    ~/.ctags: os/linux/.ctags
+    ~/.dircolors: os/linux/.dircolors
+    ~/.muttrc: os/linux/tmux/.tmux.conf
+    ~/.offlineimaprc: os/linux/.offlineimaprc
+    ~/.terminator: os/linux/terminator
+    ~/.tmux.conf: os/linux/tmux/tmux.conf
+    ~/.screenrc: os/linux/.screenrc
+    ~/.Xmodmap: os/linux/.Xmodmap
+    ~/.Xresources: os/linux/.Xresources
+    ~/.config/rofi: os/linux/rofi
+    ~/.config/bspwm: os/linux/bspwm
+    ~/.config/githooks: os/linux/githooks
+    ~/.config/mutt: os/linux/mutt
+    ~/.config/ncmpcpp: os/linux/ncmpcpp
+    ~/.config/sxhkd: os/linux/sxhkd
+    ~/.config/tmux: os/linux/tmux/config
+    # /etc/default/keyboard: os/linux/configs/keyboard
+    # /usr/share/X11/xorg.conf.d/00-keyboard.conf: os/linux/xorg.conf.d/00-keyboard.conf

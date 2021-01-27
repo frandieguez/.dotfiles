@@ -1,0 +1,46 @@
+#### Global gitignore file
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.iws
+.idea-compl
+*.sc
+
+# Clojure
+.lein-repl-history
+.lein-failures
+completer.hist
+.nrepl-port
+
+# Scala
+libsigar-universal64-macosx.dylib
+
+# Custom
+*.no-commit.*
+
+*~
+*.sublime-*
+*.swp
+
+# Node.js
+node_modules
+bower_components
+
+# Compiled Python files
+*.pyc
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+.phpintel
+
+private.sh

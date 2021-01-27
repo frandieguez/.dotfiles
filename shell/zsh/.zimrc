@@ -1,0 +1,19 @@
+# If you modify this execute `zimfw uninstall & zimfw install`
+zmodule zimfw/environment
+zmodule zimfw/git-info
+zmodule zimfw/history
+zmodule zimfw/input
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zimfw/completion
+
+zhighlighters=(main brackets)
+
+zmodule zimfw/git
+zmodule termtitle
+zmodule utility
+zmodule pacman
+zmodule changyuheng/zsh-interactive-cd
+zmodule archive
+zmodule ruby
+zmodule denysdovhan/spaceship-prompt --name spaceship
