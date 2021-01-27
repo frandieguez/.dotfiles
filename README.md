@@ -1,4 +1,4 @@
-# 🚀 Fran Dieguez dot configuration files
+# 🚀 Fran Dieguez dotfiles
 
 Repository containing all the automations required to setup my development machine in just a few seconds after a fresh install.
 
@@ -21,8 +21,8 @@ Among these files you will find highly opinionated configurations for:
 You can install all the configurations at one once using:
 
 ```
-  git clone https://github.com/frandieguez/.dots.git ~/.dots;
-  cd ~/.dots;
+  git clone https://github.com/frandieguez/.dotfiles.git ~/.dotfiles;
+  cd ~/.dotfiles;
   ./install.sh
 ```
 
@@ -38,18 +38,6 @@ Clone the repo and link the files that you want in your $HOME path.
 Example:
 
     cd $HOME;ln -s .dots/vimrc .vimrc
-
-## Specific cases
-
-Some files like zsh must be included in the normal .zshrc configuration file. For example:
-
-### zsh
-
-Add `. ~/.dots/zsh` at the end of your `~/.zshrc`.
-
-### hg
-
-Add `%include ~/.dots/hg` at the end of your `~/.hgrc`.
 
 ## What's in it?
 
@@ -70,12 +58,12 @@ Add `%include ~/.dots/hg` at the end of your `~/.hgrc`.
   - `tat` to attach to tmux session named the same as the current directory.
   - `v` for `$VISUAL`.
 
-💾 zsh + [on-my-zsh](https://ohmyz.sh/)
+💾 zsh + [zimfw](https://ohmyz.sh/)
 
 - Specific configurations available at `src/zsh/`
 - Use ohmyzsh for plugin management
   - Enabled vi mode
-  - Plugins installed for technologies that I use: bower, capistrano, docker, composer, git, git-flow, golang, kubectl, redis, tmux, tmuxinator, yarn, autosuggestions, among others
+  - Plugins installed for technologies that I use
 
 🖊️ [vim](http://www.vim.org/) configuration:
 
@@ -140,13 +128,3 @@ dotfiles is copyright © 2016-2019 Fran Dieguez. It is free software, and may be
 ![frandieguez](http://www.mabishu.com/wp-content/uploads/2013/04/gafas.png)
 
 dotfiles is maintained by Fran Dieguez, ported to use <a href="https://github.com/CodelyTV/dotly">🌚 dotly</a>
-
-## Restore your Dotfiles
-
-- Install git
-- Clone your dotfiles repository `git clone [your repository of dotfiles] $HOME/.dotfiles`
-- Go to your dotfiles folder `cd $HOME/.dotfiles`
-- Install git submodules `git submodule update --init --recursive`
-- Install your dotfiles `DOTFILES_PATH="$HOME/.dotfiles" DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install`
-- Restart your terminal
-- Import your packages `dot package import`
