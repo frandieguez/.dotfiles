@@ -24,5 +24,6 @@ autoload -Uz promptinit && promptinit
 # prompt dotly
 
 source "$DOTFILES_PATH/shell/zsh/key-bindings.zsh"
+source "$DOTFILES_PATH/modules/zsh-vi-mode/zsh-vi-mode.zsh"
 source "$DOTFILES_PATH/shell/zsh/plugins/vi-mode.zsh"
 source "$DOTLY_PATH/shell/zsh/bindings/reverse_search.zsh"
