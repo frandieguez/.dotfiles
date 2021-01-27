@@ -8,3 +8,6 @@
 [submodule "modules/tmux-tpm"]
 	path = modules/tmux-tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "modules/zsh-vi-mode"]
+	path = modules/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode.git
