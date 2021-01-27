@@ -22,37 +22,37 @@ INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
 
-
 _a "Initializing submodules"
 git submodule update --init --recursive
 
 _a "Initializing dotly"
-DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" self install
+DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" self install
+_a "Initializing dotly"
+DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" symlinks apply
+
 _a "Initializing zim"
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
 _a "Installing archlinux packages..."
-grep -v '#' ./os/linux/archlinux-packages | strings | yay -S --noconfirm
+grep -v '#' ./os/linux/archlinux-packages | yay -S --noconfirm
+
+_a "Installing packages..."
+DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" package import
 
 # Install vim-plug
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
+_a "Initializing vim…"
 # Install neovim plugins
 if type /usr/bin/nvim >/dev/null 2>&1; then
-    _a "Installing neovim plugins..."
     /usr/bin/nvim +'PlugInstall --sync' +qall
 fi
 
 # Install vim plugins
 if type /usr/bin/vim >/dev/null 2>&1; then
-    _a "Installing vim plugins..."
     /usr/bin/vim +'PlugInstall --sync' +qall
 fi
-
-_a "Installing packages..."
-DOTLY_PATH="$DOTFILES_PATH/modules/dotly" "$DOTLY_PATH/bin/dot" package import
-
 _a "Installing k9s skin..."
 curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
 
