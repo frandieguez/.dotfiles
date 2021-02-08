@@ -154,7 +154,7 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 if [[ ! -e "/etc/os-release" ]]; then
   echo "No os-release"
 else
-  distribution=$(cat /etc/os-release | grep "ID=" | cut -f2 -d"=")
+  distribution=$(cat /etc/os-release | egrep "^ID=" | cut -f2 -d"=")
 
   case "$distribution" in
   arch*)
@@ -166,6 +166,10 @@ else
   ubuntu)
     alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
     alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
+    ;;
+  fedora)
+    alias os-cleanup='sudo dnf update'
+    alias os-upgrade='sudo dnf update all'
     ;;
   *)
     echo "No os-release compatible"
