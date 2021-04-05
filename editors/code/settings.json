@@ -4,8 +4,7 @@
     "file:///home/fran/.vscode-insiders/extensions/atlassian.atlascode-2.4.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "workbench.iconTheme": "material-icon-theme",
-  "editor.fontFamily": "'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.suggestSelection": "first",
+  "editor.fontFamily": "'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.exclude": {
     "**/.classpath": true,
@@ -19,26 +18,20 @@
   },
   "editor.fontLigatures": true,
   "workbench.startupEditor": "newUntitledFile",
-  "editor.minimap.enabled": false,
-  "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [80, 120],
   "explorer.confirmDelete": false,
   "files.autoSave": "onFocusChange",
   "files.trimTrailingWhitespace": true,
   "git.fetchOnPull": true,
-  "gitlens.currentLine.enabled": false,
-  "php.suggest.basic": false,
-  "php.validate.executablePath": "/usr/bin/php",
   "search.useIgnoreFiles": false,
   "telemetry.enableTelemetry": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.fontSize": 13,
   "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
   "window.titleBarStyle": "custom",
   "workbench.activityBar.visible": true,
-  "window.menuBarVisibility": "default",
+  "window.menuBarVisibility": "classic",
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "j"],
@@ -115,15 +108,30 @@
   "vim.useSystemClipboard": true,
   "vim.enableNeovim": true,
   "workbench.colorCustomizations": {
-    "editorWarning.foreground": "#FFAA00"
-    // "editor.background": "#ff0000"
+    "[Nord]": {
+      "activityBar.background": "#1e222b",
+      "activityBar.border": "#1e222b",
+      "titleBar.activeBackground": "#1e222b",
+      "editor.background": "#1e222b",
+      "editorWarning.foreground": "#FFAA00",
+      "panel.background": "#1e222b",
+      "panel.border": "#2E3440",
+      "panelSectionHeader.background": "#2E3440",
+      "menu.background": "#1e222b",
+      "sideBar.background": "#1e222b",
+      "sideBar.border": "#2E3440",
+      "editorRuler.foreground": "#2E3440",
+      "statusBar.background": "#1e222b",
+      "tab.activeBackground": "#1e222b",
+      "terminal.background": "#1e222b",
+      "welcomePage.background": "#1e222b",
+      "editorGutter.background": "#1e222b"
+    }
   },
   "emmet.triggerExpansionOnTab": true,
-  "breadcrumbs.enabled": false,
   "vim.neovimPath": "/usr/bin/nvim",
   "editor.lightbulb.enabled": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.fontFamily": "'Hack', monospace",
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "editor.smoothScrolling": true,
@@ -132,11 +140,9 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "python.insidersChannel": "off",
-
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -147,9 +153,25 @@
       "filenamePattern": "*.ipynb"
     }
   ],
-  "jupyter.insidersChannel": "off",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "python.showStartPage": false
-}
+  "python.showStartPage": false,
+  "editor.fontSize": 13,
+  "workbench.editor.decorations.badges": true,
+  "atlascode.jira.enabled": true,
+  "git.autofetch": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  //"sundial.autoLocale": true,
+  //"window.autoDetectColorScheme": true,
+  "workbench.preferredLightColorTheme": "GitHub Light",
+  "workbench.preferredDarkColorTheme": "GitHub Dark",
+  "workbench.colorTheme": "GitHub Light",
+  "vim.highlightedyank.enable": true,
+  "workbench.productIconTheme": "fluent-icons",
+  "gitlens.views.branches.branches.layout": "list",
+  "prettier.requireConfig": true,
+  "editor.suggestSelection": "first",
+  "editor.minimap.enabled": false
