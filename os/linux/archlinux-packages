@@ -3,6 +3,7 @@ acpilight
 adwaita-qt
 alacarte
 alsa-card-profiles
+android-udev
 apparmor
 atool
 bluez-utils
@@ -20,10 +21,10 @@ f2fs-tools
 fprintd
 freeglut
 fzf
-git
-git-extras
 geary
 gestures
+git
+git-extras
 glew
 glue
 gnome-shell-extension-appindicator
@@ -89,8 +90,8 @@ open-vm-tools
 openconnect
 openresolv
 openvpn
-pkcs11-helper
 pipewire
+pkcs11-helper
 polkit-gnome
 polkit-qt5
 pulseaudio-ctl
@@ -98,6 +99,7 @@ pulseaudio-equalizer
 pulseaudio-jack
 pulseaudio-lirc
 pulseaudio-zeroconf
+python-pynvim
 ranger
 s-nail
 seahorse
@@ -126,18 +128,17 @@ zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
-android-udev
 
 # My packages
+asdf
 autojump
 catimg
-tig
-jq
-thefuck
-tmux
 chromium-vaapi-bin
 chromium-widevine
+jq
+navi
 silver-searcher-git
 solaar
-asdf
-navi
+thefuck
+tig
+tmux
