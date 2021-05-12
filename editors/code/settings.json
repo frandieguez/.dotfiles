@@ -1,11 +1,11 @@
 {
-  "workbench.colorTheme": "Nord",
+
+  "keyboard.dispatch": "keyCode",
   "yaml.schemas": {
     "file:///home/fran/.vscode-insiders/extensions/atlassian.atlascode-2.4.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.exclude": {
     "**/.classpath": true,
     "**/.project": true,
@@ -19,8 +19,10 @@
   "editor.fontLigatures": true,
   "workbench.startupEditor": "newUntitledFile",
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80, 120],
-  "explorer.confirmDelete": false,
+  "editor.rulers": [
+    80,
+    120
+  ],
   "files.autoSave": "onFocusChange",
   "files.trimTrailingWhitespace": true,
   "git.fetchOnPull": true,
@@ -164,8 +166,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  //"sundial.autoLocale": true,
-  //"window.autoDetectColorScheme": true,
   "workbench.preferredLightColorTheme": "GitHub Light",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
   "workbench.colorTheme": "GitHub Light",
@@ -174,4 +174,16 @@
   "gitlens.views.branches.branches.layout": "list",
   "prettier.requireConfig": true,
   "editor.suggestSelection": "first",
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "gitlens.advanced.messages": {
+    "suppressFileNotUnderSourceControlWarning": true
+  },
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.autoDetectColorScheme": true,
+  "terminal.integrated.copyOnSelection": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  }
