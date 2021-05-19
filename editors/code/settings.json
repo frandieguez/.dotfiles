@@ -1,107 +1,103 @@
 {
-
-  "keyboard.dispatch": "keyCode",
-  "yaml.schemas": {
-    "file:///home/fran/.vscode-insiders/extensions/atlassian.atlascode-2.4.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 13,
+  "editor.lightbulb.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80,120],
+  "editor.smoothScrolling": true,
+  "editor.suggestSelection": "first",
+  "emmet.triggerExpansionOnTab": true,
+  "files.autoSave": "onFocusChange",
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "git.fetchOnPull": true,
+  "gitlens.views.branches.branches.layout": "list",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "keyboard.dispatch": "keyCode",
+  "prettier.requireConfig": true,
+  "python.showStartPage": false,
+  "search.useIgnoreFiles": false,
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "vim.highlightedyank.enable": true,
+  "vim.neovimPath": "/usr/bin/nvim",
+  "window.autoDetectColorScheme": true,
+  "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.preferredDarkColorTheme": "GitHub Dark",
+  "workbench.preferredLightColorTheme": "GitHub Light",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
   "files.exclude": {
     "**/.classpath": true,
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "workbench.sideBar.location": "left",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.fontLigatures": true,
-  "workbench.startupEditor": "newUntitledFile",
-  "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80,
-    120
-  ],
-  "files.autoSave": "onFocusChange",
-  "files.trimTrailingWhitespace": true,
-  "git.fetchOnPull": true,
-  "search.useIgnoreFiles": false,
-  "telemetry.enableTelemetry": false,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "line",
-  "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
-  "window.titleBarStyle": "custom",
-  "workbench.activityBar.visible": true,
-  "window.menuBarVisibility": "classic",
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
+  "vim.easymotion": true,
+  "vim.leader": "<Space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "j"],
       "after": ["<Esc>"]
     }
   ],
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
-  },
-  "vim.easymotion": true,
-  "vim.leader": "<Space>",
   "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
-    },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
-    }
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     // Clean search hightlight with C-n
-    {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
-    },
+    { "before": ["<C-n>"], "commands": [":nohl"] },
+    { "before": ["<leader>", "d"], "after": ["d", "d"] },
     // Undo with u
-    {
-      "before": ["u"],
-      "after": [],
-      "commands": [
-        {
-          "command": "undo"
-        }
-      ]
-    },
+    { "before": ["u"], "after": [], "commands": [ { "command": "undo" } ] },
     // Redo with C-r
-    {
-      "before": ["<C-r>"],
-      "after": [],
-      "commands": [
-        {
-          "command": "redo"
-        }
-      ]
-    },
-    {
-      "before": ["<leader>", "m"],
-      "commands": ["bookmarks.toggle"]
-    },
-    {
-      "before": ["<leader>", "b"],
-      "commands": ["bookmarks.list"]
-    },
-    {
-      "before": ["<leader>", "q"],
-      "commands": [":q"]
-    },
-    {
-      "before": ["<leader>", "w"],
-      "commands": [":w"]
-    }
+    { "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] },
+    { "before": ["<leader>", "m"], "commands": ["bookmarks.toggle"] },
+    { "before": ["<leader>", "b"], "commands": ["bookmarks.list"] },
+    { "before": ["<leader>", "q"], "commands": [":q"] },
+    { "before": ["<leader>", "w"], "commands": [":w"] }
   ],
   "vim.incsearch": true,
   "vim.useCtrlKeys": true,
@@ -130,61 +126,6 @@
       "editorGutter.background": "#1e222b"
     }
   },
-  "emmet.triggerExpansionOnTab": true,
-  "vim.neovimPath": "/usr/bin/nvim",
-  "editor.lightbulb.enabled": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "editor.smoothScrolling": true,
-  "files.trimFinalNewlines": true,
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "python.insidersChannel": "off",
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.formatOnSave": true,
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter-notebook",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "python.showStartPage": false,
-  "editor.fontSize": 13,
-  "workbench.editor.decorations.badges": true,
-  "atlascode.jira.enabled": true,
-  "git.autofetch": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.preferredDarkColorTheme": "GitHub Dark",
-  "workbench.colorTheme": "GitHub Light",
-  "vim.highlightedyank.enable": true,
-  "workbench.productIconTheme": "fluent-icons",
-  "gitlens.views.branches.branches.layout": "list",
-  "prettier.requireConfig": true,
-  "editor.suggestSelection": "first",
-  "editor.minimap.enabled": false,
-  "gitlens.advanced.messages": {
-    "suppressFileNotUnderSourceControlWarning": true
-  },
-  "terminal.integrated.sendKeybindingsToShell": true,
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "window.autoDetectColorScheme": true,
-  "terminal.integrated.copyOnSelection": true,
-  "[ruby]": {
-    "editor.defaultFormatter": "misogi.ruby-rubocop"
-  }
+  "window.titleBarStyle": "custom",
+  "workbench.productIconTheme": "icons-carbon",
 }
