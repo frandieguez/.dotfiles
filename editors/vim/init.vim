@@ -74,35 +74,35 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'xolox/vim-misc'
 
 if has('nvim')
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-  "Plug 'zchee/deoplete-go'
-  Plug 'Shougo/denite.nvim' " (Optional) Multi-entry selection UI.
-  Plug 'Shougo/echodoc.vim' " (Optional) Showing function signature and inline doc.
-  Plug 'autozimu/LanguageClient-neovim', { 'branch' : 'next', 'do': 'bash install.sh'  }
-  Plug 'junegunn/fzf' " (Optional) Multi-entry selection UI.
-  Plug 'ncm2/ncm2'
-  Plug 'ncm2/ncm2-bufword'
-  Plug 'ncm2/ncm2-cssomni'
-  Plug 'ncm2/ncm2-go'
-  Plug 'ncm2/ncm2-html-subscope'
-  Plug 'ncm2/ncm2-jedi'
-  Plug 'ncm2/ncm2-markdown-subscope'
-  Plug 'ncm2/ncm2-neoinclude'
-  Plug 'ncm2/ncm2-path'
-  Plug 'ncm2/ncm2-rst-subscope'
-  "Plug 'ncm2/ncm2-term'
-  Plug 'ncm2/ncm2-tmux'
-  Plug 'ncm2/ncm2-ultisnips'
-  Plug 'ncm2/ncm2-vim-lsp'
-  Plug 'phpactor/ncm2-phpactor'
-  Plug 'prabirshrestha/async.vim' " Required by ncm2-vim-lsp
-  Plug 'prabirshrestha/vim-lsp' " Required by ncm2-vim-lsp
-  Plug 'roxma/nvim-yarp'
+ "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+ "Plug 'zchee/deoplete-go'
+ Plug 'Shougo/denite.nvim' " (Optional) Multi-entry selection UI.
+ Plug 'Shougo/echodoc.vim' " (Optional) Showing function signature and inline doc.
+ Plug 'autozimu/LanguageClient-neovim', { 'branch' : 'next', 'do': 'bash install.sh'  }
+ Plug 'junegunn/fzf' " (Optional) Multi-entry selection UI.
+ Plug 'ncm2/ncm2'
+ Plug 'ncm2/ncm2-bufword'
+ Plug 'ncm2/ncm2-cssomni'
+ Plug 'ncm2/ncm2-go'
+ Plug 'ncm2/ncm2-html-subscope'
+ Plug 'ncm2/ncm2-jedi'
+ Plug 'ncm2/ncm2-markdown-subscope'
+ Plug 'ncm2/ncm2-neoinclude'
+ Plug 'ncm2/ncm2-path'
+ Plug 'ncm2/ncm2-rst-subscope'
+ "Plug 'ncm2/ncm2-term'
+ Plug 'ncm2/ncm2-tmux'
+ Plug 'ncm2/ncm2-ultisnips'
+ Plug 'ncm2/ncm2-vim-lsp'
+ Plug 'phpactor/ncm2-phpactor'
+ Plug 'prabirshrestha/async.vim' " Required by ncm2-vim-lsp
+ Plug 'prabirshrestha/vim-lsp' " Required by ncm2-vim-lsp
+ Plug 'roxma/nvim-yarp'
 endif
 
-if has('python3')
-    Plug 'joonty/vdebug'
-endif
+"if has('python3')
+    "Plug 'joonty/vdebug'
+"endif
 
 call plug#end()
 
