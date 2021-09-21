@@ -34,7 +34,7 @@ _a "Initializing zim"
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
 _a "Installing archlinux packages..."
-grep -v '#' ./os/linux/archlinux-packages | yay -S --noconfirm
+grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm
 
 _a "Installing packages..."
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" package import
