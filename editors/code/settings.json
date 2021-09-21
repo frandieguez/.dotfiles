@@ -37,7 +37,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
   "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
   "files.exclude": {
     "**/.classpath": true,
@@ -128,4 +127,14 @@
   },
   "window.titleBarStyle": "custom",
   "workbench.productIconTheme": "icons-carbon",
+  "solargraph.useBundler": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editor.untitled.experimentalLanguageDetection": true,
+  "[xml]": {
+    "editor.autoClosingBrackets": "never",
+    "files.trimFinalNewlines": true
+  },
+  "editor.bracketPairColorization.enabled": true,
 }
