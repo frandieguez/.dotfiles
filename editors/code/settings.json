@@ -1,55 +1,76 @@
 {
-  "editor.fontFamily": "'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 13,
-  "editor.lightbulb.enabled": true,
-  "editor.minimap.enabled": false,
-  "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80,120],
-  "editor.smoothScrolling": true,
-  "editor.suggestSelection": "first",
-  "emmet.triggerExpansionOnTab": true,
-  "files.autoSave": "onFocusChange",
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
-  "git.autofetch": true,
-  "git.fetchOnPull": true,
-  "gitlens.views.branches.branches.layout": "list",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "keyboard.dispatch": "keyCode",
-  "prettier.requireConfig": true,
-  "python.showStartPage": false,
-  "search.useIgnoreFiles": false,
-  "telemetry.enableTelemetry": false,
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.sendKeybindingsToShell": true,
-  "vim.highlightedyank.enable": true,
-  "vim.neovimPath": "/usr/bin/nvim",
-  "window.autoDetectColorScheme": true,
-  "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
-  "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "GitHub Dark",
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.preferredDarkColorTheme": "GitHub Dark",
-  "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.startupEditor": "newUntitledFile",
   "files.exclude": {
     "**/.classpath": true,
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "breadcrumbs.enabled": false,
+  "editor.fontFamily": "'JetBrains Mono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.lightbulb.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80, 120],
+  "editor.smoothScrolling": true,
+  "editor.suggestSelection": "first",
+  "emmet.triggerExpansionOnTab": true,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "onFocusChange",
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "git.fetchOnPull": true,
+  "gitlens.currentLine.enabled": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "php.suggest.basic": false,
+  "prettier.requireConfig": true,
+  "search.useIgnoreFiles": false,
+  "solargraph.commandPath": "/usr/local/bundle/bin/solargraph",
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.fontFamily": "'Hack', monospace",
+  "terminal.integrated.fontSize": 13,
+  "vim.enableNeovim": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.surround": true,
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
+  "window.titleBarStyle": "custom",
+  "workbench.activityBar.visible": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.productIconTheme": "icons-carbon",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorCustomizations": {
+    "editorWarning.foreground": "#FFAA00"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
   },
+  "vim.insertModeKeyBindings": [ { "before": ["j", "j"], "after": ["<Esc>"] } ],
+  "vim.handleKeys": { "<C-a>": false, "<C-f>": false },
+  "vim.easymotion": true,
+  "vim.leader": "<Space>",
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<C-n>"], "commands": [":nohl"] },
+    { "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] },
+    { "before": ["<leader>", "b"], "commands": ["bookmarks.list"] },
+    { "before": ["<leader>", "d"], "after": ["d", "d"] },
+    { "before": ["<leader>", "m"], "commands": ["bookmarks.toggle"] },
+    { "before": ["<leader>", "q"], "commands": [":q"] },
+    { "before": ["<leader>", "w"], "commands": [":w"] },
+    { "before": ["u"], "after": [], "commands": [ { "command": "undo" } ] },
+  ],
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
@@ -59,82 +80,23 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[html]": {
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
-  "vim.easymotion": true,
-  "vim.leader": "<Space>",
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    { "before": [">"], "commands": ["editor.action.indentLines"] },
-    { "before": ["<"], "commands": ["editor.action.outdentLines"] }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // Clean search hightlight with C-n
-    { "before": ["<C-n>"], "commands": [":nohl"] },
-    { "before": ["<leader>", "d"], "after": ["d", "d"] },
-    // Undo with u
-    { "before": ["u"], "after": [], "commands": [ { "command": "undo" } ] },
-    // Redo with C-r
-    { "before": ["<C-r>"], "after": [], "commands": [ { "command": "redo" } ] },
-    { "before": ["<leader>", "m"], "commands": ["bookmarks.toggle"] },
-    { "before": ["<leader>", "b"], "commands": ["bookmarks.list"] },
-    { "before": ["<leader>", "q"], "commands": [":q"] },
-    { "before": ["<leader>", "w"], "commands": [":w"] }
-  ],
-  "vim.incsearch": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.surround": true,
-  "vim.useSystemClipboard": true,
-  "vim.enableNeovim": true,
-  "workbench.colorCustomizations": {
-    "[Nord]": {
-      "activityBar.background": "#1e222b",
-      "activityBar.border": "#1e222b",
-      "titleBar.activeBackground": "#1e222b",
-      "editor.background": "#1e222b",
-      "editorWarning.foreground": "#FFAA00",
-      "panel.background": "#1e222b",
-      "panel.border": "#2E3440",
-      "panelSectionHeader.background": "#2E3440",
-      "menu.background": "#1e222b",
-      "sideBar.background": "#1e222b",
-      "sideBar.border": "#2E3440",
-      "editorRuler.foreground": "#2E3440",
-      "statusBar.background": "#1e222b",
-      "tab.activeBackground": "#1e222b",
-      "terminal.background": "#1e222b",
-      "welcomePage.background": "#1e222b",
-      "editorGutter.background": "#1e222b"
-    }
-  },
-  "window.titleBarStyle": "custom",
-  "workbench.productIconTheme": "icons-carbon",
-  "solargraph.useBundler": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "redhat.telemetry.enabled": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  "workbench.editor.untitled.experimentalLanguageDetection": true,
-  "[xml]": {
-    "editor.autoClosingBrackets": "never",
-    "files.trimFinalNewlines": true
-  },
   "editor.bracketPairColorization.enabled": true,
+  "window.zoomLevel": 1,
+  "redhat.telemetry.enabled": true,
+  "window.autoDetectColorScheme": true,
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.preferredDarkColorTheme": "GitHub Dark",
 }
