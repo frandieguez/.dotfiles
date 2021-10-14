@@ -23,6 +23,7 @@ export path=(
   "$HOME/.gem/ruby/2.7.0/bin"
   "$HOME/.composer/vendor/bin"
   "$HOME/.config/yarn/global/node_modules/.bin/"
+  "/var/lib/flatpak/exports/bin"
   "/usr/local/opt/ruby/bin"
   "/usr/local/opt/python/libexec/bin"
   "/usr/local/bin"
