@@ -94,9 +94,8 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.bracketPairColorization.enabled": true,
-  "window.zoomLevel": 1,
   "redhat.telemetry.enabled": true,
   "window.autoDetectColorScheme": true,
-  "workbench.colorTheme": "GitHub Dark",
+  "workbench.colorTheme": "GitHub Light",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
 }
