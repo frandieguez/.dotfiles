@@ -12,6 +12,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b
     --reverse'
 
+    export ANDROID_HOME=$HOME/Android/Sdk
+
 export path=(
   "$HOME/bin"
   "$DOTLY_PATH/bin"
@@ -23,6 +25,10 @@ export path=(
   "$HOME/.gem/ruby/2.7.0/bin"
   "$HOME/.composer/vendor/bin"
   "$HOME/.config/yarn/global/node_modules/.bin/"
+  "$ANDROID_HOME/emulator"
+  "$ANDROID_HOME/tools"
+  "$ANDROID_HOME/tools/bin"
+  "$ANDROID_HOME/platform-tools"
   "/var/lib/flatpak/exports/bin"
   "/usr/local/opt/ruby/bin"
   "/usr/local/opt/python/libexec/bin"
