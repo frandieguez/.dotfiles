@@ -1,7 +1,7 @@
 [submodule "modules/dotly"]
 	path = modules/dotly
 	url = https://github.com/CodelyTV/dotly.git
-	branch = master
+	branch = main
 [submodule "modules/git-hooks"]
 	path = modules/git-hooks
 	url = https://github.com/dhellmann/git-hooks.git
