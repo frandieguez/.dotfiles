@@ -112,14 +112,15 @@ filetype plugin indent on
 set t_Co=256
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:block-Cursor/lCursor-blinkon100,r-cr:hor20-Cursor/lCursor
 
-set background=dark
-colorscheme nord
-let g:nord_italic_comments=1
-let g:nord_uniform_diff_background=1
+"set background=dark
+"colorscheme nord
+"let g:nord_italic_comments=1
+"let g:nord_uniform_diff_background=1
 "set g:solarized_termcolors = 256
 
 syntax enable
 let &colorcolumn="".join(range(81,121),",")
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Misc
 let mapleader="\<Space>"
