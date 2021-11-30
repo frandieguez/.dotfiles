@@ -103,4 +103,8 @@
   "editor.guides.bracketPairs": true,
   "window.titleBarStyle": "custom",
   "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

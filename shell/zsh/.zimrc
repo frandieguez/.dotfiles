@@ -15,4 +15,5 @@ zmodule pacman
 zmodule changyuheng/zsh-interactive-cd
 zmodule archive
 zmodule ruby
+zmodule ssh
 zmodule denysdovhan/spaceship-prompt --name spaceship
