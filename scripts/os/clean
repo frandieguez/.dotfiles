@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$DOTLY_PATH/scripts/core/_main.sh"
+
+##? Add a hello message
+##?
+##? Usage:
+##?    hello
+docs::parse "$@"
+
+echo '    |\__/,|   (`\'
+echo "  _.|o o  |_   ) )"
+echo "-(((---(((--------"
+sudo pacman -Rcns $(pacman -Qdtq);
+sudo pacman -Sc --noconfirm;
+sudo yay -Sc --noconfirm;
+sudo rm /var/lib/systemd/coredump/*;
+sudo journalctl --vacuum-size=1M;
+sudo rm -r /var/cache/pacman/pkg/*;
+rm -fr ~/.cache/yay

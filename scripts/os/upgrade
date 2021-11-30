@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$DOTLY_PATH/scripts/core/_main.sh"
+
+##? Updates archlinux to latest version
+##?
+##? Usage:
+##?    upgrade
+docs::parse "$@"
+
+sudo pacman -Syuu;
+yay -Syyua --noconfirm;
+flatpak update -y;
