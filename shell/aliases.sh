@@ -1,5 +1,5 @@
 # Enable aliases to be sudo’ed
-alias sudo='sudo '
+#alias sudo='sudo '
 
 alias ..="cd .."
 alias ...="cd ../.."
