@@ -22,6 +22,9 @@ INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
 
+_a "Installing archlinux packages..."
+grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
+
 _a "Initializing submodules"
 git submodule update --init --recursive
 
@@ -32,9 +35,6 @@ DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL
 
 _a "Initializing zim"
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
-
-_a "Installing archlinux packages..."
-grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm
 
 _a "Installing packages..."
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" package import
