@@ -125,3 +125,8 @@
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
