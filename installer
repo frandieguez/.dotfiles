@@ -69,5 +69,7 @@ if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     fi
 fi
 
+sudo ln -s   /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
+
 _w "🎉 dotfiles installed correctly! 🎉"
 _w "Please, restart your terminal to see the changes"
