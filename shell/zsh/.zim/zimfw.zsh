@@ -78,7 +78,8 @@ _zimfw_build_login_init() {
   fi
   _zimfw_mv =(
     print -nR "() {
-  setopt LOCAL_OPTIONS CASE_GLOB EXTENDED_GLOB
+  builtin emulate -L zsh
+  setopt EXTENDED_GLOB
   autoload -Uz zrecompile
   local zdumpfile zfile
 
@@ -115,42 +116,42 @@ Add %Bzmodule%b calls to your %B${ZDOTDIR:-${HOME}}/.zimrc%b file to define the 
 The modules are initialized in the same order they are defined.
 
   <url>                      Module absolute path or repository URL. The following URL formats
-                             are equivalent: %Bname%b, %Bzimfw/name%b, %Bhttps://github.com/zimfw/name.git%b.
-  %B-n%b|%B--name%b <module_name>    Set a custom module name. Default: the last component in the <url>.
-                             Use slashes inside the name to organize the module into subdirecto-
-                             ries.
+                             are equivalent: %Bfoo%b, %Bzimfw/foo%b, %Bhttps://github.com/zimfw/foo.git%b.
+  %B-n%b|%B--name%b <module_name>    Set a custom module name. Default: the last component in <url>.
+                             Use slashes inside the name to organize the module into subdirec-
+                             tories.
 
 Repository options:
   %B-b%b|%B--branch%b <branch_name>  Use specified branch when installing and updating the module.
-                             Overrides the tag option. Default: the repository's default branch.
-  %B-t%b|%B--tag%b <tag_name>        Use specified tag when installing and updating the module.
-                             Overrides the branch option.
+                             Overrides the tag option. Default: the repository default branch.
+  %B-t%b|%B--tag%b <tag_name>        Use specified tag when installing and updating the module. Over-
+                             rides the branch option.
   %B-u%b|%B--use%b <%Bgit%b|%Bdegit%b>       Install and update the module using the defined tool. Default is
-                             defined by %Bzstyle ':zim:zmodule' use '%b<%Bgit%b|%Bdegit%b>%B'%b, or %Bgit%b if none
-                             is provided.
-                             %Bgit%b requires git itself. Local changes are preserved during updates.
+                             either defined by %Bzstyle ':zim:zmodule' use '%b<%Bgit%b|%Bdegit%b>%B'%b, or %Bgit%b
+                             if none is provided.
+                             %Bgit%b requires git itself. Local changes are preserved on updates.
                              %Bdegit%b requires curl or wget, and currently only works with GitHub
-                             URLs. Modules install faster and take less disk space. Local changes
-                             are lost during updates. Git submodules are not supported.
+                             URLs. Modules install faster and take less disk space. Local
+                             changes are lost on updates. Git submodules are not supported.
   %B-z%b|%B--frozen%b                Don't install or update the module.
 
 Initialization options:
   %B-f%b|%B--fpath%b <path>          Add specified path to fpath. The path is relative to the module
                              root directory. Default: %Bfunctions%b, if the subdirectory exists.
   %B-a%b|%B--autoload%b <func_name>  Autoload specified function. Default: all valid names inside the
-                             module's specified fpath paths.
-  %B-s%b|%B--source%b <file_path>    Source specified file. The file path is relative to the module root
-                             directory. Default: %Binit.zsh%b, if the %Bfunctions%b subdirectory also
-                             exists, or the file with largest size matching
-                             %B{init.zsh,module_name.{zsh,plugin.zsh,zsh-theme,sh}}%b, if any exist.
-  %B-c%b|%B--cmd%b <command>         Execute specified command. Occurrences of the %B{}%b placeholder in the
-                             command are substituted by the module root directory path.
-                             I.e., %B-s 'script.zsh'%b and %B-c 'source {}/script.zsh'%b are equivalent.
+                             %Bfunctions%b subdirectory, if any.
+  %B-s%b|%B--source%b <file_path>    Source specified file. The file path is relative to the module
+                             root directory. Default: %Binit.zsh%b, if the %Bfunctions%b subdirectory
+                             also exists, or the file with largest size and with name matching
+                             %B{init.zsh,module_name.{zsh,plugin.zsh,zsh-theme,sh}}%b, if any.
+  %B-c%b|%B--cmd%b <command>         Execute specified command. Occurrences of the %B{}%b placeholder in
+                             the command are substituted by the module root directory path.
+                             I.e., %B-s 'foo.zsh'%b and %B-c 'source {}/foo.zsh'%b are equivalent.
   %B-d%b|%B--disabled%b              Don't initialize or uninstall the module.
 
-  Setting any initialization option above will disable all the default values from the other ini-
-  tialization options, so only your provided values are used. I.e. these values are either all
-  automatic, or all manual."
+  Setting any initialization option above will disable all the default values from the other
+  initialization options, so only your provided values are used. I.e. these values are either
+  all automatic, or all manual."
   if [[ ${${funcfiletrace[1]%:*}:t} != .zimrc ]]; then
     print -u2 -PlR "%F{red}${0}: Must be called from %B${ZDOTDIR:-${HOME}}/.zimrc%b%f" '' ${zusage}
     return 2
@@ -160,7 +161,6 @@ Initialization options:
     _zfailed=1
     return 2
   fi
-  setopt LOCAL_OPTIONS CASE_GLOB EXTENDED_GLOB
   local zurl=${1} zmodule=${1:t} ztool zdir ztype zrev zarg
   local -i zdisabled=0 zfrozen=0
   local -a zfpaths zfunctions zcmds
@@ -177,7 +177,7 @@ Initialization options:
   shift
   if [[ ${1} == (-n|--name) ]]; then
     if (( # < 2 )); then
-      print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Missing argument for zmodule option ${1}%f" '' ${zusage}
+      print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Missing argument for zmodule option %B${1}%b%f" '' ${zusage}
       _zfailed=1
       return 2
     fi
@@ -195,7 +195,7 @@ Initialization options:
     case ${1} in
       -b|--branch|-t|--tag|-u|--use|-f|--fpath|-a|--autoload|-s|--source|-c|--cmd)
         if (( # < 2 )); then
-          print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Missing argument for zmodule option ${1}%f" '' ${zusage}
+          print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Missing argument for zmodule option %B${1}%b%f" '' ${zusage}
           _zfailed=1
           return 2
         fi
@@ -203,7 +203,7 @@ Initialization options:
     esac
     case ${1} in
       -b|--branch|-t|--tag|-u|--use)
-        if [[ -z ${zurl} ]] _zimfw_print -u2 -PR "%F{yellow}! ${funcfiletrace[1]}:%B${zmodule}:%b The zmodule option ${1} has no effect for external modules%f"
+        if [[ -z ${zurl} ]] _zimfw_print -u2 -PR "%F{yellow}! ${funcfiletrace[1]}:%B${zmodule}:%b The zmodule option %B${1}%b has no effect for external modules%f"
         ;;
     esac
     case ${1} in
@@ -244,7 +244,7 @@ Initialization options:
         ;;
       -d|--disabled) zdisabled=1 ;;
       *)
-        print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Unknown zmodule option ${1}%f" '' ${zusage}
+        print -u2 -PlR "%F{red}x ${funcfiletrace[1]}:%B${zmodule}:%b Unknown zmodule option %B${1}%b%f" '' ${zusage}
         _zfailed=1
         return 2
         ;;
@@ -330,7 +330,6 @@ _zimfw_list_unuseds() {
 
 _zimfw_version_check() {
   if (( _zprintlevel > 0 )); then
-    setopt LOCAL_OPTIONS EXTENDED_GLOB
     local -r ztarget=${ZIM_HOME}/.latest_version
     # If .latest_version does not exist or was not modified in the last 30 days
     if [[ -w ${ztarget:h} && ! -f ${ztarget}(#qNm-30) ]]; then
@@ -373,7 +372,7 @@ _zimfw_compile() {
 }
 
 _zimfw_info() {
-  print -R 'zimfw version: '${_zversion}' (built at 2021-11-08 17:02:56 UTC, previous commit is 811616c)'
+  print -R 'zimfw version: '${_zversion}' (built at 2021-11-21 19:40:05 UTC, previous commit is a5fb148)'
   print -R 'ZIM_HOME:      '${ZIM_HOME}
   print -R 'Zsh version:   '${ZSH_VERSION}
   print -R 'System info:   '$(command uname -a)
@@ -483,9 +482,10 @@ _zimfw_run_tool() {
   local zcmd
   case ${ztool} in
     degit) zcmd="# This runs in a new shell
+builtin emulate -L zsh
+setopt EXTENDED_GLOB
 readonly -i PRINTLEVEL=\${1}
-readonly ACTION=\${2} MODULE=\${3} DIR=\${4} URL=\${5} REV=\${7}
-readonly TEMP=.zdegit_\${RANDOM}
+readonly ACTION=\${2} MODULE=\${3} DIR=\${4} URL=\${5} REV=\${7} TEMP=.zdegit_\${RANDOM}
 readonly TARBALL_TARGET=\${DIR}/\${TEMP}_tarball.tar.gz INFO_TARGET=\${DIR}/.zdegit
 
 print_error() {
@@ -504,7 +504,6 @@ print_okay() {
 }
 
 download_tarball() {
-  setopt LOCAL_OPTIONS EXTENDED_GLOB
   local host repo
   if [[ \${URL} =~ ^([^:@/]+://)?([^@]+@)?([^:/]+)[:/]([^/]+/[^/]+)/?\$ ]]; then
     host=\${match[3]}
@@ -596,7 +595,7 @@ case \${ACTION} in
   update)
     if [[ ! -r \${INFO_TARGET} ]]; then
       if (( PRINTLEVEL > 0 )); then
-        print -u2 -PR $'\E[2K\r'\"%F{yellow}! %B\${MODULE}:%b Module was not installed using Zim's degit. Will not try to update. You can disable this with the zmodule option -z|--frozen.%f\"
+        print -u2 -PR $'\E[2K\r'\"%F{yellow}! %B\${MODULE}:%b Module was not installed using Zim's degit. Will not try to update. Use zmodule option %B-z%b|%B--frozen%b to disable this warning.%f\"
       fi
       return 0
     fi
@@ -626,8 +625,9 @@ case \${ACTION} in
 esac
 " ;;
     git) zcmd="# This runs in a new shell
+builtin emulate -L zsh
 readonly -i PRINTLEVEL=\${1}
-readonly ACTION=\${2} MODULE=\${3} DIR=\${4} URL=\${5} TYPE=\${6:=branch}
+readonly ACTION=\${2} MODULE=\${3} DIR=\${4} URL=\${5} TYPE=\${6:=branch} SUBMODULES=1
 REV=\${7}
 
 print_error() {
@@ -640,7 +640,7 @@ print_okay() {
 
 case \${ACTION} in
   install)
-    if ERR=\$(command git clone \${REV:+-b} \${REV} -q --config core.autocrlf=false --recursive \${URL} \${DIR} 2>&1); then
+    if ERR=\$(command git clone \${REV:+-b} \${REV} -q --config core.autocrlf=false \${SUBMODULES:+--recursive} -- \${URL} \${DIR} 2>&1); then
       print_okay Installed
     else
       print_error 'Error during git clone' \${ERR}
@@ -648,49 +648,50 @@ case \${ACTION} in
     fi
     ;;
   update)
-    if ! builtin cd -q \${DIR} 2>/dev/null; then
-      print_error \"Error during cd \${DIR}\"
-      return 1
-    fi
-    if [[ \${PWD:A} != \${\"\$(command git rev-parse --show-toplevel 2>/dev/null)\":A} ]]; then
+    if [[ ! -r \${DIR}/.git ]]; then
       if (( PRINTLEVEL > 0 )); then
-        print -u2 -PR $'\E[2K\r'\"%F{yellow}! %B\${MODULE}:%b Module was not installed using git. Will not try to update. You can disable this with the zmodule option -z|--frozen.%f\"
+        print -u2 -PR $'\E[2K\r'\"%F{yellow}! %B\${MODULE}:%b Module was not installed using git. Will not try to update. Use zmodule option %B-z%b|%B--frozen%b to disable this warning.%f\"
       fi
       return 0
     fi
-    if [[ \${URL} != \$(command git config --get remote.origin.url) ]]; then
+    if [[ \${URL} != \$(command git -C \${DIR} config --get remote.origin.url) ]]; then
       print_error \"URL does not match. Expected \${URL}. Will not try to update.\"
       return 1
     fi
-    if ! ERR=\$(command git fetch -pq origin 2>&1); then
+    if ! ERR=\$(command git -C \${DIR} fetch -pq origin 2>&1); then
       print_error 'Error during git fetch' \${ERR}
       return 1
     fi
     if [[ \${TYPE} == tag ]]; then
-      if [[ \${REV} == \$(command git describe --tags --exact-match 2>/dev/null) ]]; then
+      if [[ \${REV} == \$(command git -C \${DIR} describe --tags --exact-match 2>/dev/null) ]]; then
         print_okay 'Already up to date'
         return 0
       fi
     elif [[ -z \${REV} ]]; then
       # Get HEAD remote branch
-      if ! ERR=\$(command git remote set-head origin -a 2>&1); then
+      if ! ERR=\$(command git -C \${DIR} remote set-head origin -a 2>&1); then
         print_error 'Error during git remote set-head' \${ERR}
         return 1
       fi
-      REV=\${\$(command git symbolic-ref --short refs/remotes/origin/HEAD)#origin/} || return 1
+      if REV=\$(command git -C \${DIR} symbolic-ref --short refs/remotes/origin/HEAD 2>&1); then
+        REV=\${REV#origin/}
+      else
+        print_error 'Error during git symbolic-ref' \${REV}
+        return 1
+      fi
     fi
     if [[ \${TYPE} == branch ]]; then
       LOG_REV=\${REV}@{u}
     else
       LOG_REV=\${REV}
     fi
-    LOG=\$(command git log --graph --color --format='%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)' ..\${LOG_REV} -- 2>/dev/null)
-    if ! ERR=\$(command git checkout -q \${REV} -- 2>&1); then
+    LOG=\$(command git -C \${DIR} log --graph --color --format='%C(yellow)%h%C(reset) %s %C(cyan)(%cr)%C(reset)' ..\${LOG_REV} -- 2>/dev/null)
+    if ! ERR=\$(command git -C \${DIR} checkout -q \${REV} -- 2>&1); then
       print_error 'Error during git checkout' \${ERR}
       return 1
     fi
     if [[ \${TYPE} == branch ]]; then
-      if ! OUT=\$(command git merge --ff-only --no-progress -n 2>&1); then
+      if ! OUT=\$(command git -C \${DIR} merge --ff-only --no-progress -n 2>&1); then
         print_error 'Error during git merge' \${OUT}
         return 1
       fi
@@ -699,9 +700,11 @@ case \${ACTION} in
     else
       OUT=\"Updating to \${TYPE} \${REV}\"
     fi
-    if ! ERR=\$(command git submodule update --init --recursive -q 2>&1); then
-      print_error 'Error during git submodule update' \${ERR}
-      return 1
+    if [[ -n \${SUBMODULES} ]]; then
+      if ! ERR=\$(command git -C \${DIR} submodule update --init --recursive -q -- 2>&1); then
+        print_error 'Error during git submodule update' \${ERR}
+        return 1
+      fi
     fi
     print_okay \${OUT} \${LOG}
     ;;
@@ -716,7 +719,9 @@ esac
 }
 
 zimfw() {
-  local -r _zversion='1.6.1' zusage="Usage: %B${0}%b <action> [%B-q%b|%B-v%b]
+  builtin emulate -L zsh
+  setopt EXTENDED_GLOB
+  local -r _zversion='1.6.2' zusage="Usage: %B${0}%b <action> [%B-q%b|%B-v%b]
 
 Actions:
   %Bbuild%b           Build %B${ZIM_HOME}/init.zsh%b and %B${ZIM_HOME}/login_init.zsh%b.
@@ -727,12 +732,13 @@ Actions:
   %Bcompile%b         Compile Zsh files.
   %Bhelp%b            Print this help.
   %Binfo%b            Print Zim and system info.
-  %Blist%b            List all modules. Use %B-v%b to also see the current details for all modules.
+  %Blist%b            List all modules currently defined in %B${ZDOTDIR:-${HOME}}/.zimrc%b.
+                  Use %B-v%b to also see the modules details.
   %Binstall%b         Install new modules. Also does %Bbuild%b and %Bcompile%b. Use %B-v%b to also see their
                   output, and see skipped modules.
-  %Buninstall%b       Delete unused modules. Prompts for confirmation. Use %B-q%b to uninstall quietly.
-  %Bupdate%b          Update current modules. Also does %Bbuild%b and %Bcompile%b. Use %B-v%b to see their
-                  output, and see skipped modules.
+  %Buninstall%b       Delete unused modules. Prompts for confirmation. Use %B-q%b for quiet uninstall.
+  %Bupdate%b          Update current modules. Also does %Bbuild%b and %Bcompile%b. Use %B-v%b to also see
+                  their output, and see skipped modules.
   %Bupgrade%b         Upgrade zimfw. Also does %Bcompile%b. Use %B-v%b to also see its output.
   %Bversion%b         Print zimfw version.
 
