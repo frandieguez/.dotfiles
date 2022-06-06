@@ -164,12 +164,13 @@
     "*.ipynb": "jupyter.notebook.ipynb"
   },
   "yaml.schemas": {
-    "file:///home/fran/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///home/fran/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   //"window.autoDetectColorScheme": true,
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "python.insidersChannel": "off",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -187,5 +188,12 @@
   },
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
+  "window.zoomLevel": 1,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
