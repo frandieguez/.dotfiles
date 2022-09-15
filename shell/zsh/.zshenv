@@ -2,10 +2,6 @@ export DOTFILES_PATH="$HOME/.dotfiles"
 export DOTLY_PATH="$DOTFILES_PATH/modules/dotly"
 export ZIM_HOME="$DOTLY_PATH/modules/zimfw"
 
-if [ -n "$DESKTOP_SESSION" ]; then
-  eval $(gnome-keyring-daemon --start)
-  export SSH_AUTH_SOCK
-fi
 
 # zsh-users/zsh-autosuggestions plugin
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=30'
