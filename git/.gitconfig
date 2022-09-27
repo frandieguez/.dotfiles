@@ -71,7 +71,7 @@
 [core]
     filemode = false
     excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
     whitespace = trailing-space,space-before-tab
 [delta]
     features = line-numbers decorations
