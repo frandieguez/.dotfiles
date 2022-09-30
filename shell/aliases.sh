@@ -155,7 +155,7 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 if [[ ! -e "/etc/os-release" ]]; then
   echo "No os-release"
 else
-  distribution=$(cat /etc/os-release | egrep "^ID=" | cut -f2 -d"=")
+  distribution=$(cat /etc/os-release | grep -E "^ID=" | cut -f2 -d"=")
 
   case "$distribution" in
   arch*)
