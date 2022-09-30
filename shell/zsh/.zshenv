@@ -15,7 +15,7 @@ HISTDUP=erase               #Erase duplicates in the history file
 
 # Spaceship zsh plugin -------------------------------------------
 SPACESHIP_PROMPT_ORDER=(
-  vi_mode   # Vi-mode indicator
+  # vi_mode   # Vi-mode indicator
   time      # Time stamps section
   user      # Username section
   dir       # Current directory section
@@ -38,9 +38,9 @@ SPACESHIP_PROMPT_ORDER=(
   gcloud    # Google Cloud Platform section
   venv      # virtualenv section
   conda     # conda virtualenv section
-  pyenv     # Pyenv section
+  # pyenv     # Pyenv section
   dotnet    # .NET section
-  ember     # Ember.js section
+  # ember     # Ember.js section
   kubectl   # Kubectl context section
   terraform # Terraform workspace section
   exec_time # Execution time
@@ -73,7 +73,7 @@ SPACESHIP_RUBY_SHOW=false
 SPACESHIP_RUBY_SYMBOL="R "
 SPACESHIP_DOCKER_SHOW=false
 # SPACESHIP_USER_SHOW=always
-SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_KUBECTL_CONTEXT_SHOW=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_EXEC_TIME_ELAPSED=1
