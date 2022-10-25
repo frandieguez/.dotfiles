@@ -25,6 +25,9 @@ cd $INSTALL_PATH
 _a "Installing archlinux packages..."
 grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
 
+cargo install docpars
+export PATH=$HOME/.cargo/bin:$PATH
+
 _a "Initializing submodules"
 git submodule update --init --recursive
 
