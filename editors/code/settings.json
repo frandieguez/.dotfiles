@@ -1,6 +1,6 @@
 {
   "breadcrumbs.enabled": false,
-  "editor.fontFamily": "'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'Cascadia Mono', 'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
@@ -8,8 +8,6 @@
   "editor.inlineSuggest.enabled": true,
   "editor.lightbulb.enabled": true,
   "editor.minimap.enabled": false,
-  "editor.multiCursorModifier": "ctrlCmd",
-  "editor.renderWhitespace": "boundary",
   "editor.rulers": [80, 120],
   "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": true,
@@ -130,7 +128,6 @@
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "GitHub Dark",
   "workbench.editor.decorations.badges": true,
-  "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
@@ -178,7 +175,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -189,11 +186,17 @@
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
-  "window.zoomLevel": 1,
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "npm.keybindingsChangedWarningShown": true,
+  "editor.renderWhitespace": "boundary",
+  "workbench.editor.enablePreview": false,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 1
 }
