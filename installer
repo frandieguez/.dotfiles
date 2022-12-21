@@ -22,31 +22,33 @@ INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
 
-_a "Installing archlinux packages..."
+_a "Installing archlinux packages…"
 grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
 
 cargo install docpars
 export PATH=$HOME/.cargo/bin:$PATH
 
-_a "Initializing submodules"
+_a "Initializing submodules…"
 git submodule update --init --recursive
 
-_a "Initializing dotly"
+_a "Installing dotly…"
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" self install
-_a "Initializing dotly"
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" symlinks apply
 
-_a "Initializing zim"
+_a "Initializing zsh and zimfw…"
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
-_a "Installing packages..."
+_a "Installing system packages…"
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" package import
 
+_a "Initializing vim…"
 # Install vim-plug
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
-
-_a "Initializing vim…"
 # Install neovim plugins
 if type /usr/bin/nvim >/dev/null 2>&1; then
     /usr/bin/nvim +'PlugInstall --sync' +qall
@@ -56,9 +58,11 @@ fi
 if type /usr/bin/vim >/dev/null 2>&1; then
     /usr/bin/vim +'PlugInstall --sync' +qall
 fi
-_a "Installing k9s skin..."
+
+_a "Installing k9s skin…"
 curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
 
+_a "Installing git…"
 if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     _q "Do you want to add your credentials to your .gitconfig? (Y/n) " q
 
@@ -72,8 +76,10 @@ if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     fi
 fi
 
+_a "Installing fonts…"
 sudo ln -s   /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
 
+_a "Installing user services…"
 # Enable gnome keyring
 systemctl enable --now --user gcr-ssh-agent.service
 systemctl enable --now --user gnome-keyring-daemon.service
