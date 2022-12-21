@@ -15,7 +15,7 @@
 #openconnect
 #s-nail
 #timeshift
-acpilight
+# acpilight
 alsa-card-profiles
 android-udev
 apparmor
