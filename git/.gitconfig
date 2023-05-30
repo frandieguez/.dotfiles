@@ -1,4 +1,5 @@
 [alias]
+	com = "!sh -c \"branch_name=`git symbolic-ref HEAD|sed \"s#refs/heads/\\(feature\\|fix\\)/\\(.*\\)#\\2#\"`; git commit -em \\\"\\${branch_name}\\\": \""
     a = add
     aa = add --all
     ap = add --path
@@ -71,7 +72,7 @@
 [core]
     filemode = false
     excludesfile = ~/.gitignore_global
-	editor = nvim
+	editor = flatpak run --file-forwarding re.sonny.Commit @@
     whitespace = trailing-space,space-before-tab
 [delta]
     features = line-numbers decorations
