@@ -38,9 +38,13 @@ git-extras-git
 gnome-system-log
 gssproxy
 gst-libav
+gst-plugin-pipewire
 gst-plugins-bad
 gst-plugins-base
 gst-plugins-good
+gst-plugins-ugly
+gst-plugins-openh264
+gst-plugin-libde265
 gst-python
 gstreamer
 gstreamer-vaapi
