@@ -34,7 +34,6 @@
   "redhat.telemetry.enabled": false,
   "search.useIgnoreFiles": false,
   "solargraph.commandPath": "/usr/local/bundle/bin/solargraph",
-  "telemetry.enableTelemetry": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.fontFamily": "'Hack', monospace",
@@ -114,11 +113,9 @@
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
   "vim.incsearch": true,
-  "vim.neovimPath": "/usr/bin/nvim",
   "vim.surround": true,
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.autoDetectColorScheme": true,
   "window.menuBarVisibility": "classic",
   "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
@@ -134,40 +131,42 @@
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorCustomizations": {
-    "editorWarning.foreground": "#FFAA00",
-    "[Nord]": {
+    // "editorWarning.foreground": "#FFAA00",
+    "[GitHub Dark]": {
       "activityBar.background": "#1e222b",
-      "activityBar.border": "#1e222b",
+      // "activityBar.border": "#1e222b",
       "titleBar.activeBackground": "#1e222b",
       "editor.background": "#1e222b",
       "editorWarning.foreground": "#FFAA00",
       "panel.background": "#1e222b",
-      "panel.border": "#2E3440",
+      // "panel.border": "#2E3440",
       "panelSectionHeader.background": "#2E3440",
       "menu.background": "#1e222b",
       "sideBar.background": "#1e222b",
-      "sideBar.border": "#2E3440",
+      // "sideBar.border": "#2E3440",
       "editorRuler.foreground": "#2E3440",
       "statusBar.background": "#1e222b",
       "tab.activeBackground": "#1e222b",
       "terminal.background": "#1e222b",
       "welcomePage.background": "#1e222b",
-      "editorGutter.background": "#1e222b"
+      "editorGutter.background": "#1e222b",
+      "editor.findMatchBackground": "#1e222b",
+      // "activityBarBadge.background": "#ff0000"
+      "statusBarItem.prominentBackground": "#ff0000"
     }
   },
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter.notebook.ipynb"
   },
   "yaml.schemas": {
-    "file:///home/fran/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///home/fran/.vscode/extensions/atlassian.atlascode-3.0.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  //"window.autoDetectColorScheme": true,
+  "window.ctColorScheme": true,
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "python.insidersChannel": "off",
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -196,10 +195,6 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "",
-    "projectKey": ""
-  },
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
@@ -215,5 +210,18 @@
   "search.exclude": {
     "**/build": true
   },
-  "window.zoomLevel": 1
+  "editor.cursorBlinking": "expand",
+  "editor.linkedEditing": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "editor.mouseWheelZoom": true,
+  "remote.localPortHost": "allInterfaces",
+  "codium.enabled": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "terminal.integrated.tabs.enabled": false,
+  "json.maxItemsComputed": 15000,
+  "react-native-tools.showUserTips": false
 }

@@ -1,1 +1,11 @@
 // Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+alt+p",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    }
+]
