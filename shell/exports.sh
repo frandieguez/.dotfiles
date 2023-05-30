@@ -12,7 +12,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b
     --reverse'
 
-    export ANDROID_HOME=$HOME/Android/Sdk
+    export ANDROID_HOME=$HOME/.android/sdk
 
 export path=(
   "$HOME/bin"
@@ -25,6 +25,7 @@ export path=(
   "$HOME/.gem/ruby/2.7.0/bin"
   "$HOME/.composer/vendor/bin"
   "$HOME/.config/yarn/global/node_modules/.bin/"
+  "$HOME/.yarn/bin/"
   "$ANDROID_HOME/emulator"
   "$ANDROID_HOME/tools"
   "$ANDROID_HOME/tools/bin"
