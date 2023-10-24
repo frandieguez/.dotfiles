@@ -72,8 +72,10 @@
 [core]
     filemode = false
     excludesfile = ~/.gitignore_global
-	editor = flatpak run --file-forwarding re.sonny.Commit @@
+	#editor = flatpak run --file-forwarding re.sonny.Commit @@
+	editor = vim
     whitespace = trailing-space,space-before-tab
+	autocrlf = input
 [delta]
     features = line-numbers decorations
     whitespace-error-style = 22 reverse
