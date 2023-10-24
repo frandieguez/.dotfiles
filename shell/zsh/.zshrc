@@ -28,6 +28,14 @@ source "$DOTFILES_PATH/modules/zsh-vi-mode/zsh-vi-mode.zsh"
 source "$DOTFILES_PATH/shell/zsh/plugins/vi-mode.zsh"
 source "$DOTLY_PATH/shell/zsh/bindings/reverse_search.zsh"
 
+autoload -Uz compinit
+compinit
+
+#zstyle ':completion:*:*:cd:*' menu yes select
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s%p
+zstyle ':completion:*' menu yes select
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
