@@ -16,18 +16,24 @@
 #s-nail
 #timeshift
 # acpilight
+# My packages
+#deja-dup
+#navi
 alsa-card-profiles
 android-udev
 apparmor
+asdf
 asdf-vm
 atool
+autojump
+autojump
 bluez-utils
+catimg
 chrome-gnome-shell
 crda
 dash
-docpars
-#deja-dup
 dnsmasq
+docpars
 expac
 f2fs-tools
 fprintd
@@ -38,13 +44,13 @@ git-extras-git
 gnome-system-log
 gssproxy
 gst-libav
+gst-plugin-libde265
 gst-plugin-pipewire
 gst-plugins-bad
 gst-plugins-base
 gst-plugins-good
-gst-plugins-ugly
 gst-plugins-openh264
-gst-plugin-libde265
+gst-plugins-ugly
 gst-python
 gstreamer
 gstreamer-vaapi
@@ -56,6 +62,7 @@ hwinfo
 ibus
 inetutils
 iw
+jq
 libdvdcss
 libusb-compat
 logrotate
@@ -77,7 +84,9 @@ networkmanager-pptp
 networkmanager-vpnc
 nfs-utils
 nfsidmap
+noto-fonts
 noto-fonts-cjk
+noto-fonts-emoji
 noto-fonts-emoji
 nss-mdns
 openresolv
@@ -90,10 +99,13 @@ polkit-qt5
 python-pynvim
 ranger
 rust
+silver-searcher-git
+solaar
 stoken
+thefuck
+tig
 tldr
-noto-fonts
-noto-fonts-emoji
+tmux
 ttf-bitstream-vera
 ttf-cascadia-code
 ttf-dejavu
@@ -107,6 +119,7 @@ uriparser
 usb_modeswitch
 vi
 wireless-regdb
+wl-clipboard
 xclip
 xdotool
 yad
@@ -114,16 +127,3 @@ zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
 zsh-syntax-highlighting
-
-# My packages
-asdf
-autojump
-catimg
-jq
-#navi
-silver-searcher-git
-solaar
-thefuck
-tig
-tmux
-wl-clipboard
