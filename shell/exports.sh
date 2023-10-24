@@ -12,9 +12,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b
     --reverse'
 
-    export ANDROID_HOME=$HOME/.android/sdk
+export ANDROID_HOME=$HOME/.android/sdk
 
 export path=(
+  "/opt/flutter/bin"
   "$HOME/bin"
   "$DOTLY_PATH/bin"
   "$DOTFILES_PATH/bin"
@@ -79,3 +80,5 @@ if [[ -d $asdf_dir ]]; then
   source $asdf_dir/asdf.sh
   source $asdf_dir/completions/asdf.bash
 fi
+
+export CHROME_EXECUTABLE=google-chrome-stable

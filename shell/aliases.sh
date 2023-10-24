@@ -8,18 +8,33 @@ alias la="ls -la"
 alias ~="cd ~"
 
 # Git
+alias g="git"
 alias gaa="git add -A"
+alias gaa="git add -A"
+alias gb="git branch"
+alias gb="git branch"
 alias gc="$DOTLY_PATH/bin/dot git commit"
 alias gca="git add --all && git commit --amend --no-edit"
+alias gca="git add --all && git commit --amend --no-edit"
+alias gcal=gcalcli
+alias gco="git checkout"
 alias gco="git checkout"
 alias gd="$DOTLY_PATH/bin/dot git pretty-diff"
-alias gs="git status -sb"
 alias gf="git fetch --all -p"
+alias gf="git fetch --all -p"
+alias git-things-in-develop="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master..develop --no-merges"
+alias gl="$DOTLY_PATH/bin/dot git pretty-log"
+alias gp="git push"
+alias gpl="git pull --rebase --autostash"
+alias gpl="git pull --rebase --autostash"
+alias gpnv='git push --no-verify'
 alias gps="git push"
 alias gpsf="git push --force"
-alias gpl="git pull --rebase --autostash"
-alias gb="git branch"
-alias gl="$DOTLY_PATH/bin/dot git pretty-log"
+alias gpsf="git push --force"
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`' # git root
+alias gs="git status -sb"
+alias gs='git status -sb'
+
 
 # Utils
 alias k='kill -9'
@@ -64,20 +79,6 @@ alias e="$EDITOR"
 alias fastping='ping -c 100 -s.2'
 alias ff='find . -iname'
 alias fs="stat -f \"%z bytes\"" # File size
-alias g="git"
-alias gaa="git add -A"
-alias gb="git branch"
-alias gca="git add --all && git commit --amend --no-edit"
-alias gcal=gcalcli
-alias gco="git checkout"
-alias gf="git fetch --all -p"
-alias git-things-in-develop="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master..develop --no-merges"
-alias gpl="git pull --rebase --autostash"
-alias gpnv='git push --no-verify'
-alias gp="git push"
-alias gpsf="git push --force"
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`' # git root
-alias gs='git status -sb'
 alias hl='hamster list'
 alias home='cd ~ && clear'
 alias hosts='sudo $EDITOR /etc/hosts' # yes I occasionally 127.0.0.1 twitter.com ;)
@@ -160,7 +161,7 @@ else
   case "$distribution" in
   arch*)
     alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo yay -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*; rm -fr ~/.cache/yay' # Cleans automatically installed deps
-    alias os-upgrade='sudo pacman -Syu; yay -Syyua --noconfirm; flatpak update -y;'
+    alias os-upgrade='sudo pacman -Syuu; yay -Syyua --noconfirm; flatpak update -y;'
     alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u ) <(pacman -Qlq | sort -u)" # Show dirs that don't belong to any package
     alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u ) <(pacman -Qlq | sort -u)"                          # Show files that don't belong to any package:
     ;;
@@ -185,3 +186,7 @@ done
 
 alias restartshell="exec $SHELL -l"
 alias pullandmerge="git checkout $1; git pull --rebase; git merge --no-ff $2"
+
+vmrss() {
+  cat /proc/$1/status|grep VmRSS|cut -f2 -d:|xargs echo -n
+}
