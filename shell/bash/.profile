@@ -6,3 +6,6 @@ export XENVIRONMENT="$HOME/.Xresources"
 ulimit -u 10000
 
 t MOZ_ENABLE_WAYLAND=1
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
