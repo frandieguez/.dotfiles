@@ -3,7 +3,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -12,7 +12,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[python]": {
     "editor.formatOnType": true
@@ -30,19 +30,22 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "editor.bracketPairColorization.enabled": true,
-  "editor.cursorBlinking": "expand",
+  "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.fontFamily": "'Cascadia Mono', 'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Monaspace Neon', monospace, 'Cascadia Mono', 'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  // "editor.fontLigatures": true,
+  "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
   "editor.formatOnSave": true,
   "editor.guides.bracketPairs": true,
   "editor.inlineSuggest.enabled": true,
-  "editor.lightbulb.enabled": true,
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.mouseWheelZoom": true,
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.smoothScrolling": true,
   "editor.stickyScroll.enabled": true,
   "editor.suggestSelection": "first",
@@ -73,7 +76,6 @@
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.fontFamily": "'Hack', monospace",
   "terminal.integrated.fontSize": 13,
-  "terminal.integrated.tabs.enabled": false,
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vim.easymotion": true,
@@ -88,25 +90,42 @@
   "vim.incsearch": true,
   "vim.insertModeKeyBindings": [
     {
-      "after": ["<Esc>"],
-      "before": ["j", "j"]
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "j"
+      ]
     }
   ],
   "vim.leader": "<Space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     // Clean search hightlight with C-n
     {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
     },
     {
-      "after": ["d", "d"],
-      "before": ["<leader>", "d"]
+      "after": [
+        "d",
+        "d"
+      ],
+      "before": [
+        "<leader>",
+        "d"
+      ]
     },
     // Undo with u
     {
       "after": [],
-      "before": ["u"],
+      "before": [
+        "u"
+      ],
       "commands": [
         {
           "command": "undo"
@@ -116,7 +135,9 @@
     // Redo with C-r
     {
       "after": [],
-      "before": ["<C-r>"],
+      "before": [
+        "<C-r>"
+      ],
       "commands": [
         {
           "command": "redo"
@@ -124,20 +145,40 @@
       ]
     },
     {
-      "before": ["<leader>", "m"],
-      "commands": ["bookmarks.toggle"]
+      "before": [
+        "<leader>",
+        "m"
+      ],
+      "commands": [
+        "bookmarks.toggle"
+      ]
     },
     {
-      "before": ["<leader>", "b"],
-      "commands": ["bookmarks.list"]
+      "before": [
+        "<leader>",
+        "b"
+      ],
+      "commands": [
+        "bookmarks.list"
+      ]
     },
     {
-      "before": ["<leader>", "q"],
-      "commands": [":q"]
+      "before": [
+        "<leader>",
+        "q"
+      ],
+      "commands": [
+        ":q"
+      ]
     },
     {
-      "before": ["<leader>", "w"],
-      "commands": [":w"]
+      "before": [
+        "<leader>",
+        "w"
+      ],
+      "commands": [
+        ":w"
+      ]
     }
   ],
   "vim.surround": true,
@@ -145,52 +186,108 @@
   "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
     }
   ],
-  "window.autoDetectColorScheme": true,
   "window.menuBarVisibility": "classic",
   // "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
   "window.titleBarStyle": "custom",
-  "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
-    "[GitHub Dark]": {
-      // "activityBar.background": "#1e222b"
-      // "editor.background": "#1e222b"
-      // "editor.findMatchBackground": "#1e222b",
-      // "editorGutter.background": "#1e222b",
-      // // "sideBar.border": "#2E3440",
-      // "editorRuler.foreground": "#2E3440",
-      // "editorWarning.foreground": "#FFAA00",
-      // "menu.background": "#1e222b",
-      // "panel.background": "#1e222b",
-      // // "panel.border": "#2E3440",
-      // "panelSectionHeader.background": "#2E3440",
-      // "sideBar.background": "#1e222b",
-      // "statusBar.background": "#1e222b",
-      // // "activityBarBadge.background": "#ff0000"
-      // "statusBarItem.prominentBackground": "#ff0000",
-      // "tab.activeBackground": "#1e222b",
-      // "terminal.background": "#1e222b",
-      // // "activityBar.border": "#1e222b",
-      // "titleBar.activeBackground": "#1e222b",
-      // "welcomePage.background": "#1e222b"
-    },
+    "[GitHub Dark]": {},
     "[GitHub Light]": {
       "window.activeBorder": "#ccc"
     }
   },
-  "workbench.colorTheme": "GitHub Dark",
   "workbench.editor.decorations.badges": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "eq-material-theme-icons",
   "workbench.preferredDarkColorTheme": "GitHub Dark",
   "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.productIconTheme": "fluent-icons"
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.settings.applyToAllProfiles": [
+    "workbench.preferredLightColorTheme",
+    "workbench.colorTheme",
+    "workbench.preferredDarkColorTheme",
+    "workbench.iconTheme",
+    "editor.cursorStyle",
+    "editor.fontFamily",
+    "editor.fontSize",
+    "files.autoSave",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType",
+    "editor.bracketPairColorization.enabled",
+    "editor.guides.bracketPairs",
+    "editor.lightbulb.enabled",
+    "editor.linkedEditing",
+    "editor.renderWhitespace",
+    "editor.rulers",
+    "editor.smoothScrolling",
+    "editor.cursorSmoothCaretAnimation",
+    "editor.cursorBlinking",
+    "editor.stickyScroll.enabled",
+    "editor.formatOnSave",
+    "editor.fontLigatures",
+    "editor.minimap.enabled",
+    "editor.inlineSuggest.enabled",
+    "editor.suggestSelection",
+    "files.trimFinalNewlines",
+    "files.trimTrailingWhitespace",
+    "workbench.productIconTheme",
+    "workbench.activityBar.visible",
+    "workbench.colorCustomizations",
+    "workbench.editor.decorations.badges",
+    "workbench.editor.highlightModifiedTabs",
+    "window.autoDetectColorScheme",
+    "search.useIgnoreFiles",
+    "terminal.integrated.cursorBlinking",
+    "terminal.integrated.cursorStyle",
+    "terminal.integrated.fontFamily",
+    "terminal.integrated.fontSize",
+    "terminal.integrated.tabs.enabled",
+    "emmet.triggerExpansionOnTab",
+    "git.autofetch",
+    "git.fetchOnPull",
+    "typescript.updateImportsOnFileMove.enabled",
+    "vim.useSystemClipboard",
+    "vim.useCtrlKeys",
+    "vim.surround",
+    "vim.leader",
+    "vim.incsearch",
+    "vim.hlsearch",
+    "vim.highlightedyank.enable",
+    "vim.handleKeys",
+    "vim.enableNeovim",
+    "vim.easymotion",
+    "typescript.inlayHints.enumMemberValues.enabled",
+    "javascript.updateImportsOnFileMove.enabled",
+    "javascript.preferences.importModuleSpecifier",
+    "[scss]",
+    "[markdown]",
+    "[jsonc]",
+    "[json]",
+    "[javascript]",
+    "[html]"
+  ],
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "workbench.colorTheme": "GitHub Dark",
+  "redhat.telemetry.enabled": true,
+  "workbench.tree.enableStickyScroll": true,
+  "terminal.integrated.stickyScroll.enabled": true,
+  "window.autoDetectColorScheme": true
 }
