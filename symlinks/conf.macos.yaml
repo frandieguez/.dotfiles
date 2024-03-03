@@ -16,3 +16,16 @@
     ~/bin/sed: /usr/local/opt/gnu-sed/libexec/gnubin/sed
     ~/bin/touch: /usr/local/bin/gtouch
     ~/bin/find: /usr/local/opt/findutils/bin/gfind
+    ~/.agignore: os/linux/.agignore
+    ~/.ctags: os/linux/.ctags
+    ~/.terminator: os/linux/terminator
+    ~/.tmux.conf: os/linux/tmux/tmux.conf
+    ~/.screenrc: os/linux/.screenrc
+    ~/.Xmodmap: os/linux/.Xmodmap
+    ~/.Xresources: os/linux/.Xresources
+    ~/.config/githooks: os/linux/githooks
+    ~/.config/tmux: os/linux/tmux/config
+    ~/.config/environment.d/envvars.conf: os/linux/environment.d/envvars.conf
+    ~/Library/Application Support/Code/User/snippets: editors/code/snippets
+    ~/Library/Application Support/Code/User/keybindings.json: editors/code/keybindings.json
+    ~/Library/Application Support/Code/User/settings.json: editors/code/settings.json

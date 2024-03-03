@@ -28,3 +28,6 @@
     ~/.config/environment.d/envvars.conf: os/linux/environment.d/envvars.conf
     # /etc/default/keyboard: os/linux/configs/keyboard
     # /usr/share/X11/xorg.conf.d/00-keyboard.conf: os/linux/xorg.conf.d/00-keyboard.conf
+    ~/.config/Code/User/snippets: editors/code/snippets
+    ~/.config/Code/User/keybindings.json: editors/code/keybindings.json
+    ~/.config/Code/User/settings.json: editors/code/settings.json
