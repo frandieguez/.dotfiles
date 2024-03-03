@@ -1,5 +1,5 @@
 [alias]
-	com = "!sh -c \"branch_name=`git symbolic-ref HEAD|sed \"s#refs/heads/\\(feature\\|fix\\)/\\(.*\\)#\\2#\"`; git commit -em \\\"\\${branch_name}\\\": \""
+    com = "!sh -c \"branch_name=`git symbolic-ref HEAD|sed \"s#refs/heads/\\(feature\\|fix\\)/\\(.*\\)#\\2#\"`; git commit -em \\\"\\${branch_name}\\\": \""
     a = add
     aa = add --all
     ap = add --path
@@ -52,7 +52,7 @@
     diff = auto
     interactive = auto
     status = auto
-    ui = true
+    ui = auto
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
@@ -69,26 +69,25 @@
 [commit]
     verbose=true
     gpgsing = true
+    template = ~/.stCommitMsg
 [core]
     filemode = false
     excludesfile = ~/.gitignore_global
-	#editor = flatpak run --file-forwarding re.sonny.Commit @@
-	editor = vim
+    editor = code --wait
     whitespace = trailing-space,space-before-tab
-	autocrlf = input
+    autocrlf = input
 [delta]
     features = line-numbers decorations
     whitespace-error-style = 22 reverse
-
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
 [diff]
-    tool = meld
     mnemonicprefix = true
-	compactionHeuristic = true
-	indentHeuristic = true
+    compactionHeuristic = true
+    indentHeuristic = true
+    tool = vscode
 [difftool]
     prompt = false
 [help]
@@ -103,7 +102,7 @@
     decorate = short
 [merge]
     log = false
-    tool = meld
+    tool = vscode
 [mergetool]
     keepBackup = false
     prompt = false
@@ -123,15 +122,22 @@
     showUntrackedFiles = all
 [credential]
     helper = cache --timeout=36000
-[tag]
-    gpgsign = true
 [apply]
-    # Detect whitespace errors when applying a patch
-    whitespace = fix
+    whitespace = fix # Detect whitespace errors when applying a patch
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-[tig]
-    
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+[difftool "vscode"]
+    cmd = code --wait -n $LOCAL $REMOTE
+    path =
+[mergetool "vscode"]
+    cmd = code --wait -n $MERGED
+    trustExitCode = true
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "sourcetree"]
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
