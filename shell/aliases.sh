@@ -153,9 +153,7 @@ alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 # OS Upgrade aliases
-if [[ ! -e "/etc/os-release" ]]; then
-  echo "No os-release"
-else
+if [[  -e "/etc/os-release" ]]; then
   distribution=$(cat /etc/os-release | grep -E "^ID=" | cut -f2 -d"=")
 
   case "$distribution" in
@@ -177,6 +175,11 @@ else
     echo "No os-release compatible"
     ;;
   esac
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias os-cleanup='echo "not implemented"'
+  alias os-upgrade='sudo softwareupdate -i -a; brew update; brew upgrade;'
 fi
 
 # One of @janmoesen’s ProTip™s

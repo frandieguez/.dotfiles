@@ -1,84 +1,94 @@
-# export JAVA_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-15.jdk/Contents/Home'
-if [ -d /usr/lib/jvm/default-runtime ]; then
-  export JAVA_HOME=/usr/lib/jvm/default-runtime
+# LINUX ############################################
+if [[ "$OSTYPE" == "linux-gnu"* ]];
+then
+    export ANDROID_HOME=$HOME/.android/sdk
+    
+    if [ -d /usr/lib/jvm/default-runtime ]; then
+        export JAVA_HOME=/usr/lib/jvm/default-runtime
+    fi
+    
+    asdf_dir="${asdf_dir:-$HOME/.asdf}"
+    
+    if [[ -d $asdf_dir ]]; then
+        source $asdf_dir/asdf.sh
+        source $asdf_dir/completions/asdf.bash
+    fi
+    
+    [ ! command -v google-chrome-stable &> /dev/null ] && export CHROME_EXECUTABLE=google-chrome-stable
+    
+    # MACOS ############################################
+elif [[ "$OSTYPE" == "darwin"* ]];
+then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+    
+    [ ! command -v google-chrome-stable &> /dev/null ] &&
+    export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 fi
-export GEM_HOME="$HOME/.gem"
-export GOPATH="$HOME/.go"
-
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1
-    --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
-    --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
-    --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b
-    --reverse'
-
-export ANDROID_HOME=$HOME/.android/sdk
 
 export path=(
-  "/opt/flutter/bin"
-  "$HOME/bin"
-  "$DOTLY_PATH/bin"
-  "$DOTFILES_PATH/bin"
-  "$JAVA_HOME/bin"
-  "$GEM_HOME/bin"
-  "$GOPATH/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/.gem/ruby/2.7.0/bin"
-  "$HOME/.composer/vendor/bin"
-  "$HOME/.config/yarn/global/node_modules/.bin/"
-  "$HOME/.yarn/bin/"
-  "$ANDROID_HOME/emulator"
-  "$ANDROID_HOME/tools"
-  "$ANDROID_HOME/tools/bin"
-  "$ANDROID_HOME/platform-tools"
-  "/var/lib/flatpak/exports/bin"
-  "/usr/local/opt/ruby/bin"
-  "/usr/local/opt/python/libexec/bin"
-  "/usr/local/bin"
-  "/usr/local/sbin"
-  "/bin"
-  "/usr/bin"
-  "/usr/sbin"
-  "/sbin"
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/platform-tools"
+    "$ANDROID_HOME/tools"
+    "$ANDROID_HOME/tools/bin"
+    "$DOTFILES_PATH/bin"
+    "$DOTLY_PATH/bin"
+    "$GEM_HOME/bin"
+    "$GOPATH/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.composer/vendor/bin"
+    "$HOME/.config/yarn/global/node_modules/.bin/"
+    "$HOME/.gem/ruby/2.7.0/bin"
+    "$HOME/.yarn/bin/"
+    "$HOME/Library/Python/3.9/bin"
+    "$HOME/Library/flutter/bin"
+    "$JAVA_HOME/bin"
+    "$HOME/bin"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+    "/opt/homebrew/opt/ruby/bin"
+    "/var/lib/flatpak/exports/bin"
+    "/usr/local/opt/ruby/bin"
+    "/usr/local/opt/python/libexec/bin"
+    "/usr/local/bin"
+    "/usr/local/sbin"
+    "/bin"
+    "/usr/bin"
+    "/usr/sbin"
+    "/sbin"
 )
 
-# Editor  ------------------------------------------
-if type nvim >/dev/null; then
-  export VIM="nvim"
-else
-  export VIM="vim"
-fi
-export EDITOR=$VIM
-export VISUAL=$VIM
-alias vim=$VIM
-
-# Language -----------------------------------------
-export LC_ALL=en_US.UTF-8
-export LC_COLLATE=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-export LC_MONETARY=en_US.UTF-8
-export LC_NUMERIC=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-
 # Set the vim runtime for nvim
-if [ -x "$(command -v nvim)" ]; then
-  # export VIMRUNTIME=$(find /usr/share -type d -name runtime 2> /dev/null|grep nvim |head -1)
-  export VIMRUNTIME=/usr/share/nvim/runtime
+# if [ -x "$(command -v nvim)" ]; then
+#    export VIMRUNTIME=$(find /usr/share -type d -name runtime 2> /dev/null|grep nvim |head -1)
+#    export VIMRUNTIME=/usr/share/nvim/runtime
+# fi
+
+# if [[ -n "${NVIM_LISTEN_ADDRESS}" ]]; then
+#   # TODO update the path each time Vim has a major upgrade
+#  export VIMRUNTIME=/usr/share/vim/vim81
+# fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "$HOME/.sdkman" ]] && export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# Autojump
+[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+[[ -d $HOME/.gem ]] && export GEM_HOME="$HOME/.gem"
+[[ -d $HOME/.go ]] && export GOPATH="$HOME/.go"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
 fi
-
-if [[ -n "${NVIM_LISTEN_ADDRESS}" ]]; then
-  # TODO update the path each time Vim has a major upgrade
-  export VIMRUNTIME=/usr/share/vim/vim81
-fi
-
-asdf_dir="${asdf_dir:-$HOME/.asdf}"
-
-if [[ -d $asdf_dir ]]; then
-  source $asdf_dir/asdf.sh
-  source $asdf_dir/completions/asdf.bash
-fi
-
-export CHROME_EXECUTABLE=google-chrome-stable
