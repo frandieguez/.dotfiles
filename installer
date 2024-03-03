@@ -5,9 +5,10 @@ purple='\033[0;35m'
 normal='\033[0m'
 
 _w() {
-  local -r text="${1:-}"
-  echo -e "$text"
+    local -r text="${1:-}"
+    echo -e "$text"
 }
+
 _a() { _w " > $1"; }
 _e() { _a "${red}$1${normal}"; }
 _s() { _a "${green}$1${normal}"; }
@@ -23,7 +24,7 @@ INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 cd $INSTALL_PATH
 
 _a "Installing archlinux packages…"
-grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
+[[ "$OSTYPE" == "linux-gnu"* ]] && grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
 
 cargo install docpars
 export PATH=$HOME/.cargo/bin:$PATH
@@ -37,8 +38,8 @@ DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL
 
 _a "Initializing zsh and zimfw…"
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+    https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 zsh $INSTALL_PATH/modules/dotly/modules/zimfw/zimfw.zsh install
 
@@ -46,18 +47,12 @@ _a "Installing system packages…"
 DOTFILES_PATH="$INSTALL_PATH" DOTLY_PATH="$INSTALL_PATH/modules/dotly" "$INSTALL_PATH/modules/dotly/bin/dot" package import
 
 _a "Initializing vim…"
-# Install vim-plug
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
-# Install neovim plugins
-if type /usr/bin/nvim >/dev/null 2>&1; then
-    /usr/bin/nvim +'PlugInstall --sync' +qall
-fi
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
 # Install vim plugins
-if type /usr/bin/vim >/dev/null 2>&1; then
-    /usr/bin/vim +'PlugInstall --sync' +qall
-fi
+command -v nvim >/dev/null && $(which nvim) +'PlugInstall --sync' +qall
+command -v vim >/dev/null && $(which vim) +'PlugInstall --sync' +qall
 
 _a "Installing k9s skin…"
 curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
@@ -65,24 +60,26 @@ curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --
 _a "Installing git…"
 if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     _q "Do you want to add your credentials to your .gitconfig? (Y/n) " q
-
+    
     if [ "$q" == "Y" ] || [ "$q" == "y" ] || [ "$q" == "" ]; then
         _q "Name" username
         _q "Email" email
-
+        
         echo "[user]" >> $HOME/.gitconfig-additional
         echo "    name = " $username >> $HOME/.gitconfig-additional
         echo "    email = " $email >> $HOME/.gitconfig-additional
     fi
 fi
 
-_a "Installing fonts…"
-sudo ln -s   /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
-
-_a "Installing user services…"
-# Enable gnome keyring
-systemctl enable --now --user gcr-ssh-agent.service
-systemctl enable --now --user gnome-keyring-daemon.service
+if [[ "$OSTYPE" == "linux-gnu"* ]] then
+    _a "Installing fonts…"
+    sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
+    
+    _a "Installing user services…"
+    # Enable gnome keyring
+    systemctl enable --now --user gcr-ssh-agent.service
+    systemctl enable --now --user gnome-keyring-daemon.service
+fi
 
 _w "🎉 dotfiles installed correctly! 🎉"
 _w "Please, restart your terminal to see the changes"
