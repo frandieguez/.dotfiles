@@ -71,7 +71,7 @@ if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
     fi
 fi
 
-if [[ "$OSTYPE" == "linux-gnu"* ]] then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     _a "Installing fonts…"
     sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
     

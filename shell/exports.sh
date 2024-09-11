@@ -2,29 +2,32 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]];
 then
     export ANDROID_HOME=$HOME/.android/sdk
-    
+
     if [ -d /usr/lib/jvm/default-runtime ]; then
         export JAVA_HOME=/usr/lib/jvm/default-runtime
     fi
-    
+
     asdf_dir="${asdf_dir:-$HOME/.asdf}"
-    
+
     if [[ -d $asdf_dir ]]; then
         source $asdf_dir/asdf.sh
         source $asdf_dir/completions/asdf.bash
     fi
-    
+
     [ ! command -v google-chrome-stable &> /dev/null ] && export CHROME_EXECUTABLE=google-chrome-stable
-    
+
     # MACOS ############################################
 elif [[ "$OSTYPE" == "darwin"* ]];
 then
     export ANDROID_HOME=$HOME/Library/Android/sdk
-    
+
+    export JAVA_HOME=`/usr/libexec/java_home -v 17`
+
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
     export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
-    
+
     [ ! command -v google-chrome-stable &> /dev/null ] &&
     export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 fi
@@ -38,6 +41,7 @@ export path=(
     "$DOTLY_PATH/bin"
     "$GEM_HOME/bin"
     "$GOPATH/bin"
+    "$HOME/.go/bin"
     "$HOME/.cargo/bin"
     "$HOME/.composer/vendor/bin"
     "$HOME/.config/yarn/global/node_modules/.bin/"
@@ -85,6 +89,7 @@ export path=(
 
 [[ -d $HOME/.gem ]] && export GEM_HOME="$HOME/.gem"
 [[ -d $HOME/.go ]] && export GOPATH="$HOME/.go"
+[[ -d $HOME/.asdf/shims ]] && export PATH="$HOME/.asdf/shims:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

@@ -94,7 +94,7 @@ else
 fi
 export EDITOR=$VIM_EXECUTABLE
 export VISUAL=$VIM_EXECUTABLE
-alias vim=$VIM_EXECUTABLE
+#alias vim=$VIM_EXECUTABLE
 
 # Language -----------------------------------------
 export LC_ALL=en_US.UTF-8

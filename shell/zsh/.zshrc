@@ -77,3 +77,5 @@ setopt SHARE_HISTORY
 
 # Execute commands using history (e.g.: using !$) immediatel:
 unsetopt HIST_VERIFY
+
+. "$HOME/.cargo/env"
