@@ -134,5 +134,5 @@ return {
             table.insert(opts.sources, { name = "emoji" })
         end,
     },
-    {'nvim-java/nvim-java'}
+    -- {'nvim-java/nvim-java'}
 }
