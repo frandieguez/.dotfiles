@@ -273,5 +273,5 @@ return {
 			-- end
 		end,
 	},
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
 }
-
