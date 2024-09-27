@@ -2,14 +2,6 @@ function cdd() {
   cd "$(ls -d -- */ | fzf)" || echo "Invalid directory"
 }
 
-# function j() {
-#   fname=$(declare -f -F _z)
-# 
-#   [ -n "$fname" ] || source "$DOTLY_PATH/modules/z/z.sh"
-# 
-#   _z "$1"
-# }
-
 function recent_dirs() {
   # This script depends on pushd. It works better with autopush enabled in ZSH
   escaped_home=$(echo $HOME | sed 's/\//\\\//g')
@@ -60,7 +52,7 @@ function server() {
 	open "http://localhost:${port}/"
 	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+	python3 -c $'import http.server;\nmap = http.server.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nhttp.server.test(HandlerClass=http.server.SimpleHTTPRequestHandler);' "$port"
 }
 
 # git log with per-commit cmd-clickable GitHub URLs (iTerm)
@@ -150,15 +142,15 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	alias pbpaste='wl-paste'
 	#alias pbcopy='xclip -selection clipboard'
 	#alias pbpaste='xclip -selection clipboard -o'
+
+	function vol() {
+	volume=$(((65536 * $1 + 99) / 100))
+
+	pacmd set-sink-volume 0 $volume
+	}
 fi
 
 # Kills the program that matches the name provided as first argument
 function killthis() {
 	ps auxx | grep $1 | tr -s " " | cut -f 2 -d" " | head -1 | xargs kill -9
-}
-
-function vol() {
-  volume=$(((65536 * $1 + 99) / 100))
-
-  pacmd set-sink-volume 0 $volume
 }

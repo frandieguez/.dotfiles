@@ -23,9 +23,6 @@ INSTALL_PATH=${INSTALL_PATH:-~/.dotfiles}
 [ ! -d $INSTALL_PATH ] && git clone https://github.com/frandieguez/.dots.git $INSTALL_PATH
 cd $INSTALL_PATH
 
-_a "Installing archlinux packages…"
-[[ "$OSTYPE" == "linux-gnu"* ]] && grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
-
 cargo install docpars
 export PATH=$HOME/.cargo/bin:$PATH
 
@@ -50,10 +47,6 @@ _a "Initializing vim…"
 curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null
 
-# Install vim plugins
-command -v nvim >/dev/null && $(which nvim) +'PlugInstall --sync' +qall
-command -v vim >/dev/null && $(which vim) +'PlugInstall --sync' +qall
-
 _a "Installing k9s skin…"
 curl -q https://raw.githubusercontent.com/derailed/k9s/master/skins/stock.yml --output ~/.k9s/skin.yml &> /dev/null
 
@@ -72,6 +65,9 @@ if [ "`grep user $HOME/.gitconfig-additional`" == "" ]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    _a "Installing archlinux packages…" &&
+    grep -v '#' ./os/linux/archlinux-packages | xargs yay -S --noconfirm --needed
+    
     _a "Installing fonts…"
     sudo ln -s /usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf /etc/fonts/conf.d/10-nerd-font-symbols.conf
     
@@ -79,6 +75,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Enable gnome keyring
     systemctl enable --now --user gcr-ssh-agent.service
     systemctl enable --now --user gnome-keyring-daemon.service
+fi
+
+if [[ $OSTYPE =~ ^[darwin] ]]; then
+    _w "Installing brew package manager for macOS 💾"
+    (! which brew) && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    _a "Installing archlinux packages…" &&
+    grep -v '#' ./os/mac/brew-packages | xargs brew install
 fi
 
 _w "🎉 dotfiles installed correctly! 🎉"

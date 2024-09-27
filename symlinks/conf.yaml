@@ -1,30 +1,31 @@
 - clean: ["~"]
 
 - defaults:
-      link:
-          create: true
-          force: true
+    link:
+      create: true
+      force: true
 
 - create:
-      - ~/.z
+    - ~/.z
 
 - link:
-      ~/.bash_profile: shell/bash/.bash_profile
-      ~/.bashrc: shell/bash/.bashrc
-      ~/.profile: shell/bash/.profile
-      ~/.zimrc: shell/zsh/.zimrc
-      ~/.zlogin: shell/zsh/.zlogin
-      ~/.zshenv: shell/zsh/.zshenv
-      ~/.zshrc: shell/zsh/.zshrc
-      ~/.gemrc: langs/ruby/gemrc
-      ~/.composer/composer.json: langs/php/composer.json
-      ~/.gitconfig: git/.gitconfig
-      ~/.gitignore_global: git/.gitignore_global
-      ~/.gitattributes: git/.gitattributes
-      # ~/.git-hooks: modules/git-hooks
-      ~/.tmux.conf: os/linux/tmux/tmux.conf
-      ~/.config/tmux/plugins/tpm: modules/tmux-tpm
-      ~/.config/tmux: os/linux/tmux/config/
-      # ~/.vimrc: editors/vim/init.vim
-      ~/.config/nvim: editors/nvim
-      ~/.vim: editors/vim
+    ~/.bash_profile: shell/bash/.bash_profile
+    ~/.bashrc: shell/bash/.bashrc
+    ~/.profile: shell/bash/.profile
+    ~/.zimrc: shell/zsh/.zimrc
+    ~/.zlogin: shell/zsh/.zlogin
+    ~/.zshenv: shell/zsh/.zshenv
+    ~/.zshrc: shell/zsh/.zshrc
+    ~/.gemrc: langs/ruby/gemrc
+    ~/.composer/composer.json: langs/php/composer.json
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitignore_global: git/.gitignore_global
+    ~/.gitattributes: git/.gitattributes
+    # ~/.git-hooks: modules/git-hooks
+    ~/.tmux.conf: os/linux/tmux/tmux.conf
+    ~/.config/tmux/plugins/tpm: modules/tmux-tpm
+    ~/.config/tmux: os/linux/tmux/config/
+    ~/.config/nvim: editors/nvim
+    ~/.vim: editors/vim
+    ~/.p10k.zsh: shell/p10k/p10k.zsh
+    ~/.p10k: shell/p10k/

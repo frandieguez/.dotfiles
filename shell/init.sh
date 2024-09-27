@@ -4,4 +4,7 @@ source "$DOTFILES_PATH/shell/aliases.sh"
 source "$DOTFILES_PATH/shell/exports.sh"
 source "$DOTFILES_PATH/shell/functions.sh"
 
-ssh-add --use-apple-keychain >/dev/null 2>&1
+
+if [[ $OSTYPE =~ ^[darwin] ]]; then
+    ssh-add --use-apple-keychain >/dev/null 2>&1
+fi

@@ -1,19 +1,42 @@
-# If you modify this execute `zimfw uninstall & zimfw install`
-zmodule zimfw/environment
-zmodule zimfw/git-info
-zmodule zimfw/input
-zmodule zsh-users/zsh-autosuggestions
-zmodule zsh-users/zsh-syntax-highlighting
-zmodule zimfw/completion
 
-zhighlighters=(main brackets)
+### Modules ###
 
-zmodule zimfw/git
+# Sets sane Zsh built-in environment options.
+zmodule environment
+# Provides handy git aliases and functions.
+zmodule git
+# Applies correct bindkeys for input events.
+zmodule input
+# Sets a custom terminal title.
 zmodule termtitle
+# Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
-zmodule pacman
-zmodule changyuheng/zsh-interactive-cd
-zmodule archive
-zmodule ruby
-zmodule ssh
-zmodule denysdovhan/spaceship-prompt --name spaceship
+
+### Prompt ###
+
+zmodule romkatv/powerlevel10k --use degit
+
+### Completion ###
+
+# Additional completion definitions for Zsh.
+zmodule zsh-users/zsh-completions --fpath src
+# Enables and configures smart and extensive tab completion. Must be sourced after all modules that add completion definitions.
+if [[ -d /opt/homebrew/share/zsh ]] && [[ $(uname) == Darwin ]] && [[ $(uname -m) == arm64 ]] ; then
+    zmodule /opt/homebrew/share/zsh/site-functions --fpath .
+fi
+zmodule completion
+
+### Modules that must be initialized last ###
+
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+zmodule zsh-users/zsh-autosuggestions
+
+### Custom Modules ###
+
+zmodule romkatv/zsh-defer -d
+zmodule mroth/evalcache
+zmodule softmoth/zsh-vim-mode
+zmodule zsh-vi-more/evil-registers
+zmodule ohmyzsh/ohmyzsh --root plugins/fzf
+zmodule fzf
