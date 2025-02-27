@@ -1,57 +1,67 @@
 # LINUX ############################################
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  export ANDROID_HOME=$HOME/.android/sdk
-
-  if [ -d /usr/lib/jvm/default-runtime ]; then
-    export JAVA_HOME=/usr/lib/jvm/default-runtime
-  fi
-
-  [ ! command -v google-chrome-stable ] &>/dev/null && export CHROME_EXECUTABLE=google-chrome-stable
-
-  # MACOS ############################################
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  export ANDROID_HOME=$HOME/Library/Android/sdk
-
-  export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-
-  export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
-
-  [ ! command -v google-chrome-stable ] &>/dev/null &&
+    
+    asdf_dir="${asdf_dir:-$HOME/.asdf}"
+    
+    if [[ -d $asdf_dir ]]; then
+        source $asdf_dir/asdf.sh
+        source $asdf_dir/completions/asdf.bash
+    fi
+    
+    export ANDROID_HOME=$HOME/.android/sdk
+    
+    if [ -d /usr/lib/jvm/default-runtime ]; then
+        export JAVA_HOME=/usr/lib/jvm/default-runtime
+    fi
+    
+    [ ! command -v google-chrome-stable ] &>/dev/null && export CHROME_EXECUTABLE=google-chrome-stable
+    
+    # MACOS ############################################
+elif [[ "$OSTYPE" == "darwin"* ]];
+then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    
+    export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+    
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+    
+    [ ! command -v google-chrome-stable &> /dev/null ] &&
     export CHROME_EXECUTABLE="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 fi
 
 export path=(
-  "$ANDROID_HOME/emulator"
-  "$ANDROID_HOME/platform-tools"
-  "$ANDROID_HOME/tools"
-  "$ANDROID_HOME/tools/bin"
-  "$DOTFILES_PATH/bin"
-  "$DOTLY_PATH/bin"
-  "$GEM_HOME/bin"
-  "$GOPATH/bin"
-  "$HOME/.go/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/.composer/vendor/bin"
-  "$HOME/.config/yarn/global/node_modules/.bin/"
-  "$HOME/.gem/ruby/2.7.0/bin"
-  "$HOME/.yarn/bin/"
-  "$HOME/Library/Python/3.9/bin"
-  "$JAVA_HOME/bin"
-  "$HOME/Library/flutter/bin"
-  "$HOME/bin"
-  "/opt/homebrew/bin"
-  "/opt/homebrew/sbin"
-  "/opt/homebrew/opt/ruby/bin"
-  "/var/lib/flatpak/exports/bin"
-  "/usr/local/opt/ruby/bin"
-  "/usr/local/opt/python/libexec/bin"
-  "/usr/local/bin"
-  "/usr/local/sbin"
-  "/bin"
-  "/usr/bin"
-  "/usr/sbin"
-  "/sbin"
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/platform-tools"
+    "$ANDROID_HOME/tools"
+    "$ANDROID_HOME/tools/bin"
+    "$DOTFILES_PATH/bin"
+    "$DOTLY_PATH/bin"
+    "$GEM_HOME/bin"
+    "$GOPATH/bin"
+    "$HOME/.go/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.composer/vendor/bin"
+    "$HOME/.config/yarn/global/node_modules/.bin/"
+    "$HOME/.gem/ruby/2.7.0/bin"
+    "$HOME/.yarn/bin/"
+    "$HOME/Library/Python/3.9/bin"
+    "$JAVA_HOME/bin"
+    "$HOME/Library/flutter/bin"
+    "$HOME/bin"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+    "/opt/homebrew/opt/ruby/bin"
+    "/var/lib/flatpak/exports/bin"
+    "/usr/local/opt/ruby/bin"
+    "/usr/local/opt/python/libexec/bin"
+    "/usr/local/bin"
+    "/usr/local/sbin"
+    "/bin"
+    "/usr/bin"
+    "/usr/sbin"
+    "/sbin"
 )
 
 # Set the vim runtime for nvim
@@ -76,7 +86,10 @@ export path=(
 
 # Autojump
 [[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if [[ "$OSTYPE" == "darwin"* ]];
+then
+    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
 
 [[ -d $HOME/.gem ]] && export GEM_HOME="$HOME/.gem"
 [[ -d $HOME/.go ]] && export GOPATH="$HOME/.go"
@@ -84,8 +97,8 @@ export path=(
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
 fi
 
 eval "$(mise activate zsh)"
