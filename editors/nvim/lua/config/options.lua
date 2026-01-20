@@ -36,3 +36,6 @@ vim.opt.formatoptions:append({ "r" })
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" })
+
+vim.g.lazyvim_prettier_needs_config = true
+vim.g.autoformat = true

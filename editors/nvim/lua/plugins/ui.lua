@@ -289,4 +289,15 @@ return {
 			close_on_exit = true,
 		},
 	},
+	{
+		"folke/snacks.nvim",
+		opts = {
+			styles = {
+				lazygit = {
+					width = 0,
+					height = 0,
+				},
+			},
+		},
+	},
 }
