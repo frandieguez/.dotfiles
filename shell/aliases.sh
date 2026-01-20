@@ -35,13 +35,11 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 alias gs="git status -sb"
 alias gs='git status -sb'
 
-
 # Utils
 alias k='kill -9'
 alias i.='(idea $PWD &>/dev/null &)'
 alias c.='(code $PWD &>/dev/null &)'
 alias up='dot package update_all'
-
 
 # Detect which `ls` flavor is in use
 if ls --color >/dev/null 2>&1; then # GNU `ls`
@@ -153,7 +151,7 @@ alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 # OS Upgrade aliases
-if [[  -e "/etc/os-release" ]]; then
+if [[ -e "/etc/os-release" ]]; then
   distribution=$(cat /etc/os-release | grep -E "^ID=" | cut -f2 -d"=")
 
   case "$distribution" in
@@ -178,7 +176,7 @@ if [[  -e "/etc/os-release" ]]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias os-cleanup='echo "not implemented"'
+  alias os-cleanup='brew cleanup'
   alias os-upgrade='sudo softwareupdate -i -a; brew update; brew upgrade;'
 fi
 
@@ -191,5 +189,9 @@ alias restartshell="exec $SHELL -l"
 alias pullandmerge="git checkout $1; git pull --rebase; git merge --no-ff $2"
 
 vmrss() {
-  cat /proc/$1/status|grep VmRSS|cut -f2 -d:|xargs echo -n
+  cat /proc/$1/status | grep VmRSS | cut -f2 -d: | xargs echo -n
 }
+
+alias kdes="kubectl config use-context situm-des-aks"
+alias kpre="kubectl config use-context situm-pre-aks"
+alias kpro="kubectl config use-context situm-pro-aks"

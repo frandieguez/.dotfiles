@@ -154,3 +154,47 @@ fi
 function killthis() {
 	ps auxx | grep $1 | tr -s " " | cut -f 2 -d" " | head -1 | xargs kill -9
 }
+
+function clean_organization(){
+  set -x
+  # Verificar si se ha proporcionado el UUID
+  if [ -z "$1" ]; then
+    echo "Uso: $0 <UUID>"
+    return;
+  fi
+
+  
+  UUID=$(echo "$1" | sed 's/-/_/g')
+  NAMESPACE="pro"   # Cambia al namespace correspondiente
+  DEPLOY_NAME="situm-pro-varnish"  # Configura el nombre del deployment deseado
+  
+  echo $UUID
+
+  # Ejecutar el port-forward en segundo plano
+  kubectl port-forward -n $NAMESPACE deployment/$DEPLOY_NAME 8080:80 &
+  PORT_FORWARD_PID=$!
+
+  # Esperar un momento para asegurarnos de que el port-forward esté activo
+  sleep 2
+
+  # Ejecutar el comando curl para realizar la purga
+  curl --location --request PURGE "http://localhost:8080" --header "xkey: org_data_building_$UUID"
+
+  # Terminar el port-forward después de ejecutar curl
+  kill $PORT_FORWARD_PID
+}
+
+pgforward() {
+  local env=$1
+  local localport=${2:-6432}
+  local pod
+
+  pod=$(kubectl get pods --context="situm-$env-aks" -l app=pgbouncer -o jsonpath='{.items[0].metadata.name}')
+
+  if [ -z "$pod" ]; then
+    echo "No se encontró pod con label app=pgbouncer en situm-$env-aks"
+    return 1
+  fi
+
+  kubectl port-forward --context="situm-$env-aks" "$pod" $localport:6432
+}

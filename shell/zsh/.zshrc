@@ -168,3 +168,9 @@ ZSH_HIGHLIGHT_MAXLENGTH=300
 source "$DOTFILES_PATH/shell/init.sh"
 source "$DOTFILES_PATH/shell/zsh/key-bindings.zsh"
 source "$DOTFILES_PATH/shell/zsh/plugins/vi-mode.zsh"
+
+# bun completions
+[ -s "/Users/fran/.bun/_bun" ] && source "/Users/fran/.bun/_bun"
+
+# Added by Antigravity
+export PATH="/Users/fran/.antigravity/antigravity/bin:$PATH"
