@@ -174,3 +174,5 @@ source "$DOTFILES_PATH/shell/zsh/plugins/vi-mode.zsh"
 
 # Added by Antigravity
 export PATH="/Users/fran/.antigravity/antigravity/bin:$PATH"
+
+eval "$(zoxide init zsh)"

@@ -195,3 +195,5 @@ vmrss() {
 alias kdes="kubectl config use-context situm-des-aks"
 alias kpre="kubectl config use-context situm-pre-aks"
 alias kpro="kubectl config use-context situm-pro-aks"
+
+alias j="zoxide"
