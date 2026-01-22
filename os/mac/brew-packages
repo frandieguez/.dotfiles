@@ -4,11 +4,11 @@ autojump
 bat
 cocoapods
 docker-compose
+fd
 fzf
 git
 go
 go-jira
-java
 k9s
 kubectl
 minikube
@@ -17,6 +17,7 @@ npm
 packer
 podman
 rar
+ripgrep
 rust-app
 scrcpy
 the_silver_searcher
@@ -29,13 +30,14 @@ vim
 zoxide
 zsh
 
-#casks
+alt-tab
 alfred
 appcleaner
 bettertouchtool
 bitwarden
 dbeaver-community
 firefox
+handy
 imageoptim
 maccy
 podman-desktop
