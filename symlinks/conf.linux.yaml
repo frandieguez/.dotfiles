@@ -14,7 +14,6 @@
     #~/.muttrc: os/linux/tmux/.tmux.conf
     ~/.offlineimaprc: os/linux/.offlineimaprc
     ~/.terminator: os/linux/terminator
-    ~/.tmux.conf: os/linux/tmux/tmux.conf
     ~/.screenrc: os/linux/.screenrc
     ~/.Xmodmap: os/linux/.Xmodmap
     ~/.Xresources: os/linux/.Xresources
@@ -24,7 +23,6 @@
     ~/.config/mutt: os/linux/mutt
     ~/.config/ncmpcpp: os/linux/ncmpcpp
     ~/.config/sxhkd: os/linux/sxhkd
-    ~/.config/tmux: os/linux/tmux/config
     ~/.config/environment.d/envvars.conf: os/linux/environment.d/envvars.conf
     # /etc/default/keyboard: os/linux/configs/keyboard
     # /usr/share/X11/xorg.conf.d/00-keyboard.conf: os/linux/xorg.conf.d/00-keyboard.conf

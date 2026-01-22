@@ -21,10 +21,10 @@
     ~/.gitconfig: git/.gitconfig
     ~/.gitignore_global: git/.gitignore_global
     ~/.gitattributes: git/.gitattributes
-    # ~/.git-hooks: modules/git-hooks
-    ~/.tmux.conf: os/linux/tmux/tmux.conf
+    ~/.config/tmux/tmux.conf: shell/tmux/tmux.conf
+    ~/.config/tmux/config: shell/tmux/config
     ~/.config/tmux/plugins/tpm: modules/tmux-tpm
-    ~/.config/tmux: os/linux/tmux/config/
+    ~/.tmux.conf: shell/tmux/tmux.conf
     ~/.config/nvim: editors/nvim
     ~/.vim: editors/vim
     ~/.p10k.zsh: shell/p10k/p10k.zsh
