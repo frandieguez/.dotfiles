@@ -1,6 +1,8 @@
 return {
 	{
-		"catppuccin/nvim", --devromgrk/github-light.vim",
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
 	},
 	{
 		"sainnhe/sonokai",

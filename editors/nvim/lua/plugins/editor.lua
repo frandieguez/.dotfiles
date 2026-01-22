@@ -1,7 +1,7 @@
 return {
 	-- Hihglight colors
 	{
-		"echasnovski/mini.hipatterns",
+		"nvim-mini/mini.nvim",
 		event = "BufReadPre",
 		opts = {},
 	},
