@@ -1,32 +1,8 @@
 # Base packages from Manjaro
-#adwaita-qt
-#caffeine-ng
-#cpupower
-#ding-libs
-#gtkhash
-#gtkhash-nautilus
-#inxi
-#libcanberra-gstreamer
-#mediainfo
-#mhwd
-#mousetweaks
-#numlockx
-#open-vm-tools
-#openconnect
-#s-nail
-#timeshift
-# acpilight
-# My packages
-#deja-dup
-#navi
 alsa-card-profiles
 android-udev
 apparmor
-asdf
-asdf-vm
 atool
-autojump
-autojump
 bluez-utils
 catimg
 chrome-gnome-shell
@@ -36,24 +12,13 @@ dnsmasq
 docpars
 expac
 f2fs-tools
+fd
 fprintd
 fzf
 geary
 git
 git-extras-git
-gnome-system-log
 gssproxy
-gst-libav
-gst-plugin-libde265
-gst-plugin-pipewire
-gst-plugins-bad
-gst-plugins-base
-gst-plugins-good
-gst-plugins-openh264
-gst-plugins-ugly
-gst-python
-gstreamer
-gstreamer-vaapi
 gthumb
 gutenprint
 hdparm
@@ -76,7 +41,6 @@ mc
 memtest86+
 mesa-demos
 mise
-nautilus-admin
 ncdu
 neovim
 networkmanager-openconnect
@@ -88,12 +52,9 @@ nfsidmap
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
-noto-fonts-emoji
 nss-mdns
 openresolv
 openvpn
-pipewire
-pipewire-pulse
 pkcs11-helper
 polkit-gnome
 polkit-qt5
@@ -118,7 +79,6 @@ ttf-nerd-fonts-symbols-mono
 unace
 uriparser
 usb_modeswitch
-vi
 wireless-regdb
 wl-clipboard
 xclip
