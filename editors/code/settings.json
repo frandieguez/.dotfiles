@@ -3,7 +3,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[javascript]": {
-		"editor.defaultFormatter": "biomejs.biome"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[javascriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -214,7 +214,6 @@
 	"workbench.editor.decorations.badges": true,
 	"workbench.editor.enablePreview": false,
 	"workbench.editor.highlightModifiedTabs": true,
-	"workbench.preferredDarkColorTheme": "Catppuccin Noctis Mocha",
 	"workbench.productIconTheme": "fluent-icons",
 	"workbench.settings.applyToAllProfiles": [
 		"workbench.preferredLightColorTheme",
@@ -301,6 +300,14 @@
 			".continue/**/*.yaml"
 		]
 	},
-	"workbench.iconTheme": "symbols",
-	"workbench.preferredLightColorTheme": "Catppuccin Noctis Latte"
+	"workbench.preferredLightColorTheme": "Catppuccin Noctis Latte",
+	"pgsql.serverGroups": [
+		{
+			"name": "Servers",
+			"id": "6440E652-5BEE-41BA-96B8-F255DBD34FA3",
+			"isDefault": true
+		}
+	],
+	"gitlens.ai.model": "vscode",
+	"gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }

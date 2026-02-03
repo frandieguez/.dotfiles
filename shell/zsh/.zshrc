@@ -140,7 +140,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-
 export HOMEBREW_BUNDLE_FILE="~/.config/brewfile/Brewfile"
 
 export GLAMOUR_STYLE="$HOME/.config/glamourstyles/catppuccin-mocha.json"
@@ -172,7 +171,7 @@ source "$DOTFILES_PATH/shell/zsh/plugins/vi-mode.zsh"
 # bun completions
 [ -s "/Users/fran/.bun/_bun" ] && source "/Users/fran/.bun/_bun"
 
-# Added by Antigravity
-export PATH="/Users/fran/.antigravity/antigravity/bin:$PATH"
 
 eval "$(zoxide init zsh)"
+
+# eval "$(starship init zsh)"
