@@ -3,8 +3,6 @@
 
 alias ..="cd .."
 alias ...="cd ../.."
-alias ll="ls -l"
-alias la="ls -la"
 alias ~="cd ~"
 
 # Git
@@ -51,87 +49,11 @@ fi
 # Always use color output for `ls`
 if [[ "$OSTYPE" =~ ^darwin ]]; then
   alias o='open .'
-  alias ls="command ls -G"
 else
   alias o="gio open"
-  alias ls="command ls --color"
-  export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 fi
+alias l="command eza --icons"
 
-alias -- -="cd -"
-alias .....="cd ../../../.."
-alias ....="cd ../../.."
-alias ...="cd ../.."
-alias ..="cd .."
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias be="bundle exec"
-alias bye="exit"
-alias c='pygmentize -O style=monokai -f console256 -g' # `cat` with beautiful colors. requires Pygments installed (sudo easy_install Pygments).
-alias cd..="cd .."
-alias cleanup="find . -name '*.DS_Store' -type f -ls -delete" # Recursively delete `.DS_Store` files
-alias current_date='date +%F\ %R'
-alias debug='cat > /tmp/debug.html&&w3m /tmp/debug.html'
-alias doctest='python -m doctest'
-alias doco="docker-compose"
-alias ducks="du -cks *|sort -rn | head"
-alias e="$EDITOR"
-alias fastping='ping -c 100 -s.2'
-alias ff='find . -iname'
-alias fs="stat -f \"%z bytes\"" # File size
-alias hl='hamster list'
-alias home='cd ~ && clear'
-alias hosts='sudo $EDITOR /etc/hosts' # yes I occasionally 127.0.0.1 twitter.com ;)
-alias hsa='hamster start'
-alias hso='hamster stop'
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\"" # View HTTP traffic
-alias ip_solver="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias irssi='TERM=screen-256color irssi'
-alias ks='tmux kill-session'
-alias l="ls -l ${colorflag}"   # List all files colorized in long format
-alias la="ls -la ${colorflag}" # List all files colorized in long format, including dot files
-alias lsd='ls -l | grep "^d"'  # List only directories
-alias maild="sudo python -c 'import smtpd, asyncore; smtpd.DebuggingServer((\"127.0.0.1\", 25), None); asyncore.loop()'"
-alias map="xargs -n1"
-alias mirror-update="sudo reflector --latest 200 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
-alias music=ncmpcpp
-alias mux="tmuxinator"
-alias nf='neofetch --ascii ~/.neofetch --ascii_colors 18 25 39'
-alias nis="npm install --save"
-alias now='date +"%T"'
-alias nowtime=now
-alias nowdate='date +"%d-%m-%Y"'
-alias path='echo -e ${PATH//:/\\n}'
-alias pcat='pygmentize -O bg=dark'
-alias please=sudo                          # be nice
-alias plistbuddy="/usr/libexec/PlistBuddy" # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias ports='netstat -tulanp'
-alias pt=papertrail
-alias public_ip="curl ifconfig.me"
-alias rot13='tr a-zA-Z n-za-mN-ZA-M' # ROT13-encode text. Works for decoding, too! ;)
-alias s="subl3"
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'" # View HTTP traffic
-alias t='tmux a||tmux new-s'
-alias tailf="tail -f"
-alias trimcopy="tr -d '\n' | pbcopy" # Trim new lines and copy to clipboard
-alias v=$VIM
-alias vh='vagrant halt'
-alias vi=$VIM
-alias vim=$VIM
-alias vs='vagrant ssh'
-alias vsus='vagrant suspend'
-alias vu='vagrant up'
-alias whois="whois -h whois-servers.net" # Enhanced WHOIS lookups
-alias zr='source ~/.zshrc'
-alias ~="cd ~" # `cd` is probably faster to type though
-if [[ "$OSTYPE" == "linux-gnu" ]]; then alias open=xdg-open; fi
-if [ -x "$(command -v thefuck)" ]; then alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'; fi
-
-## pass options to free ##
-alias meminfo='free -m -l -t'
-function mem_per_proccess() {
-  ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' | cut -d "" -f2 | cut -d "-" -f1
-}
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
@@ -150,37 +72,6 @@ alias cpuinfo='lscpu'
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-# OS Upgrade aliases
-if [[ -e "/etc/os-release" ]]; then
-  distribution=$(cat /etc/os-release | grep -E "^ID=" | cut -f2 -d"=")
-
-  case "$distribution" in
-  arch*)
-    alias os-cleanup='sudo pacman -Rcns $(pacman -Qdtq); sudo pacman -Sc --noconfirm; sudo yay -Sc --noconfirm; sudo rm /var/lib/systemd/coredump/*; sudo journalctl --vacuum-size=1M; sudo rm -r /var/cache/pacman/pkg/*; rm -fr ~/.cache/yay' # Cleans automatically installed deps
-    alias os-upgrade='sudo pacman -Syuu; yay -Syyua --noconfirm; command -v flatpak >/dev/null && flatpak update -y'
-    alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u ) <(pacman -Qlq | sort -u)" # Show dirs that don't belong to any package
-    alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u ) <(pacman -Qlq | sort -u)"                          # Show files that don't belong to any package:
-    ;;
-  ubuntu)
-    alias os-cleanup='sudo apt-get autoremove; sudo apt-get clean'
-    alias os-upgrade='sudo apt-get update; sudo apt-get dist-upgrade'
-    ;;
-  fedora)
-    alias os-cleanup='sudo dnf update'
-    alias os-upgrade='sudo dnf update all'
-    ;;
-  *)
-    echo "No os-release compatible"
-    ;;
-  esac
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias os-cleanup='brew cleanup'
-  alias os-upgrade='sudo softwareupdate -i -a; brew update; brew upgrade;'
-fi
-
-# One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
@@ -197,3 +88,184 @@ alias kpre="kubectl config use-context situm-pre-aks"
 alias kpro="kubectl config use-context situm-pro-aks"
 
 alias j="z"
+## OS tools: provide functions that adapt to the current OS/distribution
+
+# Helper to detect distro ID (returns empty if none)
+detect_distro() {
+  if [[ -e "/etc/os-release" ]]; then
+    awk -F= '/^ID=/ {gsub(/"/, "", $2); print $2; exit}' /etc/os-release
+  else
+    echo ""
+  fi
+}
+
+os_cleanup() {
+  distro=$(detect_distro)
+  if [[ -n "$distro" ]]; then
+    case "$distro" in
+    arch*)
+      echo "== Limpiando sistema (Arch) =="
+      sudo pacman -Rcns $(pacman -Qdtq) || echo "  ⚠️  'pacman -Rcns' falló o no había paquetes huérfanos"
+      sudo pacman -Sc --noconfirm || echo "  ⚠️  'pacman -Sc' falló"
+      if command -v yay >/dev/null 2>&1; then
+        sudo yay -Sc --noconfirm || echo "  ⚠️  'yay -Sc' falló"
+        rm -fr ~/.cache/yay || true
+      fi
+      sudo rm -f /var/lib/systemd/coredump/* || true
+      sudo journalctl --vacuum-size=1M || true
+      sudo rm -rf /var/cache/pacman/pkg/* || true
+      ;;
+    ubuntu|debian)
+      echo "== Limpiando sistema (Ubuntu/Debian) =="
+      sudo apt-get autoremove -y || echo "  ⚠️  'apt-get autoremove' falló"
+      sudo apt-get clean || echo "  ⚠️  'apt-get clean' falló"
+      ;;
+    fedora)
+      echo "== Limpiando sistema (Fedora) =="
+      sudo dnf autoremove -y || echo "  ⚠️  'dnf autoremove' falló"
+      sudo dnf clean all || echo "  ⚠️  'dnf clean all' falló"
+      ;;
+    *)
+      echo "No hay una estrategia de limpieza para: $distro"
+      ;;
+    esac
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "== Limpiando sistema (macOS) =="
+    if command -v brew >/dev/null 2>&1; then
+      brew cleanup || echo "  ⚠️  'brew cleanup' falló"
+    else
+      echo "  ℹ️  Homebrew no está instalado; omitiendo."
+    fi
+  else
+    echo "No se ha detectado una plataforma compatible para 'os_cleanup'."
+  fi
+}
+
+os_upgrade() {
+  distro=$(detect_distro)
+  if [[ -n "$distro" ]]; then
+    case "$distro" in
+    arch*)
+      echo "== Actualizando sistema (Arch) =="
+      echo "1/5: Sincronizando repositorios y actualizando paquetes..."
+      sudo pacman -Syyu --noconfirm || echo "  ⚠️  'pacman -Syyu' falló"
+
+      echo "2/5: Actualizando AUR (si 'yay' o 'paru' existen)..."
+      if command -v yay >/dev/null 2>&1; then
+        yay -Syyua --noconfirm || echo "  ⚠️  'yay -Syyua' falló"
+      elif command -v paru >/dev/null 2>&1; then
+        paru -Syu --noconfirm || echo "  ⚠️  'paru -Syu' falló"
+      else
+        echo "  ℹ️  Ningún asistente AUR instalado; omitiendo paso AUR."
+      fi
+
+      echo "3/5: Actualizando flatpak/snap si están instalados..."
+      if command -v flatpak >/dev/null 2>&1; then
+        flatpak update -y || echo "  ⚠️  'flatpak update' falló"
+      fi
+      if command -v snap >/dev/null 2>&1; then
+        sudo snap refresh || echo "  ⚠️  'snap refresh' falló"
+      fi
+
+      echo "4/5: Eliminando paquetes huérfanos..."
+      orphans=$(pacman -Qtdq 2>/dev/null)
+      if [[ -n "$orphans" ]]; then
+        sudo pacman -Rns --noconfirm $orphans || echo "  ⚠️  'pacman -Rns' falló"
+      else
+        echo "  ℹ️  No hay paquetes huérfanos."
+      fi
+
+      echo "5/5: Finalizando actualización Arch."
+      ;;
+    ubuntu|debian)
+      echo "== Actualizando sistema (Ubuntu/Debian) =="
+      echo "1/5: Actualizando índices de paquetes..."
+      sudo apt-get update || echo "  ⚠️  'apt-get update' falló"
+
+      echo "2/5: Actualizando paquetes instalados..."
+      sudo apt-get dist-upgrade -y || echo "  ⚠️  'apt-get dist-upgrade' falló"
+
+      echo "3/5: Actualizando snaps/flatpaks si están presentes..."
+      if command -v snap >/dev/null 2>&1; then
+        sudo snap refresh || echo "  ⚠️  'snap refresh' falló"
+      fi
+      if command -v flatpak >/dev/null 2>&1; then
+        flatpak update -y || echo "  ⚠️  'flatpak update' falló"
+      fi
+
+      echo "4/5: Eliminando paquetes huérfanos..."
+      sudo apt-get autoremove -y || echo "  ⚠️  'apt-get autoremove' falló"
+
+      echo "5/5: Limpiando caché de paquetes..."
+      sudo apt-get autoclean -y || echo "  ⚠️  'apt-get autoclean' falló"
+      ;;
+    fedora)
+      echo "== Actualizando sistema (Fedora) =="
+      echo "1/4: Actualizando paquetes..."
+      sudo dnf upgrade --refresh -y || echo "  ⚠️  'dnf upgrade' falló"
+
+      echo "2/4: Actualizando snaps/flatpaks si están presentes..."
+      if command -v snap >/dev/null 2>&1; then
+        sudo snap refresh || echo "  ⚠️  'snap refresh' falló"
+      fi
+      if command -v flatpak >/dev/null 2>&1; then
+        flatpak update -y || echo "  ⚠️  'flatpak update' falló"
+      fi
+
+      echo "3/4: Eliminando dependencias huérfanas..."
+      sudo dnf autoremove -y || echo "  ⚠️  'dnf autoremove' falló"
+
+      echo "4/4: Limpiando caché..."
+      sudo dnf clean all || echo "  ⚠️  'dnf clean all' falló"
+      ;;
+    *)
+      echo "No hay una estrategia de upgrade para: $distro"
+      ;;
+    esac
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "== Iniciando actualización del sistema (macOS) =="
+    echo "1/6: Instalando actualizaciones de macOS (requiere sudo)..."
+    if sudo softwareupdate -i -a; then
+      echo "  ✅ Actualizaciones de macOS instaladas."
+    else
+      echo "  ⚠️  Falló la instalación de actualizaciones de macOS (revisar logs)."
+    fi
+
+    echo "2/6: Actualizando Homebrew..."
+    if command -v brew >/dev/null 2>&1; then
+      brew update || echo "  ⚠️  'brew update' falló"
+    else
+      echo "  ℹ️  Homebrew no está instalado; omitiendo pasos de Brew."
+    fi
+
+    echo "3/6: Actualizando fórmulas y casks de Homebrew..."
+    if command -v brew >/dev/null 2>&1; then
+      brew upgrade || echo "  ⚠️  'brew upgrade' falló"
+    fi
+
+    echo "4/6: Actualizando aplicaciones App Store con mas (si está instalado)..."
+    if command -v mas >/dev/null 2>&1; then
+      mas upgrade || echo "  ⚠️  'mas upgrade' falló"
+    else
+      echo "  ℹ️  'mas' no está instalado; omitiendo actualizaciones de App Store."
+    fi
+
+    echo "5/6: Eliminando paquetes de Homebrew no utilizados..."
+    if command -v brew >/dev/null 2>&1; then
+      brew autoremove || echo "  ⚠️  'brew autoremove' falló"
+    fi
+
+    echo "6/6: Limpieza final de Homebrew..."
+    if command -v brew >/dev/null 2>&1; then
+      brew cleanup || echo "  ⚠️  'brew cleanup' falló"
+    fi
+
+    echo "== Actualización macOS finalizada =="
+  else
+    echo "No se ha detectado una plataforma compatible para 'os_upgrade'."
+  fi
+}
+
+# Backwards-compatible aliases
+alias os-upgrade='os_upgrade'
+alias os-cleanup='os_cleanup'
