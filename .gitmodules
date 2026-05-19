@@ -5,6 +5,7 @@
 [submodule "modules/git-hooks"]
 	path = modules/git-hooks
 	url = https://github.com/dhellmann/git-hooks.git
+	branch = main
 [submodule "modules/tmux-tpm"]
 	path = modules/tmux-tpm
 	url = https://github.com/tmux-plugins/tpm
