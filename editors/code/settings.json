@@ -1,18 +1,28 @@
 {
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
 	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.html-language-features"
 	},
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[javascriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+		"editor.wordWrap": "on"
+	},
+	"[php]": {
+		"editor.defaultFormatter": "DEVSENSE.phptools-vscode"
 	},
 	"[python]": {
 		"editor.formatOnType": true
@@ -21,7 +31,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -29,7 +39,12 @@
 	"[yaml]": {
 		"editor.defaultFormatter": "redhat.vscode-yaml"
 	},
+	"chat.mcp.gallery.enabled": true,
+	"dev.containers.dockerPath": "podman",
+	"diffEditor.ignoreTrimWhitespace": false,
+	"docker.dockerPath": "podman",
 	"editor.bracketPairColorization.enabled": true,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 	"editor.cursorBlinking": "smooth",
 	"editor.cursorSmoothCaretAnimation": "on",
 	"editor.fontFamily": "'Monaspace Neon', monospace, 'Cascadia Mono', 'JuliaMono', 'Hasklig',  'Courier Prime', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -62,11 +77,29 @@
 	"files.trimTrailingWhitespace": true,
 	"git.autofetch": true,
 	"git.fetchOnPull": true,
+	"gitlens.ai.model": "vscode",
+	"gitlens.ai.vscode.model": "copilot:gpt-4.1",
 	"javascript.preferences.importModuleSpecifier": "non-relative",
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"json.maxItemsComputed": 15000,
+	"json.schemaDownload.trustedDomains": {
+		"https://biomejs.dev": true,
+		"https://json-schema.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://raw.githubusercontent.com/": true,
+		"https://schemastore.azurewebsites.net/": true,
+		"https://www.schemastore.org/": true
+	},
+	"pgsql.serverGroups": [
+		{
+			"id": "6440E652-5BEE-41BA-96B8-F255DBD34FA3",
+			"isDefault": true,
+			"name": "Servers"
+		}
+	],
 	// "json.sortOnSave.enable": true,
 	"php.suggest.basic": false,
+	"redhat.telemetry.enabled": true,
 	"remote.localPortHost": "allInterfaces",
 	"search.exclude": {
 		"**/build": true
@@ -76,6 +109,7 @@
 	"terminal.integrated.cursorStyle": "line",
 	"terminal.integrated.fontFamily": "'0xProto Nerd Font','Hack', monospace",
 	"terminal.integrated.fontSize": 13,
+	"terminal.integrated.stickyScroll.enabled": true,
 	"typescript.inlayHints.enumMemberValues.enabled": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"vim.easymotion": true,
@@ -202,7 +236,9 @@
 			]
 		}
 	],
+	"window.autoDetectColorScheme": true,
 	"window.menuBarVisibility": "classic",
+	"window.newWindowProfile": "Default",
 	// "window.title": "${appName}${separator}${rootName}${separator}${dirty}${activeEditorLong}${separator}",
 	"window.titleBarStyle": "custom",
 	"workbench.colorCustomizations": {
@@ -211,7 +247,9 @@
 			"window.activeBorder": "#ccc"
 		}
 	},
+	"workbench.colorTheme": "Catppuccin Noctis Frappé",
 	"workbench.editor.decorations.badges": true,
+	"workbench.editor.empty.hint": "hidden",
 	"workbench.editor.enablePreview": false,
 	"workbench.editor.highlightModifiedTabs": true,
 	"workbench.productIconTheme": "fluent-icons",
@@ -278,36 +316,27 @@
 		"[javascript]",
 		"[html]"
 	],
-	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-	"[markdown]": {
-		"editor.wordWrap": "on"
-	},
-	"workbench.colorTheme": "Terracota Cream Dark",
-	"redhat.telemetry.enabled": true,
-	"workbench.tree.enableStickyScroll": true,
-	"terminal.integrated.stickyScroll.enabled": true,
-	"dev.containers.dockerPath": "podman",
-	"docker.dockerPath": "podman",
-	"window.autoDetectColorScheme": true,
-	"[php]": {
-		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-	},
-	"window.newWindowProfile": "Default",
 	"workbench.sideBar.location": "right",
-	"diffEditor.ignoreTrimWhitespace": false,
+	"workbench.tree.enableStickyScroll": true,
 	"yaml.schemas": {
 		"file:///Users/fran/.vscode/extensions/continue.continue-1.2.14-darwin-arm64/config-yaml-schema.json": [
 			".continue/**/*.yaml"
+		],
+		"file:///Users/fran/.vscode/extensions/continue.continue-1.2.15-darwin-arm64/config-yaml-schema.json": [
+			".continue/**/*.yaml"
+		],
+		"file:///Users/fran/.vscode/extensions/continue.continue-1.2.16-darwin-arm64/config-yaml-schema.json": [
+			".continue/**/*.yaml"
 		]
 	},
-	"workbench.preferredLightColorTheme": "Catppuccin Noctis Latte",
-	"pgsql.serverGroups": [
-		{
-			"name": "Servers",
-			"id": "6440E652-5BEE-41BA-96B8-F255DBD34FA3",
-			"isDefault": true
-		}
-	],
-	"gitlens.ai.model": "vscode",
-	"gitlens.ai.vscode.model": "copilot:gpt-4.1"
+	"[svelte]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
+	"chat.viewSessions.orientation": "stacked",
+	"workbench.preferredLightColorTheme": "Cursor Light",
+	"workbench.preferredDarkColorTheme": "cursor-dark",
+	"makefile.configureOnOpen": true,
+	"typescript.experimental.useTsgo": true,
+	"go.toolsManagement.autoUpdate": true
 }
